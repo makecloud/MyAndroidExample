@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="bottom|right"
+              android:orientation="vertical"
+              tools:context="com.liuyihui.client.floatplayercontroller.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/sendHide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendHide"
+        android:text="@string/sendHide"/>
+
+    <Button
+        android:id="@+id/sendResume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendResume"
+        android:text="@string/sendResume"/>
+
+    <Button
+        android:id="@+id/sendStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendStop"
+        android:text="@string/sendStop"/>
+
+    <Button
+        android:id="@+id/launchPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="launchPlayer"
+        android:text="启动播放器"/>
+
+    <Button
+        android:id="@+id/showOnSecondaryDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showOnSecondaryDisplay"
+        android:text="@string/showOnSecondaryDisplay"/>
+
+    <Button
+        android:id="@+id/startFloatService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startFloatService"
+        android:text="@string/startFloatService"/>
+
+    <Button
+        android:id="@+id/stopFloatService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="stopFloatService"
+        android:text="@string/stopFloatService"/>
+
+    <Button
+        android:id="@+id/snapshot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="takeScreenShot"
+        android:text="调用系统截图方法"/>
+
+    <Button
+        android:id="@+id/emulatePressGoodsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="emulatePressGoodsButton"
+        android:text="模拟按售货机按键"/>
+
+    <Button
+        android:id="@+id/pmUninstall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="pmUninstall"
+        android:text="pm卸载player"/>
+
+    <Button
+        android:id="@+id/pmInstall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="pmInstall"
+        android:text="pm安装player"/>
+
+</LinearLayout>

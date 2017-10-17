@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FloatPlayerController</string>
+    <string name="sendHide">隐藏播放器</string>
+    <string name="sendResume">恢复播放器</string>
+    <string name="sendStop">关闭播放器</string>
+    <string name="showOnSecondaryDisplay">副屏打开一个界面</string>
+    <string name="startFloatService">启动副屏悬浮窗服务</string>
+    <string name="stopFloatService">停止副屏悬浮窗服务</string>
+</resources>

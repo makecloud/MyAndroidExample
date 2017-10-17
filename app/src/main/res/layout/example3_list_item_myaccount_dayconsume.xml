@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--月份条-->
+    <LinearLayout
+        android:id="@+id/ll_month_bar"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:background="@color/yunge_D_gray_button"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="17dp">
+
+        <TextView
+            android:id="@+id/tv_myaccount_monthbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9月" />
+    </LinearLayout>
+    <!--日消耗布局-->
+    <LinearLayout
+        android:id="@+id/ll_day_consume"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_myaccount_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="周三" />
+
+            <TextView
+                android:id="@+id/tv_myaccount_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09-10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="18dp">
+
+            <TextView
+                android:id="@+id/tv_myaccount_dayconsume_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-20000"
+                android:textColor="@color/yunge_A_black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="云歌投放平台" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="98dp"
+    android:divider="@drawable/divider"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="98dp"
+        android:layout_weight="3"
+        android:background="@color/white">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="4dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:src="@drawable/plan_material_example" />
+        </FrameLayout>
+        <!--文字区-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:padding="7dp">
+
+            <TextView
+                android:id="@+id/tv_plan_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="云歌户外投放"
+                android:textColor="@color/yunge_A_black"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="投放周期："
+                    android:textColor="@color/yunge_A_black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_plan_period"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yunge_A_black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="当前消费："
+                    android:textColor="@color/yunge_A_black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_plan_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yunge_A_black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <!--3个标签-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="7dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_plan_label_putmode_bg"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="策略投放"
+                    android:textColor="@color/yunge_label_blue_font"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/shape_plan_label_billingmode_bg"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="CPM"
+                    android:textColor="@color/yunge_lable_green_fong"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/shape_plan_label_putstatus_bg"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="投放中"
+                    android:textColor="@color/yunge_label_red_font"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btn_apply_unpublish"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/yunge_K_shallow_blue"
+            android:text="申请下刊"
+            android:textColor="@color/yunge_C_black" />
+
+    </FrameLayout>
+
+</LinearLayout>

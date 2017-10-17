@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.liuyihui.client.myexample"
+    android:sharedUserId="liuyihui.first_app">
+
+    <!-- 相机相关权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.Camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.LOCATION_HARDWARE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="3f98df9c9eb1fa625fa25e188b8bb405" />
+
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".example1.Example1Activity" />
+        <activity
+            android:name=".example1.Example1_1Activity"
+            android:theme="@style/AppTheme.OverlayActionBar" />
+        <activity android:name=".example2_pullToRefreshListView_demo.Example2Activity" />
+        <activity android:name=".example3.Example3Activity" />
+        <activity android:name=".example4_use_camera.Example4Activity" />
+        <activity android:name=".example5_use_amap.Example5Activity" />
+        <activity android:name=".example5_use_amap.BaseMapFragmentActivity" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity android:name=".example6_use_popupwindow.Example6Activity" />
+        <activity android:name=".example7.Example7Activity" />
+        <activity android:name=".example8_choose_city_demo.ChoseCityActivity" />
+        <activity android:name=".example9.ScanResultActivity" />
+        <activity android:name=".example10.InvokeSysGalleryActivity" />
+        <activity
+            android:name=".example9.zxing.activity.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".example11.ShuffleImagesActivity" />
+        <activity android:name=".example12.ImageSlideShowActivity" />
+        <activity android:name=".example13_viewflipper.UseViewFlipperActivity" />
+        <activity android:name=".example15_viewpager.UseViewPagerActivity" />
+        <activity android:name=".example14_gridview.UseGridViewActivity" />
+        <activity android:name=".example15_viewpager.ViewPagerFragmentActivity" />
+        <activity android:name=".example16_recyclerview.Example16Activity" />
+        <activity android:name=".example17_DESencrypt.TestDesActivity" />
+
+        <service android:name=".example18_service.MyService" />
+
+        <activity android:name=".example18_service.Example18Activity" />
+
+        <service android:name=".example19_serviceUI.ServiceUI" />
+
+        <activity android:name=".example19_serviceUI.example19Activity" />
+        <activity android:name=".example20_activityGroup.ContainerActivity" />
+        <activity android:name=".example20_activityGroup.TheFirstActivity" />
+        <activity android:name=".example20_activityGroup.TheSecondActivity" />
+        <activity android:name=".example21_framelayout_hierarchy.Example21Activity" />
+        <activity android:name=".example22_awakenSelf.Example22Activity" />
+        <activity android:name=".example23_CrashHandler.Example23Activity" />
+        <activity android:name=".example24_use_database.Example24Activity"></activity>
+    </application>
+
+</manifest>

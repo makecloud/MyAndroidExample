@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.liuyihui.playvideodemo.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/playVideoDemo2"
+        android:onClick="playVideoDemo2CLick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MediaPlayer+SurfaceView播放视频"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/playVideoDemo3"
+        android:onClick="playVideoDemo3CLick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MediaPlayer+TextureView播放视频"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/playVideoDemo4"
+        android:onClick="playVideoDemo4CLick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="调用系统自带播放器 播放视频"
+        android:textAllCaps="false"/>
+
+
+    <VideoView
+        android:id="@+id/myVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
