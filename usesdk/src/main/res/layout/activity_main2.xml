@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.liuyihui.myexample.usesdk.Main2Activity">
+
+    <!--示例layout, 广告将在这个view中播放-->
+    <RelativeLayout
+        android:id="@+id/place_sdk_view"
+        android:layout_width="800dp"
+        android:layout_height="600dp"
+        android:background="@color/colorAccent">
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

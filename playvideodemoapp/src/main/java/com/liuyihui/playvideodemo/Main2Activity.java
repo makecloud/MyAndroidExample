@@ -65,8 +65,10 @@ public class Main2Activity extends MySuperActivity {
         String sdcardDir = Environment.getExternalStorageDirectory().getAbsolutePath();
 //        String path = sdcardDir + "/DCIM/YiCarCamera/2016.MP4";
 //        String path = sdcardDir + "/360/30a58ee0d1b3be9313367ef8033f5483.mp4";
+//        String path = sdcardDir + "/360/mcdown.mp4";
+        String path = sdcardDir + "/360/dianshiju.mp4";
 //        String path = sdcardDir + "/360/C06FABBCF84118FD003D0D1269762C0E";
-        String path = sdcardDir + "/oohlink/player/.screen/C06FABBCF84118FD003D0D1269762C0E";
+//        String path = sdcardDir + "/oohlink/player/.screen/C06FABBCF84118FD003D0D1269762C0E";
 //        String path = sdcardDir + "/oohlink/player/.screen/E51A96E2BCBEAA3873EA8CA2CCFB8257";
 
         Log.e(TAG, path);

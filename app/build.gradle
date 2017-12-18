@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "25.0.0"
     defaultConfig {
-        applicationId "com.liuyihui.client.myexample"
+        applicationId "com.liuyihui.client.myexample.part1"
         minSdkVersion 14
         targetSdkVersion 24
         versionCode 1

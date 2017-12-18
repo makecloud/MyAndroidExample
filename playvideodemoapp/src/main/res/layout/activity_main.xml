@@ -19,33 +19,38 @@
 
     <Button
         android:id="@+id/playVideoDemo2"
-        android:onClick="playVideoDemo2CLick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="playVideoDemo2CLick"
         android:text="MediaPlayer+SurfaceView播放视频"
         android:textAllCaps="false"/>
 
     <Button
         android:id="@+id/playVideoDemo3"
-        android:onClick="playVideoDemo3CLick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="playVideoDemo3CLick"
         android:text="MediaPlayer+TextureView播放视频"
         android:textAllCaps="false"/>
 
     <Button
         android:id="@+id/playVideoDemo4"
-        android:onClick="playVideoDemo4CLick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="playVideoDemo4CLick"
         android:text="调用系统自带播放器 播放视频"
         android:textAllCaps="false"/>
 
-
-    <VideoView
-        android:id="@+id/myVideoView"
+    <LinearLayout
+        android:id="@+id/ll_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="match_parent">
+
+        <VideoView
+            android:id="@+id/myVideoView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
 
 </LinearLayout>

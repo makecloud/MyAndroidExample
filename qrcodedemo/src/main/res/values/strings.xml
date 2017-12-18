@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">二维码扫描demo</string>
+    <string name="scan_text">将二维码放入框内,即可自动扫描识别播控编码</string>
+</resources>
