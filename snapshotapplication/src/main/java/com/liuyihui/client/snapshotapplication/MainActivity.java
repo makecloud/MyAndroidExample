@@ -4,8 +4,10 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -13,173 +15,119 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Surface;
 import android.view.View;
 import android.widget.Toast;
 
 import java.io.DataInput;
 import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import util.Cmd;
+import util.ShellUtils;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "snapshotapplication";
-    private Handler mHandler=new Handler();
+    private Handler mHandler = new Handler();
 
-    public static void convertToRgba32(DataInput frameBuffer, int[] into) {
-        try {
-            for (int x = 0; x < into.length; x++) {
-                try {
-                    int rgb = frameBuffer.readShort() & 0xffff;
-                    int red = rgb >> 11;
-                    red = (red << 3) | (red >> 2);
-                    int green = (rgb >> 5) & 63;
-                    green = (green << 2) | (green >> 4);
-                    int blue = rgb & 31;
-                    blue = (blue << 3) | (blue >> 2);
-                    into[x] = 0xff000000 | (red << 16) | (green << 8) | blue;
-                } catch (EOFException e) {
-                    System.out.println("EOFException=" + e);
-                }
-            }
-        } catch (IOException exception) {
-            System.out.println("convertToRgba32Exception=" + exception);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //安装raw
+        String filesPath = getApplicationContext().getFilesDir().getPath();
+        File screencaptureFile = new File(filesPath + "/" + "screencapu");
+        if (!screencaptureFile.exists()) {
+            try {
+                screencaptureFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(screencaptureFile);//输出到新文件
+            InputStream is = getResources().openRawResource(R.raw.screencapture);//从老文件得到输入流
+            byte[] buff = new byte[1024];
+            int tmp;
+            while ((tmp = is.read(buff)) != -1) {
+                fos.write(buff, 0, tmp);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-//        Button scrButton=findViewById(R.id.)
-        //activity启动时候截图测试
+        //授权
+        if (screencaptureFile.length() > 0) {
+            String cmd = "cd " + filesPath + "; chmod 777 screencapu";
+            ShellUtils.execCommand(cmd, false);
+        }
+
     }
 
     /**
-     * 截图
+     * 执行命令截图
      *
-     * @return
+     * @param v
      */
-    public boolean getSnapshot(View v) {
-
-        Process sh = null;
-        OutputStream os = null;
-        boolean ret = true;
-
-
-        try {
-            sh = Runtime.getRuntime().exec("su", null, null);
-            os = sh.getOutputStream();
-            /**
-             * <p>这里可以保存到ramdisk里，但是有些机器没有/dev/shm这个目录</p>
-             */
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Toast.makeText(this, "invoke system screencap", Toast.LENGTH_SHORT).show();
-                String cmd = "/system/bin/screencap " + "/sdcard/cloud/snap/PlanId.291-scrId.299-matId.95-2017-07-31_11-11-11.png";
-                os.write(cmd.getBytes("ASCII"));
-            } else {
-                Toast.makeText(this, "invoke my screencap", Toast.LENGTH_SHORT).show();
-                String cmd = "/data/data/com.cloud.player/files/screencapture 2 /sdcard/cloud/snap/PlanId.291-scrId.299-matId.95-2017-07-31_22-22-22.png";
-                os.write(cmd.getBytes("ASCII"));
-            }
-            os.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        } finally {
-            if (os != null) {
-                try {
-                    os.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return ret;
-    }
-
-    public void exeCmd(View v) {
-
-        String cmd = "/data/data/com.cloud.player/files/screencapture 2 /sdcard/PlanId.291-scrId.299-matId.95-2017-07-31_22-22-22.png";
+    public void exeCmdToSnapshot(View v) {
+        //需要安装一下screencap2
+//        String cmd = "/data/data/com.cloud.player/files/screencapture 2 /sdcard/PlanId.291-scrId.299-matId.95-2017-07-31_22-22-22.png";
+        String dataPath = Environment.getExternalStorageDirectory().getPath();
+        String cmd = "screencap  " + dataPath + "/a.png";
 
         try {
-            Cmd.runAsRoot(cmd);
+            ShellUtils.execCommand(cmd, false);
         } catch (Exception e) {
-            e.printStackTrace();
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.e(TAG, e.getMessage(), e);
         }
 
+        //
+        reflScreeshot();
+
+        //
         takeScreenshotUseSystemAPI();
 
     }
 
-    public void takeScreeshot() {
-
+    /**
+     * 据说4.3系统支持的通过反射调用截图
+     */
+    public void reflScreeshot() {
+        Class sc = null;
+        try {
+            sc = Class.forName("android.view.Surface");
+            for (Method m : sc.getMethods()) {
+                Log.i(TAG, m.getName());
+            }
+            Method method = sc.getMethod("screenshot", new Class[]{int.class, int.class});
+            int[] dims = new int[2];
+            Object o = method.invoke(sc, new Object[]{(int) dims[0], (int) dims[1]});
+            Bitmap mScreenBitmap = (Bitmap) o;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    /*public void drawPicture() {
-        try {
-            //分辨率大小，后续可以通过代码来获取到当前的分辨率
-            int xResolution = 320;
-            int yResolution = 480;
-            //执行adb命令，把framebuffer中内容保存到fb1文件中
-            Runtime.getRuntime().exec("adb pull /dev/graphics/fb0 C:/fb1");
-            //等待几秒保证framebuffer中的数据都被保存下来，如果没有保存完成进行读取操作会有IO异常
-            Thread.sleep(15000);
-            //读取文件中的数据
-            InputStream in = (InputStream) new FileInputStream("C:/fb1");
-            DataInput frameBuffer = new LittleEndianDataInputStream(in);
-
-
-            BufferedImage a;
-            BufferedImage screenImage = new BufferedImage(xResolution, yResolution, BufferedImage.TYPE_INT_ARGB);
-            int[] oneLine = new int[xResolution];
-            for (int y = 0; y < yResolution; y++) {
-                //从frameBuffer中计算出rgb值
-                convertToRgba32(frameBuffer, oneLine);
-                //把rgb值设置到image对象中
-                screenImage.setRGB(0, y, xResolution, 1, oneLine, 0, xResolution);
-            }
-            Closeables.closeQuietly(in);
-
-            ByteArrayOutputStream rawPngStream = new ByteArrayOutputStream();
-            try {
-                if (!ImageIO.write(screenImage, "png", rawPngStream)) {
-                    throw new RuntimeException("This Java environment does not support converting to PNG.");
-                }
-            } catch (IOException exception) {
-                // This should never happen because rawPngStream is an in-memory stream.
-                System.out.println("IOException=" + exception);
-            }
-            byte[] rawPngBytes = rawPngStream.toByteArray();
-            String base64Png = new Base64Encoder().encode(rawPngBytes);
-
-            File screenshot = OutputType.FILE.convertFromBase64Png(base64Png);
-            System.out.println("screenshot==" + screenshot.toString());
-            screenshot.renameTo(new File("C:\\screenshottemp.png"));
-
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            System.out.println(e);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }*/
-
     /**
-     * 系统截图超时回调类
+     * 调用系统takescreenshot服务
      */
-    private Runnable mScreenshotTimeout=new Runnable() {
-        @Override
-        public void run() {
-            Log.w(TAG,"snapshot timeout ");
-        }
-    };
     private void takeScreenshotUseSystemAPI() {
         final Object mScreenshotLock = new Object();
         final ServiceConnection[] mScreenshotConnection = {null};
@@ -188,13 +136,11 @@ public class MainActivity extends AppCompatActivity {
             if (mScreenshotConnection[0] != null) {
                 return;
             }
-
             ComponentName cn = new ComponentName("com.android.systemui", "com.android.systemui.screenshot.TakeScreenshotService");
             Intent intent = new Intent();
             intent.setComponent(cn);
 
             ServiceConnection conn = new ServiceConnection() {
-
 
                 @Override
                 public void onServiceConnected(ComponentName name, IBinder service) {
@@ -226,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                         msg.arg1 = 1;
                         /*if (mNavigationBar != null && mNavigationBar.isVisibleLw()) {
                         }*/
-                            msg.arg2 = 1;
+                        msg.arg2 = 1;
                         try {
                             messenger.send(msg);
                         } catch (RemoteException e) {
@@ -243,6 +189,51 @@ public class MainActivity extends AppCompatActivity {
                 mScreenshotConnection[0] = conn;
                 mHandler.postDelayed(mScreenshotTimeout, 10000);
             }
+        }
+    }
+
+
+    /**
+     * 系统截图服务超时回调类
+     */
+    private Runnable mScreenshotTimeout = new Runnable() {
+        @Override
+        public void run() {
+            Log.w(TAG, "snapshot timeout ");
+        }
+    };
+
+    /**
+     * 这种方法状态栏是空白，显示不了状态栏的信息
+     */
+    public void saveCurrentImage(View v) {
+        //获取当前屏幕的大小
+        int width = getWindow().getDecorView().getRootView().getWidth();
+        int height = getWindow().getDecorView().getRootView().getHeight();
+        //生成相同大小的图片
+        Bitmap temBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        //找到当前页面的跟布局
+        View view = getWindow().getDecorView().getRootView();
+        //设置缓存
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        //从缓存中获取当前屏幕的图片
+        temBitmap = view.getDrawingCache();
+
+        //输出到sd卡
+        String sdcardPath = Environment.getExternalStorageDirectory().getPath();
+
+        File imagFile = new File(sdcardPath + "/" + "aaaaa.png");
+        try {
+            if (!imagFile.exists()) {
+                imagFile.createNewFile();
+            }
+            FileOutputStream foStream = new FileOutputStream(imagFile);
+            temBitmap.compress(Bitmap.CompressFormat.PNG, 100, foStream);
+            foStream.flush();
+            foStream.close();
+        } catch (Exception e) {
+            Log.i("Show", e.toString());
         }
     }
 }

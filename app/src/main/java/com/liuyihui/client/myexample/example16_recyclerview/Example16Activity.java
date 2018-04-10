@@ -25,35 +25,33 @@ import java.util.List;
 
 public class Example16Activity extends Activity {
     private static final String TAG = "Example1Activity";
-    /**
-     * 列表
-     */
-    private PullToRefreshListView pullToRefreshListView;
+    /***/
     private RecyclerView recyclerView;
-    /**
-     * 两个容器
-     */
-    private LinearLayout header2Container;
-    private LinearLayout hoverContainer;
-    /**
-     * 需要悬浮的内容的布局视图
-     */
+    /** 需要悬浮的内容的布局视图 */
     private LinearLayout hoverContentLinearLayout;
     /*数据*/
     private List<String> mDatas;
 
+    /**
+     * activity创建回调
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example16);
-        recyclerView = (RecyclerView) findViewById(R.id.recylerview);
         initData();
+        recyclerView = (RecyclerView) findViewById(R.id.recylerview);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         //设置布局管理器
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(linearLayoutManager);
         //设置adapter
         recyclerView.setAdapter(new HomeAdapter());
         //设置Item增加、移除动画
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -62,31 +60,52 @@ public class Example16Activity extends Activity {
         });
     }
 
+    /**
+     * 创建数据集合
+     */
     protected void initData() {
-        mDatas = new ArrayList<String>();
+        mDatas = new ArrayList<>();
         for (int i = 'A'; i < 'z'; i++) {
             mDatas.add("" + (char) i);
         }
     }
 
+    /**
+     * recyclerView 的适配器
+     */
     class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
 
+        /**
+         * @param parent
+         * @param viewType
+         * @return
+         */
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             MyViewHolder holder = new MyViewHolder(LayoutInflater.from(Example16Activity.this).inflate(R.layout.recyclerview_item, parent, false));
             return holder;
         }
 
+        /**
+         * @param holder
+         * @param position
+         */
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
             holder.tv.setText(mDatas.get(position));
         }
 
+        /**
+         * @return
+         */
         @Override
         public int getItemCount() {
             return mDatas.size();
         }
 
+        /**
+         *
+         */
         class MyViewHolder extends RecyclerView.ViewHolder {
 
             TextView tv;

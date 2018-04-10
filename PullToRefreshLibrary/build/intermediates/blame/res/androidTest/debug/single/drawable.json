@@ -1,10 +1,10 @@
 [
     {
-        "merged": "D:\\liuyihui\\myProjects\\android_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
-        "source": "D:\\liuyihui\\myProjects\\android_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
+        "merged": "D:\\liuyihui\\myProjects\\androidStudio_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
+        "source": "D:\\liuyihui\\myProjects\\androidStudio_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
     },
     {
-        "merged": "D:\\liuyihui\\myProjects\\android_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
-        "source": "D:\\liuyihui\\myProjects\\android_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+        "merged": "D:\\liuyihui\\myProjects\\androidStudio_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
+        "source": "D:\\liuyihui\\myProjects\\androidStudio_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
     }
 ]

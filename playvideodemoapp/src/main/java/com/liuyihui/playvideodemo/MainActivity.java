@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.VideoView;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 /**
  * 使用videoView播放视频
@@ -114,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
 //                    surfaceView.setLayoutParams(lp);
                         //如果用的videoView 则设置surfaceView的布局参数
                         myVideoView.setLayoutParams(lp);
-
                     }
 
                 }
@@ -132,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void playVideoDemo4CLick(View v) {
-
+        try {
+            String url = URLEncoder.encode("www.xxx.com/index/?a=#####", "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }

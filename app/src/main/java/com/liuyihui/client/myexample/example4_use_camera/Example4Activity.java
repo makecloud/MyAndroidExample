@@ -1,5 +1,6 @@
 package com.liuyihui.client.myexample.example4_use_camera;
 
+import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,11 +28,12 @@ public class Example4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example4);
         initComponentView();
-        //surfaceHolder是联系到surface对象的纽带
+        //surfaceHolder是surface联系到surfaceView对象的纽带
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
         //surfaceHolder添加surface周期
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
 
+            //surface创建回调
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
                 try {
@@ -42,12 +44,14 @@ public class Example4Activity extends AppCompatActivity {
                 }
             }
 
+            //surface改变回调
             @Override
             public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
                 //camera开始在surface对象上绘制帧
                 camera.startPreview();
             }
 
+            //surface销毁回调
             @Override
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
                 //camera停止在surfa上绘制帧

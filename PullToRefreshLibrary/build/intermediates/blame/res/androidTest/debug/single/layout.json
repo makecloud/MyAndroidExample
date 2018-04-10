@@ -1,10 +1,10 @@
 [
     {
-        "merged": "D:\\liuyihui\\myProjects\\android_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
-        "source": "D:\\liuyihui\\myProjects\\android_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
+        "merged": "D:\\liuyihui\\myProjects\\androidStudio_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
+        "source": "D:\\liuyihui\\myProjects\\androidStudio_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
     },
     {
-        "merged": "D:\\liuyihui\\myProjects\\android_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
-        "source": "D:\\liuyihui\\myProjects\\android_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
+        "merged": "D:\\liuyihui\\myProjects\\androidStudio_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
+        "source": "D:\\liuyihui\\myProjects\\androidStudio_projects\\MyExample\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     }
 ]
