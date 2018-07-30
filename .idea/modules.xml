@@ -7,9 +7,11 @@
       <module fileurl="file://$PROJECT_DIR$/androidevent/androidevent.iml" filepath="$PROJECT_DIR$/androidevent/androidevent.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/collectmoney/collectmoney.iml" filepath="$PROJECT_DIR$/collectmoney/collectmoney.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deviceonoff/deviceonoff.iml" filepath="$PROJECT_DIR$/deviceonoff/deviceonoff.iml" />
       <module fileurl="file://$PROJECT_DIR$/everybar/everybar.iml" filepath="$PROJECT_DIR$/everybar/everybar.iml" />
       <module fileurl="file://$PROJECT_DIR$/exeshell/exeshell.iml" filepath="$PROJECT_DIR$/exeshell/exeshell.iml" />
       <module fileurl="file://$PROJECT_DIR$/facedetect/facedetect.iml" filepath="$PROJECT_DIR$/facedetect/facedetect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/facedetect_quividi_demo/facedetect_quividi_demo.iml" filepath="$PROJECT_DIR$/facedetect_quividi_demo/facedetect_quividi_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/floatplayercontroller/floatplayercontroller.iml" filepath="$PROJECT_DIR$/floatplayercontroller/floatplayercontroller.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageprocessor/imageprocessor.iml" filepath="$PROJECT_DIR$/imageprocessor/imageprocessor.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
@@ -17,6 +19,7 @@
       <module fileurl="file://$PROJECT_DIR$/playvideodemoapp/playvideodemoapp.iml" filepath="$PROJECT_DIR$/playvideodemoapp/playvideodemoapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/qrcodedemo/qrcodedemo.iml" filepath="$PROJECT_DIR$/qrcodedemo/qrcodedemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/realmdemo/realmdemo.iml" filepath="$PROJECT_DIR$/realmdemo/realmdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/requestpermission/requestpermission.iml" filepath="$PROJECT_DIR$/requestpermission/requestpermission.iml" />
       <module fileurl="file://$PROJECT_DIR$/snapshotapplication/snapshotapplication.iml" filepath="$PROJECT_DIR$/snapshotapplication/snapshotapplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/testroot/testroot.iml" filepath="$PROJECT_DIR$/testroot/testroot.iml" />
       <module fileurl="file://$PROJECT_DIR$/trojan/trojan.iml" filepath="$PROJECT_DIR$/trojan/trojan.iml" />
@@ -24,6 +27,7 @@
       <module fileurl="file://$PROJECT_DIR$/usesdk/usesdk.iml" filepath="$PROJECT_DIR$/usesdk/usesdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/useslf4j/useslf4j.iml" filepath="$PROJECT_DIR$/useslf4j/useslf4j.iml" />
       <module fileurl="file://$PROJECT_DIR$/usesqlite/usesqlite.iml" filepath="$PROJECT_DIR$/usesqlite/usesqlite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewdrag/viewdrag.iml" filepath="$PROJECT_DIR$/viewdrag/viewdrag.iml" />
     </modules>
   </component>
 </project>

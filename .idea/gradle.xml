@@ -12,9 +12,11 @@
             <option value="$PROJECT_DIR$/androidevent" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/collectmoney" />
+            <option value="$PROJECT_DIR$/deviceonoff" />
             <option value="$PROJECT_DIR$/everybar" />
             <option value="$PROJECT_DIR$/exeshell" />
             <option value="$PROJECT_DIR$/facedetect" />
+            <option value="$PROJECT_DIR$/facedetect_quividi_demo" />
             <option value="$PROJECT_DIR$/floatplayercontroller" />
             <option value="$PROJECT_DIR$/imageprocessor" />
             <option value="$PROJECT_DIR$/mylibrary" />
@@ -22,6 +24,7 @@
             <option value="$PROJECT_DIR$/playvideodemoapp" />
             <option value="$PROJECT_DIR$/qrcodedemo" />
             <option value="$PROJECT_DIR$/realmdemo" />
+            <option value="$PROJECT_DIR$/requestpermission" />
             <option value="$PROJECT_DIR$/snapshotapplication" />
             <option value="$PROJECT_DIR$/testroot" />
             <option value="$PROJECT_DIR$/trojan" />
@@ -29,6 +32,7 @@
             <option value="$PROJECT_DIR$/usesdk" />
             <option value="$PROJECT_DIR$/useslf4j" />
             <option value="$PROJECT_DIR$/usesqlite" />
+            <option value="$PROJECT_DIR$/viewdrag" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -12,8 +12,8 @@ import android.view.Gravity;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.liuyihui.mylibrary.activity.MySuperActivity;
 
@@ -36,8 +36,8 @@ public class Main3Activity extends MySuperActivity {
         setContentView(R.layout.activity_main3);
         getSupportActionBar().setTitle("MediaPlayer+TextureView播放视频");
 
-        textureView = (TextureView) findViewById(R.id.textureView);
-        imageView = (ImageView) findViewById(R.id.imageView);
+        textureView = findViewById(R.id.textureView);
+        imageView = findViewById(R.id.imageView);
 
         init();
 
@@ -77,6 +77,8 @@ public class Main3Activity extends MySuperActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void playVideo() {
         mediaPlayer = new MediaPlayer();
+
+        //视频源文件路径
         String sdcardDir = Environment.getExternalStorageDirectory().getAbsolutePath();
 //        String path = sdcardDir + "/DCIM/YiCarCamera/2016.MP4";
 //        String path = sdcardDir + "/360/30a58ee0d1b3be9313367ef8033f5483.mp4";
@@ -90,6 +92,7 @@ public class Main3Activity extends MySuperActivity {
         File file = new File(path);
         Log.e(TAG, String.valueOf(file.exists()));
 
+        //播放
         try {
             mediaPlayer.setDataSource(path);
             mediaPlayer.setSurface(surface);
@@ -105,7 +108,7 @@ public class Main3Activity extends MySuperActivity {
                         Log.i(TAG, "video Self size:" + vWidth + "*" + vHeight);
 
                         // 该LinearLayout的父容器 android:orientation="vertical" 必须
-                        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.ll_parent);
+                        FrameLayout linearLayout = findViewById(R.id.ll_parent);
                         int lw = linearLayout.getWidth();
                         int lh = linearLayout.getHeight();
                         Log.i(TAG, "linearLayout Self size:" + lw + "*" + lh);
@@ -121,7 +124,7 @@ public class Main3Activity extends MySuperActivity {
                             vHeight = (int) Math.ceil((float) vHeight / ratio);
 
                             Log.i(TAG, "fitted size:" + vWidth + "*" + vHeight);
-                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(vWidth, vHeight);
+                            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(vWidth, vHeight);
                             lp.gravity = Gravity.CENTER;
                             //如果用的surfaceView 则设置surfaceView的布局参数
 //                    surfaceView.setLayoutParams(lp);
@@ -141,7 +144,7 @@ public class Main3Activity extends MySuperActivity {
                             vHeight = (int) Math.ceil((float) vHeight / ratio);
 
                             Log.i(TAG, "fitted size:" + vWidth + "*" + vHeight);
-                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(vWidth, vHeight);
+                            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(vWidth, vHeight);
                             lp.gravity = Gravity.CENTER;
                             //如果用的surfaceView 则设置surfaceView的布局参数
 //                    surfaceView.setLayoutParams(lp);

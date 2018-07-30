@@ -7,7 +7,7 @@ import com.liuyihui.usesqlite.repository.annotations.TableName;
 /**
  * book实体类
  * <p>
- * (作为demo供使用参考) 类名需注解上对应表名,属性名注解上对应的列名,id需注解上自增
+ * 类名需注解上对应表名,属性名注解上对应的列名,id需注解上自增
  *
  * @author liuyi
  * @date 2017/12/20

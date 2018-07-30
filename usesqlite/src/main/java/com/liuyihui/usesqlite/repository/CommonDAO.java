@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.ViewDebug;
 
 import com.liuyihui.usesqlite.MyApplication;
 import com.liuyihui.usesqlite.repository.annotations.AutoIncrement;
@@ -79,71 +78,7 @@ public class CommonDAO<T> {
     }
 
     /**
-     * 根据条件选择一个book记录
-     *
-     * @param o
-     * @return
-     */
-    public T selectOne(T o) {
-        StringBuilder sql = new StringBuilder("select * from " + tableName + " where 1=1 ");
-        try {
-            //遍历字段,每个字段拼一个条件
-            for (Field field : fieldColumnMap.keySet()) {
-                if (null != field.get(o)) {
-                    sql.append(" and " + fieldColumnMap.get(field) + " = \"" + String.valueOf(field.get(o)) + "\"");
-                }
-            }
-            Log.i(TAG, "Executing SQL:" + sql.toString());
-            Cursor cursor = DATABASE.rawQuery(sql.toString(), new String[]{});
-            return CursorMapper.mapObject(cursor, tClass);
-        } catch (Exception e) {
-            Log.e(TAG, "查询单条记录出错", e);
-            return null;
-        }
-    }
-
-    /**
-     * 选择所有book记录
-     *
-     * @return
-     */
-    public List<T> selectAll() {
-        String sql = "select * from " + tableName;
-        Cursor cursor = DATABASE.rawQuery(sql, null);
-        try {
-            return CursorMapper.mapList(cursor, tClass);
-        } catch (Exception e) {
-            Log.e(TAG, "查询全部记录出错", e);
-            return null;
-        }
-    }
-
-    /**
-     * 选择多个book记录
-     *
-     * @param o
-     * @return
-     */
-    public List<T> selectSome(T o) {
-        StringBuilder sql = new StringBuilder("select * from " + tableName + " where 1=1 ");
-        try {
-            //遍历字段,每个字段拼一个条件
-            for (Field field : fieldColumnMap.keySet()) {
-                if (null != field.get(o)) {
-                    sql.append(" and " + fieldColumnMap.get(field) + " = \"" + String.valueOf(field.get(o)) + "\"");
-                }
-            }
-            Log.i(TAG, "Executing SQL:" + sql.toString());
-            Cursor cursor = DATABASE.rawQuery(sql.toString(), new String[]{});
-            return CursorMapper.mapList(cursor, tClass);
-        } catch (Exception e) {
-            Log.e(TAG, "查询记录出错", e);
-            return null;
-        }
-    }
-
-    /**
-     * 添加一条book表记录
+     * 增
      *
      * @param o book对象
      * @return
@@ -177,7 +112,7 @@ public class CommonDAO<T> {
     }
 
     /**
-     * 删除book表记录
+     * 删
      *
      * @param id 表记录的id段值
      * @return
@@ -188,10 +123,10 @@ public class CommonDAO<T> {
     }
 
     /**
-     * 更新一条book记录
+     * 改
      *
      * @param id id
-     * @param o  实体类对象
+     * @param o 实体类对象
      * @return
      */
     public int updateById(int id, T o) {
@@ -223,14 +158,81 @@ public class CommonDAO<T> {
     }
 
     /**
+     * 查
+     * 单个
+     *
+     * @param o
+     * @return
+     */
+    public T selectOne(T o) {
+        StringBuilder sql = new StringBuilder("select * from " + tableName + " where 1=1 ");
+        try {
+            //遍历字段,每个字段拼一个条件
+            for (Field field : fieldColumnMap.keySet()) {
+                if (null != field.get(o)) {
+                    sql.append(" and " + fieldColumnMap.get(field) + " = \"" + String.valueOf(field.get(o)) + "\"");
+                }
+            }
+            Log.i(TAG, "Executing SQL:" + sql.toString());
+            Cursor cursor = DATABASE.rawQuery(sql.toString(), new String[]{});
+            return CursorMapper.mapObject(cursor, tClass);
+        } catch (Exception e) {
+            Log.e(TAG, "查询单条记录出错", e);
+            return null;
+        }
+    }
+
+    /**
+     * 查
+     * 所有
+     *
+     * @return
+     */
+    public List<T> selectAll() {
+        String sql = "select * from " + tableName;
+        Cursor cursor = DATABASE.rawQuery(sql, null);
+        try {
+            return CursorMapper.mapList(cursor, tClass);
+        } catch (Exception e) {
+            Log.e(TAG, "查询全部记录出错", e);
+            return null;
+        }
+    }
+
+    /**
+     * 查
+     * 多个
+     *
+     * @param o
+     * @return
+     */
+    public List<T> selectSome(T o) {
+        StringBuilder sql = new StringBuilder("select * from " + tableName + " where 1=1 ");
+        try {
+            //遍历字段,每个字段拼一个条件
+            for (Field field : fieldColumnMap.keySet()) {
+                if (null != field.get(o)) {
+                    sql.append(" and " + fieldColumnMap.get(field) + " = \"" + String.valueOf(field.get(o)) + "\"");
+                }
+            }
+            Log.i(TAG, "Executing SQL:" + sql.toString());
+            Cursor cursor = DATABASE.rawQuery(sql.toString(), new String[]{});
+            return CursorMapper.mapList(cursor, tClass);
+        } catch (Exception e) {
+            Log.e(TAG, "查询记录出错", e);
+            return null;
+        }
+    }
+
+    /**
      * 根据字段类型,将字段值放到contentValue
      * <p>
      * contentValue是存储表的列和其列值的集合
      *
      * @param contentValues
-     * @param columnName    列名
-     * @param field         字段
-     * @param o             对象
+     * @param columnName 列名
+     * @param field 字段
+     * @param o 对象
      * @throws Exception
      */
     private void putContentValue(ContentValues contentValues, String columnName, Field field, Object o) throws Exception {

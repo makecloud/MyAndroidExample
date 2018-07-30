@@ -94,4 +94,11 @@
         android:onClick="pmInstall"
         android:text="pm安装player"/>
 
+    <Button
+        android:id="@+id/sendTimerPowerOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendTimerPowerOff"
+        android:text="发送定时关机广播"/>
+
 </LinearLayout>

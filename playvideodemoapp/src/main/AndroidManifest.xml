@@ -45,6 +45,8 @@
         </activity>
         <activity android:name=".Main3Activity">
         </activity>
+        <activity android:name=".Main1Activity">
+        </activity>
     </application>
 
 </manifest>

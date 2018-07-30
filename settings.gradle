@@ -1,2 +1,2 @@
-include ':app', ':snapshotapplication', ':floatplayercontroller', ':mylibrary', ':realmdemo', ':playvideodemoapp', ':playaudiodemo', ':usesdk', ':useslf4j', ':usebugly', ':qrcodedemo', ':usesqlite', ':testroot', ':trojan', ':exeshell', ':imageprocessor', ':everybar', ':androidevent', ':facedetect', ':collectmoney'
+include ':app', ':snapshotapplication', ':floatplayercontroller', ':mylibrary', ':realmdemo', ':playvideodemoapp', ':playaudiodemo', ':usesdk', ':useslf4j', ':usebugly', ':qrcodedemo', ':usesqlite', ':testroot', ':trojan', ':exeshell', ':imageprocessor', ':everybar', ':androidevent', ':facedetect', ':collectmoney', ':viewdrag', ':facedetect_quividi_demo', ':requestpermission', ':deviceonoff'
 include ':PullToRefreshLibrary'

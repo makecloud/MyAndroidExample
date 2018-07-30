@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.liuyihui.viewdrag.DragViewActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <!--从这开始-->
+        <!--每个可拖拽的组件要放在一个容器组件里-->
+        <!--容器组件-->
+        <LinearLayout
+            android:id="@+id/view1_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+            <!--可拖拽的组件-->
+            <LinearLayout
+                android:id="@+id/view1"
+                android:layout_width="120dp"
+                android:layout_height="300dp"
+                android:background="@android:color/holo_green_dark"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="aaa"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--容器组件-->
+        <LinearLayout
+            android:id="@+id/view2_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <!--可拖拽组件-->
+            <LinearLayout
+                android:id="@+id/view2"
+                android:layout_width="120dp"
+                android:layout_height="300dp"
+                android:background="@android:color/holo_orange_dark"
+                android:orientation="vertical">
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--容器组件-->
+        <LinearLayout
+            android:id="@+id/view3_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+            <!--可拖拽的组件-->
+            <LinearLayout
+                android:id="@+id/view3"
+                android:layout_width="120dp"
+                android:layout_height="300dp"
+                android:background="@android:color/holo_blue_dark"
+                android:orientation="vertical">
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

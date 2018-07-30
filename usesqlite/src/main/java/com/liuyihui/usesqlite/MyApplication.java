@@ -31,6 +31,9 @@ public class MyApplication extends Application {
      * @return
      */
     public static SQLiteDatabase getDatabase() {
-        return database = MyDatabaseHelper.getInstance().getWritableDatabase();
+        if (database == null) {
+            database = MyDatabaseHelper.getInstance().getWritableDatabase();
+        }
+        return database;
     }
 }

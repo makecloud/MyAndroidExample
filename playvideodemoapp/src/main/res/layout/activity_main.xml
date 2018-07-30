@@ -18,6 +18,13 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
+        android:id="@+id/playVideoDemo4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="playVideoDemo4CLick"
+        android:text="调用系统自带videoView 播放视频"
+        android:textAllCaps="false"/>
+    <Button
         android:id="@+id/playVideoDemo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,24 +40,5 @@
         android:text="MediaPlayer+TextureView播放视频"
         android:textAllCaps="false"/>
 
-    <Button
-        android:id="@+id/playVideoDemo4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="playVideoDemo4CLick"
-        android:text="调用系统自带播放器 播放视频"
-        android:textAllCaps="false"/>
-
-    <LinearLayout
-        android:id="@+id/ll_parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <VideoView
-            android:id="@+id/myVideoView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"/>
-    </LinearLayout>
 
 </LinearLayout>

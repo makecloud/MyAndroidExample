@@ -23,8 +23,8 @@ public class CursorMapper {
     /**
      * cursor对象映射到一个实体对象
      *
-     * @param cursor
-     * @param cls
+     * @param cursor cursor
+     * @param cls class
      * @param <T>
      * @return
      * @throws Exception
@@ -60,12 +60,12 @@ public class CursorMapper {
                             String s = cursor.getString(i);
                             field.set(t, cursor.getString(i));
                         } else if (Integer.class.equals(field.getType())) {//int
-                            int x = cursor.getInt(i);//test
+                            int x = cursor.getInt(i);//test line
                             field.set(t, cursor.getInt(i));
                         } else if (Long.class.equals(field.getType())) {//long
                             field.set(t, cursor.getLong(i));
                         } else if (Double.class.equals(field.getType())) {//double
-                            double x = cursor.getDouble(i);//test
+                            double x = cursor.getDouble(i);//test line
                             field.set(t, cursor.getDouble(i));
                         } else if (Float.class.equals(field.getType())) {//float
                             field.set(t, cursor.getFloat(i));

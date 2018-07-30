@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context="com.liuyihui.bar.MainActivity">
 
-    <TextView
+
+
+    <Button
+        android:onClick="startBarDemo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:textAllCaps="false"
+        android:text="BarDemo1"/>
 
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="..."/>
+
+    <Button
+        android:onClick="startMovingToolbarDemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="MovingToolbar base use"/>
+
+    <Button
+        android:onClick="startMovingToolbar2Demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="MovingToolbar2"/>
+
+
+    <Button
+        android:onClick="startParallaxImageShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="ParallaxImageShow"/>
+
+</LinearLayout>

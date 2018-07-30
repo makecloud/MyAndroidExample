@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.oohlink.liuyihui.qrcode.MainActivity">
 
     <TextView
@@ -17,9 +18,39 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:onClick="startQrcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="startQrcode"
         android:text="点击启动二维码扫描"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="输入内容:"/>
+
+    <EditText
+        android:id="@+id/qr_code_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="genQrcode"
+        android:text="点击生成"/>
+
+    <Button
+        android:id="@+id/add_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addImage"
+        android:text="点击添加图片"/>
+
+    <ImageButton
+        android:id="@+id/gen_qr_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

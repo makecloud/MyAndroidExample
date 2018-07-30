@@ -3,18 +3,19 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
         classpath "io.realm:realm-gradle-plugin:3.7.2"//realm gradle插件
         classpath "com.tencent.bugly:tinker-support:1.1.1"//tinker support
+
     }
 }
 
 allprojects {
     repositories {
         jcenter()
-        mavenCentral()
         maven { url 'https://maven.google.com' }
         flatDir { dirs 'libs' } //配置依赖第三方aar包的目录
     }

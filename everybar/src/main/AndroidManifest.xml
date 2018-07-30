@@ -9,12 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.liuyihui.bar.BarDemo1Activity">
+        </activity>
+        <activity android:name="com.liuyihui.bar.SearchToolBarActivity">
+        </activity>
+        <activity android:name="com.liuyihui.bar.ParallaxStyleBarActivity">
+        </activity>
+        <activity android:name="com.liuyihui.bar.MovingToolBarActivity">
+        </activity>
         <activity android:name="com.liuyihui.bar.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name="com.liuyihui.bar.MovingToolBarActivity2">
         </activity>
     </application>
 

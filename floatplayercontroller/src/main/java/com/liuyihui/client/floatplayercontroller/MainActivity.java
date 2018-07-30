@@ -11,13 +11,13 @@ import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.liuyihui.mylibrary.Cmd;
-import com.liuyihui.mylibrary.ShellUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -241,5 +241,23 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, String.valueOf(isRunSuccess), Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+
+    /**
+     * 设置定时关机按钮(在威泰克斯主板上测试的项目)
+     *
+     * @param view
+     */
+    public void sendTimerPowerOff(View view) {
+        //设置定时关机
+        Intent intent = new Intent("com.soniq.cybercast.time");
+        intent.putExtra("hour", 18);
+        intent.putExtra("minute", 8);
+        intent.putExtra("mAttribute", 2);
+        intent.putExtra("daysOfWeek", 0x7f);
+        sendBroadcast(intent);
+        Log.i("MainActivity", "设置定时关机");
+
     }
 }

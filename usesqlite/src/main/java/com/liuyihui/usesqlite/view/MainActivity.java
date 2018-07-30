@@ -1,7 +1,7 @@
 package com.liuyihui.usesqlite.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +15,9 @@ import com.liuyihui.usesqlite.repository.CommonDAO;
 
 import java.util.List;
 
+/**
+ * 使用sqlite实践
+ */
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //实例化DAO
         bookCommonDAO = new CommonDAO<>(Book.class);
+
         //在获取数据库的时候,执行建库操作, 并返回库
         createDBButton = findViewById(R.id.create_db);
         createDBButton.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +46,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * 增
+     * 插入一条数据按钮
+     *
+     * @param view
+     */
+    public void addOne(View view) {
+        //直接调数据层
+        Book book = new Book();
+        book.setAuthor("liuyihui");
+        book.setName("liuyihui");
+        bookCommonDAO.add(book);
+    }
+
+    /**
+     * 删
+     *
+     * @param view
+     */
+    public void deleteById(View view) {
+        Book book = new Book();
+        book.setId(2);
+        book = bookCommonDAO.selectOne(book);
+        bookCommonDAO.deleteById(book.getId());
+    }
+
+    /**
+     * 改
+     *
+     * @param view
+     */
+    public void updateById(View view) {
+        Book book = new Book();
+        book.setId(1);
+        book = bookCommonDAO.selectOne(book);
+        book.setAuthor("madaha");
+        bookCommonDAO.updateById(book.getId(), book);
+    }
+
+    /**
+     * 查
      * 查询一条数据按钮
      *
      * @param v
@@ -76,33 +120,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void selectSome(View view) {
-    }
-
-    /**
-     * 插入一条数据按钮
-     *
-     * @param view
-     */
-    public void addOne(View view) {
-        //直接调数据层
-        Book book = new Book();
-        book.setAuthor("liuyihui");
-        book.setName("liuyihui");
-        bookCommonDAO.add(book);
-    }
-
-    public void updateById(View view) {
-        Book book = new Book();
-        book.setId(1);
-        book = bookCommonDAO.selectOne(book);
-        book.setAuthor("madaha");
-        bookCommonDAO.updateById(book.getId(), book);
-    }
-
-    public void deleteById(View view) {
-        Book book = new Book();
-        book.setId(2);
-        book = bookCommonDAO.selectOne(book);
-        bookCommonDAO.deleteById(book.getId());
     }
 }
