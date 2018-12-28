@@ -22,7 +22,6 @@ import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.liuyihui.client.myexample.R;
-import com.liuyihui.client.myexample.example2_pullToRefreshListView_demo.Item;
 
 import java.util.ArrayList;
 import java.util.List;

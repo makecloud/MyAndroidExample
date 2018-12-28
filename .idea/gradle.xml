@@ -10,16 +10,19 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/PullToRefreshLibrary" />
             <option value="$PROJECT_DIR$/androidevent" />
+            <option value="$PROJECT_DIR$/animation" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/collectmoney" />
             <option value="$PROJECT_DIR$/deviceonoff" />
+            <option value="$PROJECT_DIR$/dialog-example" />
             <option value="$PROJECT_DIR$/everybar" />
             <option value="$PROJECT_DIR$/exeshell" />
             <option value="$PROJECT_DIR$/facedetect" />
-            <option value="$PROJECT_DIR$/facedetect_quividi_demo" />
             <option value="$PROJECT_DIR$/floatplayercontroller" />
-            <option value="$PROJECT_DIR$/imageprocessor" />
+            <option value="$PROJECT_DIR$/ijkplayer-example" />
             <option value="$PROJECT_DIR$/mylibrary" />
+            <option value="$PROJECT_DIR$/networkcontrol" />
+            <option value="$PROJECT_DIR$/pickmaploation" />
             <option value="$PROJECT_DIR$/playaudiodemo" />
             <option value="$PROJECT_DIR$/playvideodemoapp" />
             <option value="$PROJECT_DIR$/qrcodedemo" />
@@ -33,6 +36,8 @@
             <option value="$PROJECT_DIR$/useslf4j" />
             <option value="$PROJECT_DIR$/usesqlite" />
             <option value="$PROJECT_DIR$/viewdrag" />
+            <option value="$PROJECT_DIR$/viewpager-example" />
+            <option value="$PROJECT_DIR$/wifidisplay" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

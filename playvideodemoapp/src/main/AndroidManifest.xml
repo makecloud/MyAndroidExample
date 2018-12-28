@@ -45,7 +45,17 @@
         </activity>
         <activity android:name=".Main3Activity">
         </activity>
-        <activity android:name=".Main1Activity">
+        <activity android:name=".VideoViewActivity">
+        </activity>
+        <activity
+            android:name=".JCVideoPlayerActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".IjkPLayerActivity">
+        </activity>
+        <activity android:name=".PLDroidPlayerActivity">
+        </activity>
+        <activity android:name=".UniversalVideoViewActivity">
         </activity>
     </application>
 

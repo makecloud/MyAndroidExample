@@ -26,7 +26,8 @@ import com.liuyihui.client.myexample.example21_framelayout_hierarchy.Example21Ac
 import com.liuyihui.client.myexample.example22_awakenSelf.Example22Activity;
 import com.liuyihui.client.myexample.example23_CrashHandler.Example23Activity;
 import com.liuyihui.client.myexample.example24_use_database.Example24Activity;
-import com.liuyihui.client.myexample.example2_pullToRefreshListView_demo.Example2Activity;
+import com.liuyihui.client.myexample.example25_bitmap.BitmapOperationActivity;
+import com.liuyihui.client.myexample.example2_system_action.Example2Activity;
 import com.liuyihui.client.myexample.example3.Example3Activity;
 import com.liuyihui.client.myexample.example5_1_use_amaplocate.GetLocationActivity;
 import com.liuyihui.client.myexample.example5_use_amap.BaseMapFragmentActivity;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.btn_eg6)
     Button startExampleButton6;
     @BindView(R.id.btn_eg7)
-    Button startExampleButton7;
+    Button startExampleButton7;//自定义view 实例
     @BindView(R.id.btn_eg8)
     Button startExampleButton8;//城市选择实例
     @BindView(R.id.btn_eg9)
@@ -98,11 +99,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button startExampleButton24;//使用数据库demo
     @BindView(R.id.btn_eg25)
     Button activateAdbTCPButton;//启动adb tcp 连接服务
+    @BindView(R.id.btn_eg25_1)
+    Button bitmapOperationButton;//启动 bitmap操作案例
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         //初始化控件
         initViewComponent();
     }
@@ -112,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化控件
      */
     public void initViewComponent() {
-        ButterKnife.bind(this);
         startExampleButton1.setOnClickListener(this);
         startExampleButton1_1.setOnClickListener(this);
         startExampleButton2.setOnClickListener(this);
@@ -140,14 +143,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startExampleButton23.setOnClickListener(this);
         startExampleButton24.setOnClickListener(this);
         activateAdbTCPButton.setOnClickListener(this);
+        bitmapOperationButton.setOnClickListener(this);
     }
 
-    /**
-     * @param view
-     */
+
     @Override
     public void onClick(View view) {
-        Intent i;
         switch (view.getId()) {
             case R.id.btn_eg1:
                 startActivity(new Intent(this, Example1Activity.class));
@@ -162,96 +163,98 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, Example3Activity.class));
                 break;
             case R.id.btn_eg4:
-                i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivity(i);
+
+                startActivity(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
                 break;
             case R.id.btn_eg5:
-                i = new Intent(this, Example5Activity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, Example5Activity.class));
                 break;
             case R.id.btn_eg5_1:
-                i = new Intent(this, BaseMapFragmentActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, BaseMapFragmentActivity.class));
                 break;
             case R.id.btn_eg5_2:
-                i = new Intent(this, GetLocationActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, GetLocationActivity.class));
                 break;
             case R.id.btn_eg6:
-                i = new Intent(this, Example6Activity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, Example6Activity.class));
                 break;
             case R.id.btn_eg7:
                 String param = "any";
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("KTMJ://" + param)));
                 break;
             case R.id.btn_eg8:
-                i = new Intent(this, ChoseCityActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, ChoseCityActivity.class));
                 break;
             case R.id.btn_eg9:
-                i = new Intent(this, ScanResultActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, ScanResultActivity.class));
                 break;
             case R.id.btn_eg10:
-                i = new Intent(this, InvokeSysGalleryActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, InvokeSysGalleryActivity.class));
                 break;
             case R.id.btn_eg11:
-                i = new Intent(this, ShuffleImagesActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, ShuffleImagesActivity.class));
                 break;
             case R.id.btn_eg12:
-                i = new Intent(this, UseViewFlipperActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, UseViewFlipperActivity.class));
                 break;
             case R.id.btn_eg13:
-                i = new Intent(this, UseViewPagerActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, UseViewPagerActivity.class));
                 break;
             case R.id.btn_eg14:
-                i = new Intent(this, ViewPagerFragmentActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, ViewPagerFragmentActivity.class));
                 break;
             case R.id.btn_eg16:
-                i = new Intent(this, Example16Activity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, Example16Activity.class));
                 break;
             case R.id.btn_eg17:
-                i = new Intent(this, TestDesActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, TestDesActivity.class));
                 break;
             case R.id.btn_eg18:
-                i = new Intent(this, Example18Activity.class);
-                Bundle bundle = new Bundle();
-                startActivity(i);
+                startActivity(new Intent(this, Example18Activity.class));
                 break;
             case R.id.btn_eg19:
-                i = new Intent(this, example19Activity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, example19Activity.class));
                 break;
             case R.id.btn_eg20:
-                i = new Intent(this, ContainerActivity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, ContainerActivity.class));
                 break;
             case R.id.btn_eg21:
-                i = new Intent(this, Example21Activity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, Example21Activity.class));
                 break;
             case R.id.btn_eg22:
-                i = new Intent(this, Example22Activity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, Example22Activity.class));
                 break;
             case R.id.btn_eg23:
-                i = new Intent(this, Example23Activity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, Example23Activity.class));
                 break;
             case R.id.btn_eg24:
-                i = new Intent(this, Example24Activity.class);
-                startActivity(i);
+
+                startActivity(new Intent(this, Example24Activity.class));
                 break;
             case R.id.btn_eg25:
                 activateTcpAdb();
+                break;
+            case R.id.btn_eg25_1:
+                startActivity(new Intent(this, BitmapOperationActivity.class));
+                break;
             default:
                 break;
         }

@@ -41,4 +41,37 @@
         android:textAllCaps="false"/>
 
 
+    <Button
+        android:id="@+id/playVideoDemo5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="playVideoDemo5Lick"
+        android:text="JCVideoPlayer使用"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/playVideoDemo6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="playVideoDemo6Lick"
+        android:text="IjkPlayer使用"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/playVideoDemo7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="playVideoDemo7Lick"
+        android:text="PLDroidPlayer使用"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/playVideoDemo8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="playVideoDemo8Lick"
+        android:text="universalVideoView使用"
+        android:textAllCaps="false"/>
+
+
 </LinearLayout>

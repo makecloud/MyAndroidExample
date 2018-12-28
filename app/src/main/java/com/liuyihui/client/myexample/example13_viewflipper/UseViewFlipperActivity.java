@@ -6,6 +6,9 @@ import android.widget.ViewFlipper;
 
 import com.liuyihui.client.myexample.R;
 
+/**
+ *
+ */
 public class UseViewFlipperActivity extends AppCompatActivity {
 
     @Override

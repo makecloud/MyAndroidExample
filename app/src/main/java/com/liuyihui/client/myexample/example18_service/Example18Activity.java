@@ -55,13 +55,7 @@ public class Example18Activity extends AppCompatActivity {
         stopServiceButton = (Button) findViewById(R.id.stop_service_button);
         bindServiceButton = (Button) findViewById(R.id.bind_service_button);
         unbindServiceButton = (Button) findViewById(R.id.unbind_service_button);
-        
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        
+
         //启动服务按钮
         startServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +78,7 @@ public class Example18Activity extends AppCompatActivity {
             public void onClick(View view) {
                 //activity绑定一个服务。使用一个connection对象
                 bindService(new Intent(Example18Activity.this, MyService.class), connection, BIND_AUTO_CREATE);
+
             }
         });
         //解绑服务按钮
@@ -95,4 +90,6 @@ public class Example18Activity extends AppCompatActivity {
             }
         });
     }
+    
+
 }

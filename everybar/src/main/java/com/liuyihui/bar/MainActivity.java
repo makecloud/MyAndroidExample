@@ -20,18 +20,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    //
     public void startBarDemo1(View view) {
         startActivity(new Intent(this, BarDemo1Activity.class));
     }
 
+    //选项菜单示例
+    public void startOptionMenuDemo1(View view) {
+        startActivity(new Intent(this, OptionMenuExampleActivity.class));
+    }
+
+    //移动的操作栏示例1
     public void startMovingToolbarDemo(View view) {
         startActivity(new Intent(this, MovingToolBarActivity.class));
     }
 
+    //移动的操作栏示例2
     public void startMovingToolbar2Demo(View view) {
         startActivity(new Intent(this, MovingToolBarActivity2.class));
     }
 
+    //视差效果操作栏示例
     public void startParallaxImageShow(View view) {
         startActivity(new Intent(this, ParallaxStyleBarActivity.class));
     }

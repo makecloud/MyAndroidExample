@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.liuyihui.client.floatplayercontroller"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -19,10 +19,29 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    signingConfigs {
+        debug {
+            storeFile file("zhijiepay_E.keystore")
+            storePassword "a1234567890"
+            keyAlias "zhijiepay_e"
+            keyPassword "a1234567890"
+        }
+        release {
+            storeFile file("zhijiepay_E.keystore")
+            storePassword "a1234567890"
+            keyAlias "zhijiepay_e"
+            keyPassword "a1234567890"
+        }
+    }
     buildTypes {
+        debug{
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }

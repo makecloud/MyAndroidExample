@@ -22,6 +22,8 @@ import java.io.IOException;
 
 /**
  * MediaPlayer+TextureView播放视频
+ * <p>
+ * 附带 缩放功能
  */
 public class Main3Activity extends MySuperActivity {
 

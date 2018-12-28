@@ -5,16 +5,19 @@
       <module fileurl="file://$PROJECT_DIR$/MyExample.iml" filepath="$PROJECT_DIR$/MyExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/PullToRefreshLibrary/PullToRefreshLibrary.iml" filepath="$PROJECT_DIR$/PullToRefreshLibrary/PullToRefreshLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/androidevent/androidevent.iml" filepath="$PROJECT_DIR$/androidevent/androidevent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/animation/animation.iml" filepath="$PROJECT_DIR$/animation/animation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/collectmoney/collectmoney.iml" filepath="$PROJECT_DIR$/collectmoney/collectmoney.iml" />
       <module fileurl="file://$PROJECT_DIR$/deviceonoff/deviceonoff.iml" filepath="$PROJECT_DIR$/deviceonoff/deviceonoff.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dialog-example/dialog-example.iml" filepath="$PROJECT_DIR$/dialog-example/dialog-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/everybar/everybar.iml" filepath="$PROJECT_DIR$/everybar/everybar.iml" />
       <module fileurl="file://$PROJECT_DIR$/exeshell/exeshell.iml" filepath="$PROJECT_DIR$/exeshell/exeshell.iml" />
       <module fileurl="file://$PROJECT_DIR$/facedetect/facedetect.iml" filepath="$PROJECT_DIR$/facedetect/facedetect.iml" />
-      <module fileurl="file://$PROJECT_DIR$/facedetect_quividi_demo/facedetect_quividi_demo.iml" filepath="$PROJECT_DIR$/facedetect_quividi_demo/facedetect_quividi_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/floatplayercontroller/floatplayercontroller.iml" filepath="$PROJECT_DIR$/floatplayercontroller/floatplayercontroller.iml" />
-      <module fileurl="file://$PROJECT_DIR$/imageprocessor/imageprocessor.iml" filepath="$PROJECT_DIR$/imageprocessor/imageprocessor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ijkplayer-example/ijkplayer-example.iml" filepath="$PROJECT_DIR$/ijkplayer-example/ijkplayer-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/networkcontrol/networkcontrol.iml" filepath="$PROJECT_DIR$/networkcontrol/networkcontrol.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pickmaploation/pickmaploation.iml" filepath="$PROJECT_DIR$/pickmaploation/pickmaploation.iml" />
       <module fileurl="file://$PROJECT_DIR$/playaudiodemo/playaudiodemo.iml" filepath="$PROJECT_DIR$/playaudiodemo/playaudiodemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/playvideodemoapp/playvideodemoapp.iml" filepath="$PROJECT_DIR$/playvideodemoapp/playvideodemoapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/qrcodedemo/qrcodedemo.iml" filepath="$PROJECT_DIR$/qrcodedemo/qrcodedemo.iml" />
@@ -28,6 +31,8 @@
       <module fileurl="file://$PROJECT_DIR$/useslf4j/useslf4j.iml" filepath="$PROJECT_DIR$/useslf4j/useslf4j.iml" />
       <module fileurl="file://$PROJECT_DIR$/usesqlite/usesqlite.iml" filepath="$PROJECT_DIR$/usesqlite/usesqlite.iml" />
       <module fileurl="file://$PROJECT_DIR$/viewdrag/viewdrag.iml" filepath="$PROJECT_DIR$/viewdrag/viewdrag.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewpager-example/viewpager-example.iml" filepath="$PROJECT_DIR$/viewpager-example/viewpager-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wifidisplay/wifidisplay.iml" filepath="$PROJECT_DIR$/wifidisplay/wifidisplay.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.liuyihui.playvideodemo.IjkPLayerActivity">
+
+    <com.liuyihui.playvideodemo.customerView.IjkVideoView
+        android:id="@+id/ijkPlayerView"
+        android:layout_width="match_parent"
+        android:layout_height="260dp">
+
+    </com.liuyihui.playvideodemo.customerView.IjkVideoView>
+
+</android.support.constraint.ConstraintLayout>

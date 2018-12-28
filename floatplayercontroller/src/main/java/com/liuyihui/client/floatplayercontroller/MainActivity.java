@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.hardware.display.DisplayManager;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -25,18 +28,53 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String BRODCAST_HIDE_PLAYER = "com.oohlink.player.hide";
-    private static final String BRODCAST_RESUME_PLAYER = "com.oohlink.player.resume";
-    private static final String BRODCAST_EXIT_PLAYER = "com.oohlink.player.exit";
-
+    private static final String TAG = "MainActivity";
+    private static final String BROADCAST_HIDE_PLAYER = "com.oohlink.player.hide";
+    private static final String BROADCAST_RESUME_PLAYER = "com.oohlink.player.resume";
+    private static final String BROADCAST_EXIT_PLAYER = "com.oohlink.player.exit";
     /** 售货机上商品选择按键 */
-    private static final String BRODCAST_SELECT_GOODS = "com.avm.serialport.SELECT_GOODS";//
+    private static final String BROADCAST_SELECT_GOODS = "com.avm.serialport.SELECT_GOODS";//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //在第二屏显示
+        {
+            View secondView = LayoutInflater.from(this).inflate(R.layout.subdisplay_layout, null, false);
+            //查找获取副屏display
+            DisplayManager mDisplayManager;//屏幕管理类
+            //屏幕数组
+            mDisplayManager = (DisplayManager) this.getSystemService(Context.DISPLAY_SERVICE);
+            Display[] displays = mDisplayManager.getDisplays();
+            Toast.makeText(this, "display number:" + displays.length, Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "display number:" + displays.length);
+            //如果有多个display
+            if ((displays.length > 1)) {
+                Display display = displays[displays.length - 1];
+                if (display != null) {
+                    //使用副屏display获取 windowManager
+                    WindowManager windowManager = (WindowManager) createDisplayContext(display).getSystemService(WINDOW_SERVICE);
+                    WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+                    layoutParams.x = 0;
+                    layoutParams.y = 0;
+                    layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+                    layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+                    layoutParams.gravity = Gravity.CENTER;
+                    layoutParams.token = new Binder();
+                    layoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+                    layoutParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+                    windowManager.addView(secondView, layoutParams);
+                    Log.i(TAG, "use subScreen display.");
+                } else {
+                    Toast.makeText(this, "aaaass", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "没有副屏", Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
     /**
@@ -46,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void sendHide(View v) {
         Intent intent = new Intent();
-        intent.setAction(BRODCAST_HIDE_PLAYER);
+        intent.setAction(BROADCAST_HIDE_PLAYER);
         sendBroadcast(intent);
         Toast.makeText(this, "send Hide", Toast.LENGTH_SHORT).show();
     }
@@ -58,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void sendResume(View v) {
         Intent intent = new Intent();
-        intent.setAction(BRODCAST_RESUME_PLAYER);
+        intent.setAction(BROADCAST_RESUME_PLAYER);
         sendBroadcast(intent);
         Toast.makeText(this, "send Resume", Toast.LENGTH_SHORT).show();
     }
@@ -70,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void sendStop(View v) {
         Intent intent = new Intent();
-        intent.setAction(BRODCAST_EXIT_PLAYER);
+        intent.setAction(BROADCAST_EXIT_PLAYER);
         sendBroadcast(intent);
         Toast.makeText(this, "send Exit", Toast.LENGTH_SHORT).show();
     }
@@ -93,6 +131,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 在副屏显示界面
+     * <p>
+     * 使用presentation
      *
      * @param v
      */
@@ -163,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
         mWindowManager = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
         mDisplay = mWindowManager.getDefaultDisplay();
         mDisplayMetrics = new DisplayMetrics();
+
 //        mDisplay.getRealMetrics(mDisplayMetrics);
         mDisplay.getMetrics(mDisplayMetrics);
 
@@ -214,9 +255,9 @@ public class MainActivity extends AppCompatActivity {
      */
     public void emulatePressGoodsButton(View v) {
         Intent intent = new Intent();
-        intent.setAction(BRODCAST_SELECT_GOODS);
+        intent.setAction(BROADCAST_SELECT_GOODS);
         sendBroadcast(intent);
-        Toast.makeText(this, "发送广播:" + BRODCAST_SELECT_GOODS, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "发送广播:" + BROADCAST_SELECT_GOODS, Toast.LENGTH_SHORT).show();
     }
 
     public void pmInstall(View v) {
