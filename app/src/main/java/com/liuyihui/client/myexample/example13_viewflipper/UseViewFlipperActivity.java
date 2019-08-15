@@ -16,7 +16,7 @@ public class UseViewFlipperActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_view_flipper);
 
-        ViewFlipper flipper = (ViewFlipper) findViewById(R.id.flipper);
+        ViewFlipper flipper = findViewById(R.id.flipper);
         flipper.startFlipping();
     }
 }

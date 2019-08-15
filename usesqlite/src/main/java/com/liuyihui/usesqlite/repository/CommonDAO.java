@@ -30,8 +30,8 @@ import java.util.Map;
 
 public class CommonDAO<T> {
     private static String TAG = "DAO";
-    /** 实体类数据库 */
-    private SQLiteDatabase DATABASE = MyApplication.getDatabase();
+    /** 获取sqlLite数据库实例 */
+    private SQLiteDatabase sqLiteDatabase = MyApplication.getDatabase();
     /** 实体类class */
     private Class<T> tClass;
     /** 表名 */
@@ -108,7 +108,7 @@ public class CommonDAO<T> {
             Log.e(TAG, "添加记录出错", e);
         }
         //插入数据库
-        return DATABASE.insert(tableName, null, contentValues);
+        return sqLiteDatabase.insert(tableName, null, contentValues);
     }
 
     /**
@@ -119,7 +119,7 @@ public class CommonDAO<T> {
      */
     public int deleteById(int id) {
         String whereClasue = "id = ?";
-        return DATABASE.delete(tableName, whereClasue, new String[]{id + ""});
+        return sqLiteDatabase.delete(tableName, whereClasue, new String[]{id + ""});
     }
 
     /**
@@ -153,7 +153,7 @@ public class CommonDAO<T> {
         } catch (Exception e) {
             Log.e(TAG, "更新出错", e);
         }
-        DATABASE.update(tableName, contentValues, "id = ?", new String[]{});
+        sqLiteDatabase.update(tableName, contentValues, "id = ?", new String[]{});
         return 0;
     }
 
@@ -174,7 +174,7 @@ public class CommonDAO<T> {
                 }
             }
             Log.i(TAG, "Executing SQL:" + sql.toString());
-            Cursor cursor = DATABASE.rawQuery(sql.toString(), new String[]{});
+            Cursor cursor = sqLiteDatabase.rawQuery(sql.toString(), new String[]{});
             return CursorMapper.mapObject(cursor, tClass);
         } catch (Exception e) {
             Log.e(TAG, "查询单条记录出错", e);
@@ -190,7 +190,7 @@ public class CommonDAO<T> {
      */
     public List<T> selectAll() {
         String sql = "select * from " + tableName;
-        Cursor cursor = DATABASE.rawQuery(sql, null);
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
         try {
             return CursorMapper.mapList(cursor, tClass);
         } catch (Exception e) {
@@ -216,7 +216,7 @@ public class CommonDAO<T> {
                 }
             }
             Log.i(TAG, "Executing SQL:" + sql.toString());
-            Cursor cursor = DATABASE.rawQuery(sql.toString(), new String[]{});
+            Cursor cursor = sqLiteDatabase.rawQuery(sql.toString(), new String[]{});
             return CursorMapper.mapList(cursor, tClass);
         } catch (Exception e) {
             Log.e(TAG, "查询记录出错", e);

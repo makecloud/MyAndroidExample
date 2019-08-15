@@ -4,7 +4,7 @@ apply plugin: 'realm-android' //应用realm插件
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.liuyihui.myexample.usesdk"

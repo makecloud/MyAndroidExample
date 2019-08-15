@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.liuyihui.client.myexample.example26_progressbar.ProgressBarDemoActivity">
+
+    <!--普通圆形进度条-->
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--超大号圆形进度条-->
+    <ProgressBar
+        android:id="@+id/widget196"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <!--小号圆形进度条-->
+    <ProgressBar
+        android:id="@+id/widget108"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <!--标题型圆形。需要代码控制实现-->
+    <ProgressBar
+        android:id="@+id/widget110"
+        style="?android:attr/progressBarStyleSmallTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--长形进度条-->
+    <ProgressBar
+        android:id="@+id/progressbar_updown"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:max="100"
+        android:progress="50"
+        android:secondaryProgress="70" />
+</LinearLayout>

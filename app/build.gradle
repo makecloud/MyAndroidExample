@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "25.0.0"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.liuyihui.client.myexample.part1"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -20,19 +20,21 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile project(':PullToRefreshLibrary')
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation project(':PullToRefreshLibrary')
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
-    compile 'com.bigkoo:convenientbanner:2.0.5'
-    compile 'com.squareup.picasso:picasso:2.5.2'
 
-    testCompile 'junit:junit:4.12'
+    implementation "com.android.support:appcompat-v7:${supportLibraryVer}"
+    implementation "com.android.support:design:${supportLibraryVer}"
+//    implementation 'com.android.support.constraint:constraint-layout:1.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation "com.bigkoo:convenientbanner:2.0.5"
+    implementation "com.squareup.picasso:picasso:2.5.2"
+
+    testImplementation 'junit:junit:4.12'
 }

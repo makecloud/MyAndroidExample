@@ -34,7 +34,7 @@ public class CursorMapper {
             throw new Exception("multiResult cursor , should choose list mappter");
         }
         //创建实体实例
-        T t = cls.newInstance();
+        T entityInstance = cls.newInstance();
         if (cursor.getCount() < 1) {
             Log.e(CursorMapper.class.getSimpleName(), "cursor is Empty !");
             return cls.newInstance();
@@ -57,18 +57,18 @@ public class CursorMapper {
                     if (fieldColumnMap.containsKey(columnName)) {
                         Field field = fieldColumnMap.get(columnName);
                         if (String.class.equals(field.getType())) {//string
-                            String s = cursor.getString(i);
-                            field.set(t, cursor.getString(i));
+                            String s = cursor.getString(i);//test line
+                            field.set(entityInstance, cursor.getString(i));
                         } else if (Integer.class.equals(field.getType())) {//int
                             int x = cursor.getInt(i);//test line
-                            field.set(t, cursor.getInt(i));
+                            field.set(entityInstance, cursor.getInt(i));
                         } else if (Long.class.equals(field.getType())) {//long
-                            field.set(t, cursor.getLong(i));
+                            field.set(entityInstance, cursor.getLong(i));
                         } else if (Double.class.equals(field.getType())) {//double
                             double x = cursor.getDouble(i);//test line
-                            field.set(t, cursor.getDouble(i));
+                            field.set(entityInstance, cursor.getDouble(i));
                         } else if (Float.class.equals(field.getType())) {//float
-                            field.set(t, cursor.getFloat(i));
+                            field.set(entityInstance, cursor.getFloat(i));
                         }
                     }
                 }
@@ -78,7 +78,7 @@ public class CursorMapper {
             }
         }
         //返回实例
-        return t;
+        return entityInstance;
     }
 
     /**

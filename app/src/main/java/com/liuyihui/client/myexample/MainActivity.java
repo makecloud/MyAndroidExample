@@ -3,6 +3,7 @@ package com.liuyihui.client.myexample;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.liuyihui.client.myexample.example1.Example1_1Activity;
 import com.liuyihui.client.myexample.example10_photo_album.InvokeSysGalleryActivity;
 import com.liuyihui.client.myexample.example11_slideshow_banner.ShuffleImagesActivity;
 import com.liuyihui.client.myexample.example13_viewflipper.UseViewFlipperActivity;
+import com.liuyihui.client.myexample.example14_2_GridLayout.GridLayoutActivity;
+import com.liuyihui.client.myexample.example14_gridview.UseGridViewActivity;
 import com.liuyihui.client.myexample.example15_viewpager.UseViewPagerActivity;
 import com.liuyihui.client.myexample.example15_viewpager.ViewPagerFragmentActivity;
 import com.liuyihui.client.myexample.example16_recyclerview.Example16Activity;
@@ -28,7 +31,7 @@ import com.liuyihui.client.myexample.example23_CrashHandler.Example23Activity;
 import com.liuyihui.client.myexample.example24_use_database.Example24Activity;
 import com.liuyihui.client.myexample.example25_bitmap.BitmapOperationActivity;
 import com.liuyihui.client.myexample.example2_system_action.Example2Activity;
-import com.liuyihui.client.myexample.example3.Example3Activity;
+import com.liuyihui.client.myexample.example4_use_camera.Example4Activity;
 import com.liuyihui.client.myexample.example5_1_use_amaplocate.GetLocationActivity;
 import com.liuyihui.client.myexample.example5_use_amap.BaseMapFragmentActivity;
 import com.liuyihui.client.myexample.example5_use_amap.Example5Activity;
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button startExampleButton12;//使用viewflipper实例
     @BindView(R.id.btn_eg13)
     Button startExampleButton13;//使用viewpager实例
-    @BindView(R.id.btn_eg14)
+    @BindView(R.id.btn_eg13_2)
     Button startExampleButton14;//使用viewpager+fragment实例
     @BindView(R.id.btn_eg16)
     Button startExampleButton16;//使用recyclerview
@@ -101,6 +104,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button activateAdbTCPButton;//启动adb tcp 连接服务
     @BindView(R.id.btn_eg25_1)
     Button bitmapOperationButton;//启动 bitmap操作案例
+    @BindView(R.id.btn_eg14_2)
+    Button gridLayoutButton;
+    @BindView(R.id.btn_eg14)
+    Button userGridViewButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -109,6 +116,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
         //初始化控件
         initViewComponent();
+        //test
+        subThreadWork();
     }
 
 
@@ -144,6 +153,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startExampleButton24.setOnClickListener(this);
         activateAdbTCPButton.setOnClickListener(this);
         bitmapOperationButton.setOnClickListener(this);
+        gridLayoutButton.setOnClickListener(this);
+        userGridViewButton.setOnClickListener(this);
     }
 
 
@@ -160,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, Example2Activity.class));
                 break;
             case R.id.btn_eg3:
-                startActivity(new Intent(this, Example3Activity.class));
+                startActivity(new Intent(this, Example4Activity.class));
                 break;
             case R.id.btn_eg4:
 
@@ -207,11 +218,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, UseViewFlipperActivity.class));
                 break;
             case R.id.btn_eg13:
-
                 startActivity(new Intent(this, UseViewPagerActivity.class));
                 break;
-            case R.id.btn_eg14:
-
+            case R.id.btn_eg13_2:
                 startActivity(new Intent(this, ViewPagerFragmentActivity.class));
                 break;
             case R.id.btn_eg16:
@@ -255,6 +264,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_eg25_1:
                 startActivity(new Intent(this, BitmapOperationActivity.class));
                 break;
+            case R.id.btn_eg14_2:
+                startActivity(new Intent(this, GridLayoutActivity.class));
+            case R.id.btn_eg14:
+                startActivity(new Intent(this, UseGridViewActivity.class));
+                break;
             default:
                 break;
         }
@@ -272,5 +286,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Cmd.runAsRoot("start adbd");
         Log.i(TAG, "adb use tcp/ip mode.");
         Toast.makeText(this, "adb use tcp/ip mode.", Toast.LENGTH_SHORT).show();
+    }
+
+    private void subThreadWork() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Log.i(TAG, "subThreadWork...");
+                Log.i(TAG, "subThreadWork...");
+
+                Looper.loop();
+
+                //will not run to
+                Log.i(TAG, "after loop...");
+            }
+        }).start();
     }
 }

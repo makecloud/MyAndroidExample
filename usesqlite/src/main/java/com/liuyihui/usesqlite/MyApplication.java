@@ -27,6 +27,8 @@ public class MyApplication extends Application {
 
     /**
      * 获取数据库实例,放在application中,方便在各地方使用
+     * <p>
+     * 有必要放到Application来让MyDatabaseHelper更容易找到吗？没有。
      *
      * @return
      */

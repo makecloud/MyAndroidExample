@@ -28,7 +28,6 @@ import java.util.List;
 public class ViewPagerFragmentActivity extends AppCompatActivity {
 
     private final String TAG = "ViewPagerFragmentActivity";
-    /*控件*/
     private TextView curPhotoTextView;//现场监拍
     private TextView devPhotoTextView;//终端快照
     private ViewPager viewPager;
@@ -37,10 +36,6 @@ public class ViewPagerFragmentActivity extends AppCompatActivity {
      * 页面集合
      */
     List<Fragment> fragmentList;
-
-    /**
-     * 四个Fragment（页面）
-     */
     OneFragment oneFragment;
     TwoFragment twoFragment;
     /*数据*/
@@ -48,6 +43,8 @@ public class ViewPagerFragmentActivity extends AppCompatActivity {
     private int currIndex = 0;// 当前页编号
     private int bmpW;// 滚动条宽度
     private int one;//一倍滚动量
+    //当前选中的项
+    private int currenttab = -1;
 
 
     @Override
@@ -186,6 +183,5 @@ public class ViewPagerFragmentActivity extends AppCompatActivity {
 
     }
 
-    //当前选中的项
-    private int currenttab = -1;
+
 }

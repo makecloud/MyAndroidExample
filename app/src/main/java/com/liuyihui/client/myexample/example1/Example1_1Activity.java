@@ -3,6 +3,7 @@ package com.liuyihui.client.myexample.example1;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -320,5 +321,17 @@ public class Example1_1Activity extends AppCompatActivity {
     public static int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * 异步任务
+     */
+    public void asynckTask() {
+        new  AsyncTask<String,Integer,String>() {
+            @Override
+            protected String doInBackground(String... strings) {
+                return null;
+            }
+        };
     }
 }

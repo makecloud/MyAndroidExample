@@ -5,7 +5,6 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.webkit.WebView;
 
 import com.liuyihui.usesqlite.MyApplication;
 
@@ -21,9 +20,8 @@ import com.liuyihui.usesqlite.MyApplication;
  */
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
-    /** 标记 */
     private final String TAG = "MyDatabaseHelper";
-    private final static String DB_NAME = "BookStore.db";
+    private final static String DB_FILE_NAME = "BookStore.db";
     /** 数据库版本号,修改版本号,重启app加载此类,则会导致数据库更新 */
     private static final int DB_VERSION = 1001;
 
@@ -40,7 +38,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static class MyDatabaseHelperSingletonHolder {
         //helper的实例化,传入要建的库的信息
         private static final MyDatabaseHelper MY_DATABASE_HELPER =
-                new MyDatabaseHelper(MyApplication.getContext(), DB_NAME, null, DB_VERSION);
+                new MyDatabaseHelper(MyApplication.getContext(), DB_FILE_NAME, null, DB_VERSION);
     }
 
     /**
@@ -72,7 +70,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     /**
      * 创建数据库回调
      * <p>
-     * 仅当db文件不存在时回调(猜测)
+     * 仅当db文件不存在，时创建db文件再回调(猜测)
      *
      * @param sqLiteDatabase
      */

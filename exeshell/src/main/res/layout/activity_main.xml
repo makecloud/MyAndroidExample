@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,58 +16,61 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="exeReboot"
-        android:text="执行:reboot"/>
+        android:text="执行:reboot" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="startOpenvpn"
-        android:text="启动vpn"/>
+        android:onClick="startOpenVpn"
+        android:text="启动vpn" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="whoami"
-        android:text="执行:whoami"/>
+        android:text="执行:whoami" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="checkRoot"
-        android:text="检查root权限"/>
+        android:text="检查root权限" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="checkRoot_byXbinSu"
-        android:text="检查root权限_su在Xbin下"/>
+        android:text="检查root权限_su在Xbin下" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="invokeScreencap"
-        android:text="执行: screencap -p"
-        />
+        android:text="执行: screencap -p" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="pmuninstall"
-        android:text="执行:pm uninstall"
-        />
+        android:text="执行:pm uninstall" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="installSu"
-        android:text="安装su"
-        />
+        android:text="安装su" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="seeTopActivity"
+        android:text="查看顶端activity" />
 
     <TextView
         android:id="@+id/checkRootResultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp" />
 
 
 </LinearLayout>

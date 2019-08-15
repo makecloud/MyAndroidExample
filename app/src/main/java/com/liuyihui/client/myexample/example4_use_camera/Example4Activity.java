@@ -1,6 +1,5 @@
 package com.liuyihui.client.myexample.example4_use_camera;
 
-import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,18 +18,17 @@ public class Example4Activity extends AppCompatActivity {
     private Camera camera;
     private SurfaceView surfaceView;
 
-    public void initComponentView() {
-        surfaceView = (SurfaceView) findViewById(R.id.sv_sv);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example4);
-        initComponentView();
+        surfaceView = (SurfaceView) findViewById(R.id.sv_sv);
+
         //surfaceHolder是surface联系到surfaceView对象的纽带
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
-        //surfaceHolder添加surface周期
+
+
+        //surfaceHolder设置回调对象。activity加载完后，会自动回调？
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
 
             //surface创建回调

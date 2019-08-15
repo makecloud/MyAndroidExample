@@ -6,8 +6,8 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath "io.realm:realm-gradle-plugin:3.7.2"//realm gradle插件
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath "io.realm:realm-gradle-plugin:5.9.0"//realm gradle插件
         classpath "com.tencent.bugly:tinker-support:1.1.1"//tinker support
 
     }
@@ -29,11 +29,24 @@ task clean(type: Delete) {
 
 // Define versions in a single place
 ext {
-    // Sdk and tools
-    minSdkVersion = 15
-    targetSdkVersion = 25
-    compileSdkVersion = 25
-    buildToolsVersion = '26.0.1'
+    //修改compileSdkVersion并不会影响我们的我们生成的app在手机先的行为。最理想的情况就是把compileSdkVersion设置到最高
+    compileSdkVersion = 26
+    //构建工具的版本号是多少，规则是可以用高的构建工具来构建低版本Sdk的工程。使用build-tools目录中的最大版本号即可
+    buildToolsVersion = '26.0.3'
+    //apk运行要求最低的Sdk,低于这个版本号的安卓无法安装
+    minSdkVersion = 21
+    //targetSdkVersion的设置主要是当系统版本高于设置的target的时候。然后targetSdkVersion最好和compileSdkVersion一样
+    targetSdkVersion = 26
+
+
+    //和compileSdk版本相差过大会报错
+    supportLibraryVer = "27.1.0"
+    androidDependencies = [
+            appcompat_v7: "com.android.support:appcompat-v7:${supportLibraryVer}",
+            design      : "com.android.support:design:${supportLibraryVer}",
+            support_v4  : "com.android.support:support-v4:${supportLibraryVer}",
+            recyclerView: "com.android.support:recyclerview-v7:${supportLibraryVer}",
+    ]
 
     // App dependencies
     glideVersion = '4.1.1'

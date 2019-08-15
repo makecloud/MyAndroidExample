@@ -1,35 +1,23 @@
 package com.liuyihui.exeshell;
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-
-import util.ExecuteAsRootBase;
-import util.FileUtils;
 import util.ReallyShellUtil;
 import util.ShellUtils;
+import util.TopActivityUtil;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends BaseActivity {
     private final String TAG = "MainActivity";
 
-    private TextView resultTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         resultTextView = findViewById(R.id.checkRootResultText);
+        seeTopActivity(null);
     }
 
     /**
@@ -37,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    public void startOpenvpn(View view) {
+    public void startOpenVpn(View view) {
         try {
 //            Toast.makeText(this, "root权限:" + ReallyShellUtil.canRunRootCommands(), Toast.LENGTH_SHORT).show();
 
@@ -58,10 +46,7 @@ public class MainActivity extends AppCompatActivity {
             //方式2
             ShellUtils.CommandResult commandResult = ShellUtils.execCommand(startOOHLinkOpenvpnCmd, true, true);
 //            ShellUtils.CommandResult commandResult = ShellUtils.execCommand(new String[]{cmd0, cmd1, cmd2}, true);
-            String info = "resultCode:" + commandResult.result +
-                    ",successMsg:" + commandResult.successMsg +
-                    ",errorMsg:" + commandResult.errorMsg;
-            resultTextView.setText(info);
+            showCommandResult(commandResult);
 
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -92,10 +77,7 @@ public class MainActivity extends AppCompatActivity {
     public void whoami(View view) {
         try {
             ShellUtils.CommandResult commandResult = ShellUtils.execCommand("busybox whoami", true);
-            String info = "resultCode:" + commandResult.result +
-                    ",successMsg:" + commandResult.successMsg +
-                    ",errorMsg:" + commandResult.errorMsg;
-            resultTextView.setText(info);
+            showCommandResult(commandResult);
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -108,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void checkRoot(View view) {
         boolean isroot = ReallyShellUtil.canRunRootCommands();
-        resultTextView.setText(isroot + "");
+        showString(isroot + "");
     }
 
     /**
@@ -118,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void checkRoot_byXbinSu(View view) {
         boolean isroot = ReallyShellUtil.canRunRootCommands_inXbin();
-        resultTextView.setText("" + isroot);
+        showString("" + isroot);
     }
 
     /**
@@ -127,10 +109,7 @@ public class MainActivity extends AppCompatActivity {
     public void invokeScreencap(View view) {
         try {
             ShellUtils.CommandResult commandResult = ShellUtils.execCommand("screencap -p /sdcard/lyh.png", true);
-            String info = "resultCode:" + commandResult.result +
-                    ",successMsg:" + commandResult.successMsg +
-                    ",errorMsg:" + commandResult.errorMsg;
-            resultTextView.setText(info);
+            showCommandResult(commandResult);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -145,10 +124,7 @@ public class MainActivity extends AppCompatActivity {
         ShellUtils.CommandResult commandResult = null;
         try {
             commandResult = ShellUtils.execCommand("pm uninstall com.oohlink.player", true);
-            String info = "resultCode:" + commandResult.result +
-                    ",successMsg:" + commandResult.successMsg +
-                    ",errorMsg:" + commandResult.errorMsg;
-            resultTextView.setText(info);
+            showCommandResult(commandResult);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -161,11 +137,7 @@ public class MainActivity extends AppCompatActivity {
             // 让/system可写
             String[] cmds = {"busybox mount -o remount rw /system"};
             commandResult = ShellUtils.execCommand(cmds, false);
-            String info = "resultCode:" + commandResult.result +
-                    ",successMsg:" + commandResult.successMsg +
-                    ",errorMsg:" + commandResult.errorMsg;
-            resultTextView.setText(info);
-
+            showCommandResult(commandResult);
             //写到bin
 //            FileUtils.transferInputStreamToFile(this.getResources().openRawResource(R.raw.su));
 
@@ -173,6 +145,44 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void seeTopActivity(View view) {
+        //use runtime
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    String topActivityInfo = TopActivityUtil.getTopActivityInfo(MainActivity.this);
+                    //showString(topActivityInfo);
+                    System.out.println(topActivityInfo);
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
+        //use shell
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ShellUtils.CommandResult commandResult;
+                while (true) {
+                    try {
+                        commandResult = ShellUtils.execCommand("dumpsys activity |grep mFocusedActivity", true);
+                        System.out.println(commandResult.successMsg);//com.oohlink.player/.MainActivity
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }).start();*/
     }
 
 }
