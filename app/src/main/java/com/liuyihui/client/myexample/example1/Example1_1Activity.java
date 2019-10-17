@@ -45,7 +45,7 @@ public class Example1_1Activity extends AppCompatActivity {
     private LinearLayout hoverContainer;//容器
     private LinearLayout hoverContentLinearLayout;//* 需要悬浮的内容的布局视图
     private ActionBar mActionBar;//动作栏
-    Drawable actionBarBg;
+    private Drawable actionBarBg;
     /*数据*/
     private int scrollY;
     int[] location = new int[2];
@@ -95,7 +95,8 @@ public class Example1_1Activity extends AppCompatActivity {
             public void onScroll(AbsListView absListView, int i, int i1, int i2) {
 //                Log.i(TAG, "当前屏最上显示的是列表第" + i + "个item");
                 /*计算标题栏背景drawable的alpha值start*/
-                int actionBarHeight = mActionBar.getCustomView().getMeasuredHeight();//标题栏高度像素
+                int actionBarHeight = mActionBar.getCustomView()
+                                                .getMeasuredHeight();//标题栏高度像素
                 View firstHeaderView = absListView.getChildAt(0);//获取列表第一个头
                 if (firstHeaderView != null) {
                     if (i > 1) {//第二个header开始隐藏一部分
@@ -124,7 +125,8 @@ public class Example1_1Activity extends AppCompatActivity {
                 if (firstHeaderView != null && firstHeaderView == header1View) {
                     scrollY = firstHeaderView.getTop();//作为列表向上滚动的像素。活得向上滚动的像素数量
                     int header1Height = firstHeaderView.getMeasuredHeight();//列表第一个头视图的高度
-                    if (-scrollY > header1Height - mActionBar.getCustomView().getMeasuredHeight()) {
+                    if (-scrollY > header1Height - mActionBar.getCustomView()
+                                                             .getMeasuredHeight()) {
 //                        if (i > 1) {//第2个元素完全隐藏
                         //header2内视图转移到悬浮容器
                         if (hoverContentLinearLayout.getParent() == header2Container) {
@@ -306,9 +308,11 @@ public class Example1_1Activity extends AppCompatActivity {
         popupWindow.setOutsideTouchable(true);
         popupWindow.setAnimationStyle(R.style.AnimationBottomFade);
         //popupWidow内视图设置
-        Button popupBtn1 = (Button) popupWindow.getContentView().findViewById(R.id.btn_popup_button_1);
+        Button popupBtn1 = (Button) popupWindow.getContentView()
+                                               .findViewById(R.id.btn_popup_button_1);
         popupBtn1.setText(data1);
-        Button popupBtn2 = (Button) popupWindow.getContentView().findViewById(R.id.btn_popup_button_2);
+        Button popupBtn2 = (Button) popupWindow.getContentView()
+                                               .findViewById(R.id.btn_popup_button_2);
         popupBtn2.setText(data2);
 
 //        popupWindow.showAsDropDown(clickBtn, 5, 5);
@@ -319,7 +323,8 @@ public class Example1_1Activity extends AppCompatActivity {
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */
     public static int dip2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
+        final float scale = context.getResources()
+                                   .getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
@@ -327,7 +332,7 @@ public class Example1_1Activity extends AppCompatActivity {
      * 异步任务
      */
     public void asynckTask() {
-        new  AsyncTask<String,Integer,String>() {
+        new AsyncTask<String, Integer, String>() {
             @Override
             protected String doInBackground(String... strings) {
                 return null;

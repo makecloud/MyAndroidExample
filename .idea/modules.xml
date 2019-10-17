@@ -32,6 +32,7 @@
       <module fileurl="file://$PROJECT_DIR$/usesqlite/usesqlite.iml" filepath="$PROJECT_DIR$/usesqlite/usesqlite.iml" />
       <module fileurl="file://$PROJECT_DIR$/viewdrag/viewdrag.iml" filepath="$PROJECT_DIR$/viewdrag/viewdrag.iml" />
       <module fileurl="file://$PROJECT_DIR$/viewpager-example/viewpager-example.iml" filepath="$PROJECT_DIR$/viewpager-example/viewpager-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webviewapp/webviewapp.iml" filepath="$PROJECT_DIR$/webviewapp/webviewapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/wifidisplay/wifidisplay.iml" filepath="$PROJECT_DIR$/wifidisplay/wifidisplay.iml" />
     </modules>
   </component>

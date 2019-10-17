@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/yunge_I_red">
+    //水波纹颜色
+    //点击中心点的大小，不建议使用，不然在6.0+上面会导致，点击哪里 水波纹都是在中心
+    //给item设置系统maskId，限制水波纹不越界，
+    <item android:id="@android:id/mask">
+        //如果需要改变使用水波纹控件的圆角，需要用到shape
+        <shape android:shape="rectangle">
+            //圆角度
+            <corners android:radius="0dp" />
+            //默认的背景颜色
+            <solid android:color="?android:attr/colorAccent" />
+        </shape>
+    </item>
+</ripple>

@@ -1,9 +1,11 @@
 package com.liuyihui.playvideodemo;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.MediaController;
+import android.widget.Toast;
 
 import com.liuyihui.playvideodemo.customerView.IjkVideoView;
 import com.liuyihui.playvideodemo.customerView.VideoPlayerListener;
@@ -71,8 +73,14 @@ public class IjkPLayerActivity extends AppCompatActivity {
 
         //设置url
         //String videoUrl = "http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4";//test line
-        String videoUrl = "http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4";//test line
+//        String videoUrl = "http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4";//test line
+//        String videoUrl = "http://test.yungeshidai.com/material/eec76c455d081e4498c0ad7a55fb67e1.mp4";//test line
+        String videoUrl = Environment.getExternalStorageDirectory()
+                                     .getAbsolutePath() + "/DCIM/qqqq.mp4";
+        Toast.makeText(this, videoUrl, Toast.LENGTH_SHORT)
+             .show();
         ijkVideoView.setVideoPath(videoUrl);
+
 
     }
 

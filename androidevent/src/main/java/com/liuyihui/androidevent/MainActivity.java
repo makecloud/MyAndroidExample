@@ -1,12 +1,11 @@
 package com.liuyihui.androidevent;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "MainActivity";
@@ -22,6 +21,15 @@ public class MainActivity extends AppCompatActivity {
         bframeLayout = findViewById(R.id.b_framelayout);
         cFrameLayout = findViewById(R.id.c_framelayout);
 
+
+        aframeLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
+
+
     }
 
 
@@ -33,20 +41,26 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "------------------");
-        Log.i(TAG, "dispatchTouchEvent");
+        Log.i(TAG, " ");
+        Log.i(TAG, "\n\rdispatchTouchEvent called。EventAction：" + ev.getAction());
 
         //表明该事件将会被分发。此时当前ViewGroup的onIntercepterTouchEvent方法会捕获该事件，判断需不需要进行事件的拦截
+        Log.d(TAG, "dispatchTouchEvent: return super");
         return super.dispatchTouchEvent(ev);
-        //表明该事件已经被分发处理。事件会被当前view/activity的dispatchTouchEvent给消费掉。不会再进行传递，事件到此结束
+
+        //表明该事件已经被当前view/activity的dispatchTouchEvent给消费掉。之后系统不再传递此事件，事件到此消失
+//        Log.d(TAG, "dispatchTouchEvent: return true");
 //        return true;
-        //表明事件不会被进行分发。事件会以冒泡的方式被传递给上层的view的onTouchEvent方法进行消费掉。
+
+        //返回false事件不再被分发给下级即子view，被activity拦截。但是，事件会继续以冒泡的方式被传递给外层的view/activity的onTouchEvent方法进行处理
+//        Log.d(TAG, "dispatchTouchEvent: return false;");
 //        return false;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.i(TAG, "onTouchEvent called");
+        Log.d(TAG, "onTouchEvent: return super");
         return super.onTouchEvent(event);
     }
 }

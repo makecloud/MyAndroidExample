@@ -28,18 +28,39 @@ public class BFramelayout extends FrameLayout {
     }
 
     /**
+     * 分发事件. 分发?
+     *
+     * @param ev
+     * @return
+     */
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.i(TAG, " ");
+        Log.i(TAG, "\ndispatchTouchEvent called。EventAction：" + ev.getAction());
+        Log.d(TAG, "dispatchTouchEvent: return super");
+        return super.dispatchTouchEvent(ev);
+
+//        Log.d(TAG, "dispatchTouchEvent: return true");
+//        return true;
+
+//        Log.d(TAG, "dispatchTouchEvent: return false;");
+//        return false;
+    }
+    /**
      * @param ev
      * @return
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "onInterceptTouchEvent called");
+        Log.i(TAG, "onInterceptTouchEvent called。EventAction："+ev.getAction());
+        Log.d(TAG, "onInterceptTouchEvent: return super");
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i(TAG,"onTouchEvent called");
+        Log.i(TAG,"onTouchEvent called。EventAction："+event.getAction());
+        Log.d(TAG, "onTouchEvent: return super");
         return super.onTouchEvent(event);
 //        return true;
     }

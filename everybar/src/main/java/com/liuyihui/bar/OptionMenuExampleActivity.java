@@ -36,6 +36,10 @@ public class OptionMenuExampleActivity extends AppCompatActivity {
             case 2:
                 Toast.makeText(this, "menu 2", Toast.LENGTH_SHORT).show();
                 break;
+            case android.R.id.home:
+                finish();
+                break;
+
             default:
                 break;
         }

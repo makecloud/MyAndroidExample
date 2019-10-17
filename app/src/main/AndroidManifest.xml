@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.LOCATION_HARDWARE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <application
         android:name=".MyApplication"
@@ -24,8 +25,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".example26_progressbar.ProgressBarDemoActivity"
-            >
+        <activity android:name=".example2_notification.NotificationDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".example1.ViewCoordinateActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".example26_progressbar.ProgressBarDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -53,7 +63,7 @@
         <activity
             android:name=".example1.Example1_1Activity"
             android:theme="@style/AppTheme.OverlayActionBar" />
-        <activity android:name=".example2_system_action.Example2Activity" />
+
         <activity
             android:name=".example4_use_camera.Example4Activity"
             android:screenOrientation="portrait" />
@@ -78,7 +88,11 @@
         <activity android:name=".example15_viewpager.UseViewPagerActivity" />
         <activity android:name=".example14_gridview.UseGridViewActivity" />
         <activity android:name=".example15_viewpager.ViewPagerFragmentActivity" />
-        <activity android:name=".example16_recyclerview.Example16Activity" />
+        <activity android:name=".example16_recyclerview.Example16Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".example17_DESencrypt.TestDesActivity" />
 
         <service android:name=".example18_service.MyService" />
@@ -94,7 +108,6 @@
         <activity android:name=".example21_framelayout_hierarchy.Example21Activity" />
         <activity android:name=".example22_awakenSelf.Example22Activity" />
         <activity android:name=".example23_CrashHandler.Example23Activity" />
-        <activity android:name=".example24_use_database.Example24Activity" />
         <activity android:name=".example5_1_use_amaplocate.GetLocationActivity" />
         <activity android:name=".example25_bitmap.BitmapOperationActivity" />
     </application>

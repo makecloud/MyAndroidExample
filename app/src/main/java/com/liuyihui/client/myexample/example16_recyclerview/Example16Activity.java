@@ -5,16 +5,10 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.liuyihui.client.myexample.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * recyclerview使用
@@ -28,8 +22,8 @@ public class Example16Activity extends Activity {
     private RecyclerView recyclerView;
     /** 需要悬浮的内容的布局视图 */
     private LinearLayout hoverContentLinearLayout;
-    /*数据*/
-    private List<String> mDatas;
+    private HomeAdapter homeAdapter;
+
 
     /**
      * activity创建回调
@@ -40,79 +34,45 @@ public class Example16Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example16);
-        initData();
-        recyclerView = (RecyclerView) findViewById(R.id.recylerview);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        homeAdapter = new HomeAdapter(this);
+        recyclerView = findViewById(R.id.recylerview);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
+        //set config
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         //设置布局管理器
         recyclerView.setLayoutManager(linearLayoutManager);
         //设置adapter
-        recyclerView.setAdapter(new HomeAdapter());
+        recyclerView.setAdapter(homeAdapter);
         //设置Item增加、移除动画
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+        //scroll listener
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+//                Log.d(TAG,
+//                      "onScrolled: firstVisible position" + linearLayoutManager.findFirstVisibleItemPosition());
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+        });
+        //
+        MyItemDecoration myItemDecoration = new MyItemDecoration();
+        myItemDecoration.setItemGroupInfoFetcher(new MyItemDecoration.ItemGroupInfoFetcher() {
+            @Override
+            public ItemGroupInfo getItemGroupInfo(int position) {
+                return homeAdapter.getItemGroupInfo(position);
             }
         });
+        recyclerView.addItemDecoration(myItemDecoration);
+        //
+
     }
 
-    /**
-     * 创建数据集合
-     */
-    protected void initData() {
-        mDatas = new ArrayList<>();
-        for (int i = 'A'; i < 'z'; i++) {
-            mDatas.add("" + (char) i);
-        }
-    }
 
-    /**
-     * recyclerView 的适配器
-     */
-    class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
-
-        /**
-         * @param parent
-         * @param viewType
-         * @return
-         */
-        @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            MyViewHolder holder = new MyViewHolder(LayoutInflater.from(Example16Activity.this).inflate(R.layout.recyclerview_item, parent, false));
-            return holder;
-        }
-
-        /**
-         * @param holder
-         * @param position
-         */
-        @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
-            holder.tv.setText(mDatas.get(position));
-        }
-
-        /**
-         * @return
-         */
-        @Override
-        public int getItemCount() {
-            return mDatas.size();
-        }
-
-        /**
-         *
-         */
-        class MyViewHolder extends RecyclerView.ViewHolder {
-
-            TextView tv;
-
-            public MyViewHolder(View view) {
-                super(view);
-                tv = (TextView) view.findViewById(R.id.id_num);
-            }
-        }
-    }
 }

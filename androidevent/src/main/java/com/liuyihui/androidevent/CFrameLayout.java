@@ -8,14 +8,19 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
-import java.security.AlgorithmConstraints;
-
 /**
  * Created by liuyi on 2018/3/2.
  */
 
 public class CFrameLayout extends FrameLayout {
     private final String TAG = "CFrameLayout";
+    private int actionDownLeft;
+    private int actionDownRight;
+    private int actionDownTop;
+    private int actionDownBottom;
+
+    private float actionDownRawX = 0;
+    private float actionDownRawY = 0;
 
     public CFrameLayout(@NonNull Context context) {
         super(context);
@@ -30,24 +35,76 @@ public class CFrameLayout extends FrameLayout {
     }
 
     /**
+     * 分发事件. 分发?
+     *
+     * @param ev
+     * @return
+     */
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.d(TAG, "dispatchTouchEvent: ");
+        Log.d(TAG, "\ndispatchTouchEvent called。EventAction：" + ev.getAction());
+        Log.d(TAG, "dispatchTouchEvent: return super");
+        return super.dispatchTouchEvent(ev);
+
+//        Log.d(TAG, "dispatchTouchEvent: return true");
+//        return true;
+
+//        Log.d(TAG, "dispatchTouchEvent: return false;");
+//        return false;
+    }
+
+    /**
      * @param ev
      * @return
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "onInterceptTouchEvent called");
+        Log.d(TAG, "onInterceptTouchEvent: ");
+        Log.d(TAG, "onInterceptTouchEvent called。EventAction：" + ev.getAction());
+        Log.d(TAG, "onInterceptTouchEvent: return super");
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i(TAG, "onTouchEvent called");
+        Log.d(TAG, "onTouchEvent: ");
+        Log.d(TAG, "onTouchEvent called。EventAction：" + event.getAction());
+
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            actionDownLeft = getLeft();
+            actionDownRight = getRight();
+            actionDownTop = getTop();
+            actionDownBottom = getBottom();
+
+            actionDownRawX = event.getRawX();
+            actionDownRawY = event.getRawY();
+        }
 
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            Log.i(TAG, "move event: " + event.getX() + "," + event.getY());
+            Log.d(TAG, "onTouchEvent: action move event xy: " + event.getX() + "," + event.getY());
+            Log.d(TAG,
+                  "onTouchEvent: action move event rawxy: " + event.getRawX() + "," + event.getRawY());
+
+
+            int dy = (int) (event.getRawY() - actionDownRawY);
+            int dx = (int) (event.getRawX() - actionDownRawX);
+
+            layout(actionDownLeft + dx,
+                   actionDownTop + dy,
+                   actionDownRight + dx,
+                   actionDownBottom + dy);
+        }
+
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            //归位可以在抬起事件里做。
+            layout(actionDownLeft, actionDownTop, actionDownRight, actionDownBottom);
         }
 
 //        return super.onTouchEvent(event);
+
+        Log.i(TAG, "onTouchEvent: return true;");
         return true;//true代表事件被我CFrameLayout自己消耗掉, 系统不会再拿此event回调其他view的onTouchEvent
 //        return false;
     }

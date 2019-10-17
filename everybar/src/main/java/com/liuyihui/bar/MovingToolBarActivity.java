@@ -3,6 +3,7 @@ package com.liuyihui.bar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -38,7 +39,7 @@ public class MovingToolBarActivity extends AppCompatActivity {
 
 
         //往滑动view里添加item,使有足够数据滑动
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 60; i++) {
             TextView textView = new TextView(this);
             textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                                                    80));
@@ -48,6 +49,13 @@ public class MovingToolBarActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }

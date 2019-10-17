@@ -2,13 +2,14 @@ package com.liuyihui.playvideodemo;
 
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 /**
@@ -30,7 +31,11 @@ public class VideoViewActivity extends AppCompatActivity {
     private void init() {
         //视频源文件路径
         //设置videoview
-        myVideoView.setVideoURI(Uri.parse("http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4"));
+//        myVideoView.setVideoURI(Uri.parse("http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4"));
+        String videoPath = Environment.getExternalStorageDirectory() + "/DCIM/qqqq";
+        Toast.makeText(this, videoPath, Toast.LENGTH_SHORT)
+             .show();
+        myVideoView.setVideoPath(videoPath);
         myVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
@@ -66,7 +71,8 @@ public class VideoViewActivity extends AppCompatActivity {
                         vHeight = (int) Math.ceil((float) vHeight / ratio);
 
                         Log.i(TAG, "fitted size:" + vWidth + "*" + vHeight);
-                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(vWidth, vHeight);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(vWidth,
+                                                                                     vHeight);
                         lp.gravity = Gravity.CENTER;
                         //如果用的surfaceView 则设置surfaceView的布局参数
 //                    surfaceView.setLayoutParams(lp);
@@ -86,7 +92,8 @@ public class VideoViewActivity extends AppCompatActivity {
                         vHeight = (int) Math.ceil((float) vHeight / ratio);
 
                         Log.i(TAG, "fitted size:" + vWidth + "*" + vHeight);
-                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(vWidth, vHeight);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(vWidth,
+                                                                                     vHeight);
                         lp.gravity = Gravity.CENTER;
                         //如果用的surfaceView 则设置surfaceView的布局参数
 //                    surfaceView.setLayoutParams(lp);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,13 +20,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:background="#923365"
-                android:layout_height="144dp">
+                android:layout_height="144dp"
+                android:background="#923365">
+
                 <TextView
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
-                    android:text="toolbar 同级布局"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="toolbar 同级布局" />
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar
@@ -40,29 +40,30 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="请输入文字"/>
+                    android:hint="请输入文字" />
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
 
         <LinearLayout
-            app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:background="#C9FFd9"
-            android:layout_height="50dp">
+            app:layout_scrollFlags="scroll|enterAlways">
+
             <TextView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="appBarLayout内第二子View"
-                android:layout_height="wrap_content"/>
+                android:text="appBarLayout内第二子View" />
         </LinearLayout>
     </android.support.design.widget.AppBarLayout>
 
     <!--任意可滚动控件-->
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:background="#887630"
         android:layout_height="match_parent"
+        android:background="#887630"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -74,5 +75,13 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp" />
 
 </android.support.design.widget.CoordinatorLayout>

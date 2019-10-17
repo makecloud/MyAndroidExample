@@ -37,90 +37,91 @@
                     android:id="@+id/btn_eg1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg1Click"
                     android:text="简单实现ListView顶部悬浮效果" />
-
-                <Button
-                    android:id="@+id/btn_eg1_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="简单实现ListView标题栏渐变" />
 
                 <Button
                     android:id="@+id/btn_eg2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="系统标准Action的Activity" />
+                    android:onClick="btn_eg2Click"
+                    android:text="通知使用demo" />
+
+                <Button
+                    android:id="@+id/btn_eg1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="btn_eg1_1Click"
+                    android:text="简单实现ListView标题栏渐变" />
 
                 <Button
                     android:id="@+id/btn_eg3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="打开相机" />
+                    android:onClick="btn_eg3Click"
+                    android:text="打开相机预览" />
 
                 <Button
                     android:id="@+id/btn_eg4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="相机调用" />
+                    android:onClick="btn_eg4Click"
+                    android:text="调用系统相机" />
 
                 <Button
                     android:id="@+id/btn_eg5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg5Click"
                     android:text="Activity显示高德地图" />
 
                 <Button
                     android:id="@+id/btn_eg5_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="托管fragment显示高德地图" />
+                    android:onClick="btn_eg5_1Click"
+                    android:text="fragment显示高德地图" />
 
                 <Button
                     android:id="@+id/btn_eg5_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg5_2Click"
                     android:text="使用高德地图获取定位" />
 
                 <Button
                     android:id="@+id/btn_eg6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg6Click"
                     android:text="popupwindow" />
-
-                <Button
-                    android:id="@+id/btn_eg7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="启动魔镜" />
-
-                <Button
-                    android:id="@+id/btn_eg24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="使用数据库demo" />
 
                 <Button
                     android:id="@+id/btn_eg25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg25Click"
                     android:text="启动adb tcp" />
 
                 <Button
                     android:id="@+id/btn_eg25_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg25_1Click"
                     android:text="bitmap操作" />
 
                 <Button
                     android:id="@+id/btn_eg14_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg14_2Click"
                     android:text="GridLayout" />
 
                 <Button
                     android:id="@+id/btn_eg14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg14Click"
                     android:text="使用GridView" />
 
 
@@ -160,90 +161,105 @@
                     android:id="@+id/btn_eg8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg8Click"
                     android:text="启动城市选择实例" />
 
                 <Button
                     android:id="@+id/btn_eg9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg9Click"
                     android:text="启动二维码扫描" />
 
                 <Button
                     android:id="@+id/btn_eg10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg10Click"
                     android:text="调用系统相册" />
 
                 <Button
                     android:id="@+id/btn_eg11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg11Click"
                     android:text="轮播图实例" />
 
                 <Button
                     android:id="@+id/btn_eg12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg12Click"
                     android:text="使用viewFlipper实例" />
 
                 <Button
                     android:id="@+id/btn_eg13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg13Click"
                     android:text="使用viewPager实例" />
 
                 <Button
                     android:id="@+id/btn_eg13_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg13_2Click"
                     android:text="使用viewPager+fragment实例" />
 
                 <Button
                     android:id="@+id/btn_eg16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg16Click"
                     android:text="使用recyclerview" />
 
                 <Button
                     android:id="@+id/btn_eg17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg17Click"
                     android:text="使用des加密保存文件" />
 
                 <Button
                     android:id="@+id/btn_eg18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg18Click"
                     android:text="使用服务demo" />
 
                 <Button
                     android:id="@+id/btn_eg19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg19Click"
                     android:text="在服务中显示界面" />
 
                 <Button
                     android:id="@+id/btn_eg20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg20Click"
                     android:text="启动activityGroupActivity" />
 
                 <Button
                     android:id="@+id/btn_eg21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg21Click"
                     android:text="控制FrameLayout中元素层级" />
 
                 <Button
                     android:id="@+id/btn_eg22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg22Click"
                     android:text="唤醒后台示例" />
 
                 <Button
                     android:id="@+id/btn_eg23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="btn_eg23Click"
                     android:text="启动crashActivity然后查看崩溃日志" />
 
             </LinearLayout>

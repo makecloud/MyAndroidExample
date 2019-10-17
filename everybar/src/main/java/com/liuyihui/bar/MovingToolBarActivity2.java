@@ -3,6 +3,7 @@ package com.liuyihui.bar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -45,5 +46,13 @@ public class MovingToolBarActivity2 extends AppCompatActivity {
             textView.setText(String.valueOf(i));
             nestedScrollView.addView(textView);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

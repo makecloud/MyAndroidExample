@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -22,14 +23,15 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  */
 
 public class IjkVideoView extends FrameLayout {
+    private final String TAG = "IjkVideoView";
     /**
      * 由ijkplayer提供，用于播放视频，需要给他传入一个surfaceView
      */
     private IMediaPlayer mMediaPlayer = null;
-
     /**
      * 视频文件地址
      */
+
     private String mPath = "";
 
     private SurfaceView surfaceView;
@@ -65,6 +67,7 @@ public class IjkVideoView extends FrameLayout {
      *
      * @param path the path of the video.
      */
+
     public void setVideoPath(String path) {
         if (TextUtils.equals("", mPath)) {
             //如果是第一次播放视频，那就创建一个新的surfaceView
@@ -77,15 +80,18 @@ public class IjkVideoView extends FrameLayout {
         }
     }
 
-    /**
+    /*
+     *
      * 新建一个surfaceview
      */
     private void createSurfaceView() {
         //生成一个新的surface view
         surfaceView = new SurfaceView(mContext);
-        surfaceView.getHolder().addCallback(new LmnSurfaceCallback());
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT
-                , LayoutParams.MATCH_PARENT, Gravity.CENTER);
+        surfaceView.getHolder()
+                   .addCallback(new LmnSurfaceCallback());
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,
+                                                     LayoutParams.MATCH_PARENT,
+                                                     Gravity.CENTER);
         surfaceView.setLayoutParams(layoutParams);
         this.addView(surfaceView);
     }
@@ -109,7 +115,7 @@ public class IjkVideoView extends FrameLayout {
         }
     }
 
-    /**
+    /* *
      * 加载视频
      */
     private void load() {
@@ -118,7 +124,7 @@ public class IjkVideoView extends FrameLayout {
         try {
             mMediaPlayer.setDataSource(mPath);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "load: ", e);
         }
         //给mediaPlayer设置视图
         mMediaPlayer.setDisplay(surfaceView.getHolder());
@@ -159,10 +165,10 @@ public class IjkVideoView extends FrameLayout {
         }
     }
 
-    /**
+    /* *
      * -------======--------- 下面封装了一下控制视频的方法
-     */
 
+     */
     public void start() {
         if (mMediaPlayer != null) {
             mMediaPlayer.start();

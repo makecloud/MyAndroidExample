@@ -54,9 +54,8 @@ dependencies {
     compile "com.github.bumptech.glide:okhttp3-integration:$rootProject.glideVersion"
     // bugly
     // Dagger2
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile "com.android.support:appcompat-v7:${supportLibraryVer}"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:26.0.1'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.facebook.stetho:stetho:1.5.0'
     compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'

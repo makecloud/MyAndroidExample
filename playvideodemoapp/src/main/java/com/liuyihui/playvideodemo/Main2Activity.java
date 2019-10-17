@@ -63,13 +63,14 @@ public class Main2Activity extends MySuperActivity {
     public void playVideo() {
         //视频源文件路径
         String sdcardDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+        String videoFilePath = sdcardDir + "/DCIM/qqqq";
 //        String videoFilePath = sdcardDir + "/DCIM/YiCarCamera/2016.MP4";
 //        String videoFilePath = sdcardDir + "/360/30a58ee0d1b3be9313367ef8033f5483.mp4";
 //        String videoFilePath = sdcardDir + "/360/mcdown.mp4";
 //        String videoFilePath = sdcardDir + "/360/dianshiju.mp4";
 //        String videoFilePath = sdcardDir + "/360/video1";
 //        String videoFilePath = sdcardDir + "/360/video2";
-        String videoFilePath = sdcardDir + "/360/video3";
+//        String videoFilePath = sdcardDir + "/360/video3";
 //        String videoFilePath = sdcardDir + "/360/C06FABBCF84118FD003D0D1269762C0E";
 //        String videoFilePath = sdcardDir + "/oohlink/player/.screen/C06FABBCF84118FD003D0D1269762C0E";
 //        String videoFilePath = sdcardDir + "/oohlink/player/.screen/E51A96E2BCBEAA3873EA8CA2CCFB8257";

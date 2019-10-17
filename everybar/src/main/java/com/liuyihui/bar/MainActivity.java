@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    //
+    //更改actionBar的属性demo
     public void startBarDemo1(View view) {
         startActivity(new Intent(this, BarDemo1Activity.class));
     }
