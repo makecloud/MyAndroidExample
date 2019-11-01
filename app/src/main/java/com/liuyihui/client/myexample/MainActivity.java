@@ -123,6 +123,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(ViewPagerFragmentActivity.class);
     }
 
+    public void btn_eg14_2Click(View view) {
+        startActivity(GridLayoutActivity.class);
+    }
+
+    public void btn_eg14Click(View view) {
+        startActivity(UseGridViewActivity.class);
+    }
+
     public void btn_eg16Click(View view) {
         startActivity(Example16Activity.class);
     }
@@ -161,14 +169,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void btn_eg25_1Click(View view) {
         startActivity(BitmapOperationActivity.class);
-    }
-
-    public void btn_eg14_2Click(View view) {
-        startActivity(GridLayoutActivity.class);
-    }
-
-    public void btn_eg14Click(View view) {
-        startActivity(UseGridViewActivity.class);
     }
 
 

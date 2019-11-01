@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="sequentially">
+    <!--改变宽高动画-->
+    <set>
+        <objectAnimator
+            android:duration="800"
+            android:propertyName="width"
+            android:valueTo="200dp"
+            android:valueType="intType" />
+        <objectAnimator
+            android:duration="800"
+            android:propertyName="height"
+            android:valueTo="200dp"
+            android:valueType="intType" />
+    </set>
+
+    <!--改变left top right bottom动画-->
+    <set>
+        <objectAnimator
+            android:duration="800"
+            android:propertyName="left"
+            android:valueTo="200"
+            android:valueType="intType" />
+        <objectAnimator
+            android:duration="800"
+            android:propertyName="top"
+            android:valueTo="100"
+            android:valueType="intType" />
+
+        <objectAnimator
+            android:duration="800"
+            android:propertyName="right"
+            android:valueTo="900"
+            android:valueType="intType" />
+
+        <objectAnimator
+            android:duration="800"
+            android:propertyName="bottom"
+            android:valueTo="700"
+            android:valueType="intType" />
+
+    </set>
+
+    <!--改变alpha透明度动画-->
+    <objectAnimator
+        android:duration="800"
+        android:propertyName="alpha"
+        android:valueTo="0.5f" />
+</set>

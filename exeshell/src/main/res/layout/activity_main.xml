@@ -66,6 +66,12 @@
         android:onClick="seeTopActivity"
         android:text="查看顶端activity" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="rdateTime"
+        android:text="同步时间rdate" />
+
     <TextView
         android:id="@+id/checkRootResultText"
         android:layout_width="wrap_content"

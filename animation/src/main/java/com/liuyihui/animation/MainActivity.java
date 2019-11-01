@@ -1,46 +1,53 @@
 package com.liuyihui.animation;
 
-import android.graphics.drawable.AnimationDrawable;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 
 /**
- * 安卓内的动画
+ * view动画
  */
 public class MainActivity extends AppCompatActivity {
-    AnimationDrawable animationDrawable;
+    private Button animateView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        animateView = findViewById(R.id.animation_target);
+    }
 
-        ImageView animationTestImageView = findViewById(R.id.iv_animation_test);
-        /*
-         * 这种动画, 属于FrameAnimation,只能单纯按时间切换帧.
-         */
-        animationDrawable = (AnimationDrawable) animationTestImageView.getBackground();
+
+    /**
+     * 属性动画。
+     * <p>
+     * 宽高，left top，alpha值，等变化
+     * <p>
+     * 其他的，得自己去找view有哪些属性可改变，形成动画
+     *
+     * @param view
+     */
+    public void animate1(View view) {
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(this,
+                                                                      R.animator.property_animator);
+        set.setTarget(animateView);
+        set.start();
+    }
+
+    public void animate2(View view) {
 
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            /*
-             * 不能在onCreate中启动动画, 一般在onWindowFocusChanged中
-             */
-            animationDrawable.start();
-            return true;
-        }
-        return super.onTouchEvent(event);
+    public void animate3(View view) {
+
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-    }
+    public void animate4(View view) {
 
+    }
 
 }

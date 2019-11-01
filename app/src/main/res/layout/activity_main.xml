@@ -34,6 +34,7 @@
                     android:text="我的安卓实例集" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -41,6 +42,7 @@
                     android:text="简单实现ListView顶部悬浮效果" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,6 +50,7 @@
                     android:text="通知使用demo" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg1_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,6 +58,7 @@
                     android:text="简单实现ListView标题栏渐变" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,6 +66,7 @@
                     android:text="打开相机预览" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,6 +74,7 @@
                     android:text="调用系统相机" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,6 +82,7 @@
                     android:text="Activity显示高德地图" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg5_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,6 +90,7 @@
                     android:text="fragment显示高德地图" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg5_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -90,6 +98,7 @@
                     android:text="使用高德地图获取定位" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,6 +106,7 @@
                     android:text="popupwindow" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,6 +114,7 @@
                     android:text="启动adb tcp" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg25_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,6 +122,7 @@
                     android:text="bitmap操作" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg14_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,6 +130,7 @@
                     android:text="GridLayout" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -158,6 +171,7 @@
                     android:text="我的安卓实例搜集" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -165,6 +179,7 @@
                     android:text="启动城市选择实例" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,6 +187,7 @@
                     android:text="启动二维码扫描" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -179,6 +195,7 @@
                     android:text="调用系统相册" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -186,6 +203,7 @@
                     android:text="轮播图实例" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -193,6 +211,7 @@
                     android:text="使用viewFlipper实例" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -200,6 +219,7 @@
                     android:text="使用viewPager实例" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg13_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -207,6 +227,7 @@
                     android:text="使用viewPager+fragment实例" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -214,6 +235,7 @@
                     android:text="使用recyclerview" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -221,6 +243,7 @@
                     android:text="使用des加密保存文件" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -228,6 +251,7 @@
                     android:text="使用服务demo" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -235,6 +259,7 @@
                     android:text="在服务中显示界面" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -242,6 +267,7 @@
                     android:text="启动activityGroupActivity" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -249,6 +275,7 @@
                     android:text="控制FrameLayout中元素层级" />
 
                 <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -256,6 +283,7 @@
                     android:text="唤醒后台示例" />
 
                 <Button
+                    android:textAllCaps="false"
                     android:id="@+id/btn_eg23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

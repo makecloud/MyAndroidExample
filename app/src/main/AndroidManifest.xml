@@ -73,7 +73,11 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <activity android:name=".example6_use_popupwindow.Example6Activity" />
-        <activity android:name=".example7_custom_view.Example7Activity" />
+        <activity android:name=".example7_custom_view.Example7Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".example8_choose_city_demo.ChoseCityActivity" />
         <activity android:name=".example9_qrcode_scan.ScanResultActivity" />
         <activity android:name=".example10_photo_album.InvokeSysGalleryActivity" />
@@ -86,7 +90,11 @@
         <activity android:name=".example11_slideshow_banner.ShuffleImagesActivity" />
         <activity android:name=".example13_viewflipper.UseViewFlipperActivity" />
         <activity android:name=".example15_viewpager.UseViewPagerActivity" />
-        <activity android:name=".example14_gridview.UseGridViewActivity" />
+        <activity android:name=".example14_gridview.UseGridViewActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".example15_viewpager.ViewPagerFragmentActivity" />
         <activity android:name=".example16_recyclerview.Example16Activity">
             <intent-filter>

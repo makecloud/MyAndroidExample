@@ -17,32 +17,51 @@ import com.liuyihui.client.myexample.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 使用gridview做宫格列表
+ */
 public class UseGridViewActivity extends AppCompatActivity {
     private GridView gridView;
-    private List<String> dataSet;
+    private GridViewAdapter<String> adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_use_grid_view);
         gridView = findViewById(R.id.girdView);
-        dataSet = new ArrayList<>();
-        dataSet.add("没有");
-        dataSet.add("fsld");
-        dataSet.add("pik");
 
-        GridViewAdapter adapter = new GridViewAdapter(this, dataSet);
+
+        adapter = new GridViewAdapter<>(this);
+        adapter.addData("没有");
+        adapter.addData("fsld");
+        adapter.addData("kkdie");
+        adapter.addData("sdcv");
+        adapter.addData("在v哦俄武器");
+        adapter.addData("vv额我玩");
+        adapter.addData("咯哦i旗袍女a");
+        adapter.addData("博文呀");
+
         gridView.setAdapter(adapter);
 
     }
 
-    class GridViewAdapter extends BaseAdapter {
-        private List<String> dataSet;
-        private Context context;
+    /**
+     * for Test
+     */
+    public void changeItemViewHeight(View view) {
+        adapter.changeItemViewHeight();
+    }
 
-        public GridViewAdapter(@NonNull Context context, List<String> dataSet) {
-            this.dataSet = dataSet;
+    class GridViewAdapter<T> extends BaseAdapter {
+        private List<T> dataSet;
+        private Context context;
+        private List<View> itemViewList;
+
+        public GridViewAdapter(@NonNull Context context) {
+            dataSet = new ArrayList<>();
             this.context = context;
+            itemViewList = new ArrayList<>();
         }
 
         @Override
@@ -60,14 +79,28 @@ public class UseGridViewActivity extends AppCompatActivity {
             return 0;
         }
 
+        public void addData(T string) {
+            dataSet.add(string);
+        }
+
+        public void changeItemViewHeight() {
+            for (View view : itemViewList) {
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                layoutParams.height += 20;
+                view.setLayoutParams(layoutParams);
+            }
+        }
+
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             if (convertView == null) {
-                convertView = LayoutInflater.from(context).inflate(R.layout.recyclerview_item, parent, false);
+                convertView = LayoutInflater.from(context)
+                                            .inflate(R.layout.layout_gridview_item, null, false);
+                itemViewList.add(convertView);
             }
             TextView numView = convertView.findViewById(R.id.id_num);
-            numView.setText(dataSet.get(position));
+            numView.setText((String) dataSet.get(position));
             return convertView;
         }
     }

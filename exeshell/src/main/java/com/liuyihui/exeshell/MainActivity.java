@@ -1,6 +1,7 @@
 package com.liuyihui.exeshell;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,16 +28,25 @@ public class MainActivity extends BaseActivity {
      */
     public void startOpenVpn(View view) {
         try {
-//            Toast.makeText(this, "root权限:" + ReallyShellUtil.canRunRootCommands(), Toast.LENGTH_SHORT).show();
+            //            Toast.makeText(this, "root权限:" + ReallyShellUtil.canRunRootCommands(),
+            //            Toast.LENGTH_SHORT).show();
 
-//            String startOOHLinkOpenvpnCmd = "cd /sdcard/oohlink/player/.vpn;export PATH=/data/data/com.oohlink.player/files:$PATH;LD_LIBRARY_PATH=/system/lib busybox nohup /data/data/com.oohlink.player/files/openvpn --config client.conf > /dev/null &";
-            String startOOHLinkOpenvpnCmd = " cd /sdcard/oohlink/player/.vpn;export PATH=/data/data/com.oohlink.player/files:$PATH;LD_LIBRARY_PATH=/system/lib busybox nohup /data/data/com.oohlink.player/files/openvpn --config client.conf > /sdcard/vpn.log 2>/sdcard/vpnerr.log &";
-//            String startOOHLinkOpenvpnCmd = "cd /mnt/sdcard/oohlink/player/.vpn;busybox nohup /data/data/com.oohlink.player/files/openvpn --config client.conf > /sdcard/vpn.log 2>/sdcard/vpnerr.log &";
+            //            String startOOHLinkOpenvpnCmd = "cd /sdcard/oohlink/player/.vpn;export
+            //            PATH=/data/data/com.oohlink.player/files:$PATH;
+            //            LD_LIBRARY_PATH=/system/lib busybox nohup /data/data/com.oohlink
+            //            .player/files/openvpn --config client.conf > /dev/null &";
+            String startOOHLinkOpenvpnCmd = " cd /sdcard/oohlink/player/.vpn;export " + "PATH" +
+                    "=/data/data/com.oohlink.player/files:$PATH;LD_LIBRARY_PATH=/system/lib " +
+                    "busybox nohup /data/data/com.oohlink.player/files/openvpn --config client" + ".conf > /sdcard/vpn.log 2>/sdcard/vpnerr.log &";
+            //            String startOOHLinkOpenvpnCmd = "cd /mnt/sdcard/oohlink/player/.vpn;
+            //            busybox nohup /data/data/com.oohlink.player/files/openvpn --config
+            //            client.conf > /sdcard/vpn.log 2>/sdcard/vpnerr.log &";
 
             //分开命令试试
             String cmd0 = "cd /mnt/sdcard/oohlink/player/.vpn";
             String cmd1 = "export PATH=/data/data/com.oohlink.player/files:$PATH";
-            String cmd2 = "LD_LIBRARY_PATH=/system/lib busybox nohup /data/data/com.oohlink.player/files/openvpn --config client.conf > /sdcard/vpn.log 2>/sdcard/vpnerr.log &";
+            String cmd2 = "LD_LIBRARY_PATH=/system/lib busybox nohup /data/data/com.oohlink" +
+                    ".player/files/openvpn --config client.conf > /sdcard/vpn.log " + "2>/sdcard" + "/vpnerr.log &";
 
             //方式1
             /*ArrayList<String> cmds = new ArrayList<>();
@@ -44,8 +54,11 @@ public class MainActivity extends BaseActivity {
             ReallyShellUtil.execute(cmds);*/
 
             //方式2
-            ShellUtils.CommandResult commandResult = ShellUtils.execCommand(startOOHLinkOpenvpnCmd, true, true);
-//            ShellUtils.CommandResult commandResult = ShellUtils.execCommand(new String[]{cmd0, cmd1, cmd2}, true);
+            ShellUtils.CommandResult commandResult = ShellUtils.execCommand(startOOHLinkOpenvpnCmd,
+                                                                            true,
+                                                                            true);
+            //            ShellUtils.CommandResult commandResult = ShellUtils.execCommand(new
+            //            String[]{cmd0, cmd1, cmd2}, true);
             showCommandResult(commandResult);
 
         } catch (Exception e) {
@@ -108,7 +121,9 @@ public class MainActivity extends BaseActivity {
      */
     public void invokeScreencap(View view) {
         try {
-            ShellUtils.CommandResult commandResult = ShellUtils.execCommand("screencap -p /sdcard/lyh.png", true);
+            ShellUtils.CommandResult commandResult = ShellUtils.execCommand(
+                    "screencap -p /sdcard/lyh.png",
+                    true);
             showCommandResult(commandResult);
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,7 +154,8 @@ public class MainActivity extends BaseActivity {
             commandResult = ShellUtils.execCommand(cmds, false);
             showCommandResult(commandResult);
             //写到bin
-//            FileUtils.transferInputStreamToFile(this.getResources().openRawResource(R.raw.su));
+            //            FileUtils.transferInputStreamToFile(this.getResources().openRawResource
+            //            (R.raw.su));
 
 
         } catch (Exception e) {
@@ -173,8 +189,10 @@ public class MainActivity extends BaseActivity {
                 ShellUtils.CommandResult commandResult;
                 while (true) {
                     try {
-                        commandResult = ShellUtils.execCommand("dumpsys activity |grep mFocusedActivity", true);
-                        System.out.println(commandResult.successMsg);//com.oohlink.player/.MainActivity
+                        commandResult = ShellUtils.execCommand("dumpsys activity |grep
+                        mFocusedActivity", true);
+                        System.out.println(commandResult.successMsg);//com.oohlink.player/
+                        .MainActivity
                         Thread.sleep(1000);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -183,6 +201,29 @@ public class MainActivity extends BaseActivity {
 
             }
         }).start();*/
+    }
+
+    public void rdateTime(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final ShellUtils.CommandResult result = ShellUtils.execCommand(
+                            "busybox rdate -s 193.228.143.24",
+                            true);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            showCommandResult(result);
+                        }
+                    });
+                } catch (Exception e) {
+                    Log.e(TAG, "rdateTime: ", e);
+                }
+            }
+        }).start();
+
     }
 
 }
