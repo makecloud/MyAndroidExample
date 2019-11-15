@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.liuyihui.client.myexample.example25_bitmap.BitmapOperationActivity">
+    tools:context="com.liuyihui.client.myexample.example25_graphics_demo.BitmapOperationActivity">
 
     <ImageView
         android:id="@+id/selected_image"

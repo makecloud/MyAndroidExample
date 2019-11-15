@@ -107,6 +107,14 @@
 
                 <Button
                    android:textAllCaps="false"
+                    android:id="@+id/btn_eg7click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="btn_eg7click"
+                    android:text="自定义view" />
+
+                <Button
+                   android:textAllCaps="false"
                     android:id="@+id/btn_eg25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

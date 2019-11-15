@@ -7,7 +7,9 @@ import android.widget.ViewFlipper;
 import com.liuyihui.client.myexample.R;
 
 /**
- *
+ * viewFlipper demo
+ * <p>
+ * 多个view切换显示
  */
 public class UseViewFlipperActivity extends AppCompatActivity {
 
@@ -17,6 +19,7 @@ public class UseViewFlipperActivity extends AppCompatActivity {
         setContentView(R.layout.activity_use_view_flipper);
 
         ViewFlipper flipper = findViewById(R.id.flipper);
-        flipper.startFlipping();
+//        flipper.startFlipping();
+        flipper.setAutoStart(true);
     }
 }

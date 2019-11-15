@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 import com.liuyihui.client.myexample.R;
 
 /**
- * 实现不规则图形布局
+ * 自定义view
  */
 public class Example7Activity extends AppCompatActivity {
     RelativeLayout rootLayout;

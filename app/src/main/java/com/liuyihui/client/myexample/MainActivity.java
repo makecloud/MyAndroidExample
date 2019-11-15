@@ -26,13 +26,14 @@ import com.liuyihui.client.myexample.example20_activityGroup.ContainerActivity;
 import com.liuyihui.client.myexample.example21_framelayout_hierarchy.Example21Activity;
 import com.liuyihui.client.myexample.example22_awakenSelf.Example22Activity;
 import com.liuyihui.client.myexample.example23_CrashHandler.Example23Activity;
-import com.liuyihui.client.myexample.example25_bitmap.BitmapOperationActivity;
+import com.liuyihui.client.myexample.example25_graphics_demo.BitmapOperationActivity;
 import com.liuyihui.client.myexample.example2_notification.NotificationDemoActivity;
 import com.liuyihui.client.myexample.example4_use_camera.Example4Activity;
 import com.liuyihui.client.myexample.example5_1_use_amaplocate.GetLocationActivity;
 import com.liuyihui.client.myexample.example5_use_amap.BaseMapFragmentActivity;
 import com.liuyihui.client.myexample.example5_use_amap.Example5Activity;
 import com.liuyihui.client.myexample.example6_use_popupwindow.Example6Activity;
+import com.liuyihui.client.myexample.example7_custom_view.Example7Activity;
 import com.liuyihui.client.myexample.example8_choose_city_demo.ChoseCityActivity;
 import com.liuyihui.client.myexample.example9_qrcode_scan.ScanResultActivity;
 
@@ -93,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void btn_eg6Click(View view) {
         startActivity(Example6Activity.class);
+    }
+
+    public void btn_eg7click(View view) {
+        startActivity(Example7Activity.class);
     }
 
     public void btn_eg8Click(View view) {

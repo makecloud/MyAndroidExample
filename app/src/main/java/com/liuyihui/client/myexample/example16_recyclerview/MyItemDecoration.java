@@ -8,6 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+/**
+ * 实现顶部sticky效果标题的decorator
+ */
 public class MyItemDecoration extends RecyclerView.ItemDecoration {
     private final String TAG = getClass().getSimpleName();
     /**
@@ -52,14 +55,15 @@ public class MyItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
-//        Log.d(TAG, "onDraw: ");
+        //        Log.d(TAG, "onDraw: ");
 
         //遍历recyclerView（parent）的可见子view，判断可见子view是组第一个则画组title
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             //知识点： recyclerView的子view就是adapter创建的itemView
             View itemView = parent.getChildAt(i);
-            ItemGroupInfo itemGroupInfo = itemGroupInfoFetcher.getItemGroupInfo(parent.getChildAdapterPosition(
+            ItemGroupInfo itemGroupInfo =
+                    itemGroupInfoFetcher.getItemGroupInfo(parent.getChildAdapterPosition(
                     itemView));
             if (itemGroupInfo.isGroupFirst()) {
 
@@ -112,7 +116,8 @@ public class MyItemDecoration extends RecyclerView.ItemDecoration {
         int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
         ItemGroupInfo firstVisibleItemGroupInfo = itemGroupInfoFetcher.getItemGroupInfo(
                 firstVisibleItemPosition);
-        ItemGroupInfo nextItemGroupInfo = itemGroupInfoFetcher.getItemGroupInfo(++firstVisibleItemPosition);
+        ItemGroupInfo nextItemGroupInfo =
+                itemGroupInfoFetcher.getItemGroupInfo(++firstVisibleItemPosition);
 
         //知识点：parent即recyclerView的childAt(0)一直保持为可见的第一个itemView
         //而linearLayoutManager.findFirstVisibleItemPosition()得到的position为itemView对应adapter的position
@@ -168,7 +173,8 @@ public class MyItemDecoration extends RecyclerView.ItemDecoration {
      * @param state   The current state of RecyclerView.
      */
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
+                               RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         System.out.println("getItemOffsets: ");
 
@@ -176,13 +182,15 @@ public class MyItemDecoration extends RecyclerView.ItemDecoration {
         if (itemGroupInfoFetcher != null) {
             //知识点： recyclerView的子view就是adapter创建的itemView
             //知识点： 通过parent.getChildAdapterPosition(view); 拿到当前item的位置
-            ItemGroupInfo itemGroupInfo = itemGroupInfoFetcher.getItemGroupInfo(parent.getChildAdapterPosition(
+            ItemGroupInfo itemGroupInfo =
+                    itemGroupInfoFetcher.getItemGroupInfo(parent.getChildAdapterPosition(
                     view));
             if (itemGroupInfo.isGroupFirst()) {
                 outRect.top = mHeaderHeight;
             }
         }
 
+        //这里跟margin作用一样
         outRect.left = 0;
         outRect.right = 0;
         outRect.bottom = 0;

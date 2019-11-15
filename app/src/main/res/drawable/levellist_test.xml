@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/header_bg"
+        android:maxLevel="6000"
+        android:minLevel="1000" />
+
+    <item
+        android:drawable="@drawable/eg16itembg"
+        android:maxLevel="4000"
+        android:minLevel="1000" />
+
+</level-list>

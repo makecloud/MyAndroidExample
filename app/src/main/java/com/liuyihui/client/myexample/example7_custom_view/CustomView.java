@@ -2,6 +2,8 @@ package com.liuyihui.client.myexample.example7_custom_view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -64,5 +66,18 @@ public class CustomView extends View {
         double blockWidth = getWidth();
         double blockHeight = getHeight();
         Log.d(TAG, "onFinishInflate: " + blockWidth + "," + blockHeight);
+    }
+
+    @Override
+    protected void onFocusChanged(boolean gainFocus, int direction,
+                                  @Nullable Rect previouslyFocusedRect) {
+        super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
+        Log.d(TAG, "onFocusChanged: ");
+    }
+
+    @Override
+    public void onDrawForeground(Canvas canvas) {
+        super.onDrawForeground(canvas);
+        Log.d(TAG, "onDrawForeground: ");
     }
 }
