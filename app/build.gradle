@@ -43,4 +43,6 @@ dependencies {
     implementation "com.zhihu.android:matisse:0.5.2-beta3"
 
     implementation "liji.library.dev:citypickerview:5.1.0"
+
+    implementation 'com.github.chrisbanes:PhotoView:2.1.4'
 }

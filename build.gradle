@@ -19,6 +19,7 @@ allprojects {
         maven { url 'https://maven.google.com' }
         flatDir { dirs 'libs' } //配置依赖第三方aar包的目录
         google()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -40,7 +41,7 @@ ext {
 
 
     //和compileSdk版本相差过大会报错
-    supportLibraryVer = "27.1.0"
+    supportLibraryVer = "27.1.1"
     androidDependencies = [
             appcompat_v7: "com.android.support:appcompat-v7:${supportLibraryVer}",
             design      : "com.android.support:design:${supportLibraryVer}",

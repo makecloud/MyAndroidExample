@@ -35,7 +35,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        webView.loadUrl("http:www.163.com");
-        webView.loadUrl("http://101.201.30.129:9005/yunge-website/index.html");
+        //        webView.loadUrl("http:www.163.com");
+//        webView.loadUrl("http://101.201.30.129:9005/yunge-website/index.html");
+
+        //office 文档
+        webView.loadUrl(
+                "https://view.officeapps.live.com/op/view.aspx?src=http://test.yungeshidai" +
+                        ".com/material/cd64ed028e9ac5883f70c6da4e1b4948.pptx");
     }
 }

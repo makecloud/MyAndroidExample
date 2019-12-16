@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
     android:fitsSystemWindows="true"
-    tools:context="com.liuyihui.bar.BarDemo1Activity">
+    tools:context="com.liuyihui.bar.ActionBarBaseDemoActivity">
 
     <TextView
         android:layout_width="wrap_content"

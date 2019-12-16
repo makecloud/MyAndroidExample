@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FreeDragViewActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="callReLayout"
+        android:text="重新布局" />
+
+    <com.liuyihui.viewdrag.FreeMovingContainer
+        android:id="@+id/container"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimaryDark">
+
+        <com.liuyihui.viewdrag.MovingView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorAccent">
+
+        </com.liuyihui.viewdrag.MovingView>
+
+    </com.liuyihui.viewdrag.FreeMovingContainer>
+
+</FrameLayout>

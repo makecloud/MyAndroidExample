@@ -1,4 +1,4 @@
-package com.liuyihui.client.myexample.example25_graphics_demo;
+package com.liuyihui.client.myexample.example25_picture_demo;
 
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.liuyihui.viewdrag">
+    package="com.liuyihui.viewdrag">
 
     <application
         android:allowBackup="true"
@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecyclerViewDragItemForSortActivity">
-
+        <activity android:name=".FreeDragViewActivity">
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
-        <activity android:name=".RecyclerGridDragItemForSortActivity">
-
-        </activity>
-        <activity android:name=".DragViewActivity">
+        <activity android:name=".RecyclerViewDragItemForSortActivity"></activity>
+        <activity android:name=".RecyclerGridDragItemForSortActivity"></activity>
+        <activity android:name=".DragExchangeViewActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

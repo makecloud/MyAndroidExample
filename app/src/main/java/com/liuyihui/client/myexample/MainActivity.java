@@ -26,7 +26,7 @@ import com.liuyihui.client.myexample.example20_activityGroup.ContainerActivity;
 import com.liuyihui.client.myexample.example21_framelayout_hierarchy.Example21Activity;
 import com.liuyihui.client.myexample.example22_awakenSelf.Example22Activity;
 import com.liuyihui.client.myexample.example23_CrashHandler.Example23Activity;
-import com.liuyihui.client.myexample.example25_graphics_demo.BitmapOperationActivity;
+import com.liuyihui.client.myexample.example25_picture_demo.BitmapOperationActivity;
 import com.liuyihui.client.myexample.example2_notification.NotificationDemoActivity;
 import com.liuyihui.client.myexample.example4_use_camera.Example4Activity;
 import com.liuyihui.client.myexample.example5_1_use_amaplocate.GetLocationActivity;

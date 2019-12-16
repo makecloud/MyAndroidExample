@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,13 +14,35 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:onClick="startProgressBarActivity"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startProgressBarActivity"
         android:text="进度条progressbar example"
-        android:textAllCaps="false"
-        android:layout_height="wrap_content"/>
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="dialogFragmentDemo"
+        android:text="dialogFragment"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="alertDialogDemo"
+        android:text="alertDialog"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="popupWindowDemo"
+        android:text="popupWindowDemo"
+        android:textAllCaps="false" />
+
 
 </LinearLayout>

@@ -20,7 +20,7 @@
         <item name="windowActionBarOverlay">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -51,6 +51,25 @@
         <item name="android:windowMinWidthMinor">90%</item>
         <item name="windowFixedHeightMajor">70%</item>
         <item name="windowFixedHeightMinor">70%</item>
+    </style>
+
+    <style name="transparenActivity" parent="Theme.AppCompat.NoActionBar">
+        <!--不设置activity进入和退出动画样式-->
+        <item name="android:windowAnimationStyle">@null</item>
+        <!--设置窗口的背景为透明，设置透明背景必须要设置此项-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--设置窗口的背景是否为半透明，设置透明背景必须要设置此项-->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+
+    <style name="datePicker" >
+        <item name="android:datePickerMode">spinner</item>
+        <item name="android:maxDate">2020-02-02</item>
+        <item name="android:minDate">2019-10-10</item>
+        <item name="android:focusedMonthDateColor">@color/black</item>
+        <item name="android:unfocusedMonthDateColor">@color/red</item>
+        <item name="android:dateTextAppearance">@color/gray</item>
     </style>
 
 </resources>

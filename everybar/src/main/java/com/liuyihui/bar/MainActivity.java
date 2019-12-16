@@ -22,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
 
     //更改actionBar的属性demo
     public void startBarDemo1(View view) {
-        startActivity(new Intent(this, BarDemo1Activity.class));
+        startActivity(new Intent(this, ActionBarBaseDemoActivity.class));
     }
 
     //选项菜单示例
     public void startOptionMenuDemo1(View view) {
-        startActivity(new Intent(this, OptionMenuExampleActivity.class));
+        startActivity(new Intent(this, OptionMenuDemoActivity.class));
     }
 
     //移动的操作栏示例1

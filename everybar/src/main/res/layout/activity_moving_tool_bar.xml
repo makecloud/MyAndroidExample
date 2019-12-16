@@ -18,7 +18,7 @@
             android:background="@android:color/holo_purple"
             app:layout_scrollFlags="scroll|enterAlways">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="144dp"
                 android:background="#923365">
@@ -27,8 +27,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+
                     android:text="toolbar 同级布局" />
-            </LinearLayout>
+            </FrameLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
