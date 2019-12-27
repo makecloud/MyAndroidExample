@@ -57,6 +57,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="pminstall"
+        android:text="执行:pm install" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="installSu"
         android:text="安装su" />
 

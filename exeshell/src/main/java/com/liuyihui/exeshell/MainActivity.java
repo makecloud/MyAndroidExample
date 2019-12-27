@@ -135,6 +135,25 @@ public class MainActivity extends BaseActivity {
      *
      * @param view
      */
+    public void pminstall(View view) {
+        ShellUtils.CommandResult commandResult = null;
+        try {
+            commandResult = ShellUtils.execCommand("pm install -r /mnt/internal_sd/alisport" +
+                                                           "/player/" + ".apk" +
+                                                           "/3FBBFCCF28DBB340500FAAC109B32B9E.apk",
+                                                   true);
+            showCommandResult(commandResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 执行:pm uninstall 按钮
+     *
+     * @param view
+     */
     public void pmuninstall(View view) {
         ShellUtils.CommandResult commandResult = null;
         try {
