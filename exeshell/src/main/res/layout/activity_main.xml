@@ -21,6 +21,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="exeReboot"
+        android:text="执行:reboot" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="startOpenVpn"
         android:text="启动vpn" />
 

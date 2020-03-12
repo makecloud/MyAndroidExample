@@ -17,6 +17,7 @@
       <module fileurl="file://$PROJECT_DIR$/ijkplayer-example/ijkplayer-example.iml" filepath="$PROJECT_DIR$/ijkplayer-example/ijkplayer-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/networkcontrol/networkcontrol.iml" filepath="$PROJECT_DIR$/networkcontrol/networkcontrol.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ntptimingdemo/ntptimingdemo.iml" filepath="$PROJECT_DIR$/ntptimingdemo/ntptimingdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/pickmaploation/pickmaploation.iml" filepath="$PROJECT_DIR$/pickmaploation/pickmaploation.iml" />
       <module fileurl="file://$PROJECT_DIR$/playaudiodemo/playaudiodemo.iml" filepath="$PROJECT_DIR$/playaudiodemo/playaudiodemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/playvideodemoapp/playvideodemoapp.iml" filepath="$PROJECT_DIR$/playvideodemoapp/playvideodemoapp.iml" />

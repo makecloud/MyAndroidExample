@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void destroyItem(ViewGroup container, int position, Object object) {
-//                super.destroyItem(container, position, object);
+                //                super.destroyItem(container, position, object);
                 container.removeView((View) object);
                 Log.i(TAG, "destroyItem==");
             }
@@ -81,9 +81,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void initDataSet() {
         dataSet = new ArrayList<>();
-        dataSet.add(new MaterialData(2, "http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4"));
-        dataSet.add(new MaterialData(1, "http://test.yungeshidai.com/material/39350fe9bcf2503cf20c96e67c51135b.jpg"));
-        dataSet.add(new MaterialData(1, "http://test.yungeshidai.com/material/c4241c6bcb09468d1d8c7d251a1fe3b9.jpg"));
-        dataSet.add(new MaterialData(1, "http://test.yungeshidai.com/material/e4f2a39a7afa8aa950f86c82c1ee892e.jpg"));
+        dataSet.add(new MaterialData(2,
+                                     "http://flashmedia.eastday" +
+                                             ".com/newdate/news/2016-11/shznews1125-19.mp4"));
+        dataSet.add(new MaterialData(1,
+                                     "http://test.yungeshidai" +
+                                             ".com/material/39350fe9bcf2503cf20c96e67c51135b.jpg"));
+        dataSet.add(new MaterialData(1,
+                                     "http://test.yungeshidai" +
+                                             ".com/material/c4241c6bcb09468d1d8c7d251a1fe3b9.jpg"));
+        dataSet.add(new MaterialData(1,
+                                     "http://test.yungeshidai.com/material/e4f2a39a7afa8aa950f86c82c1ee892e.jpg"));
     }
 }

@@ -1,9 +1,14 @@
 package com.liuyihui.client.myexample;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +43,11 @@ import com.liuyihui.client.myexample.example8_choose_city_demo.ChoseCityActivity
 import com.liuyihui.client.myexample.example9_qrcode_scan.ScanResultActivity;
 
 import butterknife.ButterKnife;
+import kr.co.namee.permissiongen.PermissionFail;
+import kr.co.namee.permissiongen.PermissionGen;
+import kr.co.namee.permissiongen.PermissionSuccess;
 import util.Cmd;
+import util.ToastUtil;
 
 /**
  * 主页、引导页
@@ -51,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
+            getPermission(this,
+                          Manifest.permission.READ_EXTERNAL_STORAGE,
+                          Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                          Manifest.permission.ACCESS_COARSE_LOCATION);
+        }
         //test
         subThreadWork();
     }
@@ -177,6 +192,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void btn_eg26Click(View view) {
+        //回退5分钟。需要root权限或者系统app签名
+        long mil = System.currentTimeMillis();
+        SystemClock.setCurrentTimeMillis(mil - 5 * 60 * 1000);//设置系统时间
+    }
+
+
     private void startActivity(Class cls) {
         startActivity(new Intent(this, cls));
     }
@@ -211,4 +233,35 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    /**
+     * 以下4个方法，使用PermissionGen 框架，针对android 6.x sdk 获取系统某些权限
+     * by liuyihui
+     *
+     * @param activity    活动实例
+     * @param permissions 不定长权限数组
+     */
+    public void getPermission(Activity activity, String... permissions) {
+        PermissionGen.with(activity).addRequestCode(100).permissions(permissions).request();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        PermissionGen.onRequestPermissionsResult(MainActivity.this,
+                                                 requestCode,
+                                                 permissions,
+                                                 grantResults);
+    }
+
+    @PermissionSuccess(requestCode = 100)
+    public void onSuccess() {
+        //ToastUtil.toast("已获取权限");
+    }
+
+    @PermissionFail(requestCode = 100)
+    public void onFail() {
+        ToastUtil.toast("获取设备读写权限失败");
+    }
+
 }

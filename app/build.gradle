@@ -38,6 +38,8 @@ dependencies {
     implementation "com.bigkoo:convenientbanner:2.0.5"
     implementation "com.squareup.picasso:picasso:2.5.2"
 
+    implementation 'com.lovedise:permissiongen:0.0.6'
+
     testImplementation 'junit:junit:4.12'
 
     implementation "com.zhihu.android:matisse:0.5.2-beta3"

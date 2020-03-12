@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,26 +22,39 @@ import com.liuyihui.client.myexample.R;
 public class BitmapOperationActivity extends AppCompatActivity {
     private static final String TAG = "BitmapOperationActivity";
     public final static int REQUEST_CODE_PICTURE = 1;
+    //要操作的照片预览
     ImageView selectedImageImageView;
+
+    //要操作的照片bitmap
     Bitmap selectedImageBitmap;
+
+    //裁剪按钮
     Button doCropButton;
-    ImageView croppedImageImageView;
+
+    //打水印按钮
+    Button doWaterMaskButton;
+
+    //操作后的图片展示
+    ImageView operatedResultImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bitmap_operation);
 
-        selectedImageImageView = (ImageView) findViewById(R.id.selected_image);
-        doCropButton = (Button) findViewById(R.id.do_crop);
-        croppedImageImageView = (ImageView) findViewById(R.id.croped_image);
+        selectedImageImageView = findViewById(R.id.selected_image_preview);
+        doCropButton = findViewById(R.id.do_crop);
+        doWaterMaskButton = findViewById(R.id.do_water_mask);
+        operatedResultImageView = findViewById(R.id.operated_result_image_show);
+
 
         //选择照片
         selectedImageImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //启动系统相册
-                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent i = new Intent(Intent.ACTION_PICK,
+                                      android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, REQUEST_CODE_PICTURE);
             }
         });
@@ -50,10 +64,46 @@ public class BitmapOperationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (selectedImageBitmap == null) {
-                    Toast.makeText(BitmapOperationActivity.this, "selected bitmap == null", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BitmapOperationActivity.this,
+                                   "selected bitmap == null",
+                                   Toast.LENGTH_SHORT).show();
                     return;
                 }
-                cropImage();
+
+                int cropWidth = 200;
+                int cropHeight = 200;
+                //在重建一个bitmap,传参数,实现裁剪
+                Bitmap cropedBitmap = Bitmap.createBitmap(selectedImageBitmap,
+                                                          500,
+                                                          500,
+                                                          cropWidth,
+                                                          cropHeight,
+                                                          null,
+                                                          false);
+                assert cropedBitmap != null;
+                operatedResultImageView.setImageBitmap(cropedBitmap);
+            }
+        });
+
+        //打水印按钮
+        doWaterMaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selectedImageBitmap == null) {
+                    Toast.makeText(BitmapOperationActivity.this,
+                                   "selected bitmap == null",
+                                   Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Bitmap resultBitmap = ImageUtil.drawTextToRightBottom(BitmapOperationActivity.this,
+                                                                      selectedImageBitmap,
+                                                                      "23413",
+                                                                      16,
+                                                                      Color.GRAY,
+                                                                      0,
+                                                                      0);
+
+                operatedResultImageView.setImageBitmap(resultBitmap);
             }
         });
     }
@@ -74,7 +124,8 @@ public class BitmapOperationActivity extends AppCompatActivity {
             if (requestCode == REQUEST_CODE_PICTURE && null != data) {
                 Uri selectedImageUri = data.getData();
                 String[] filePathColumns = {MediaStore.Images.Media.DATA};
-                Cursor c = this.getContentResolver().query(selectedImageUri, filePathColumns, null, null, null);
+                Cursor c = this.getContentResolver()
+                               .query(selectedImageUri, filePathColumns, null, null, null);
                 assert c != null;
                 c.moveToFirst();
                 int columnIndex = c.getColumnIndex(filePathColumns[0]);
@@ -85,7 +136,8 @@ public class BitmapOperationActivity extends AppCompatActivity {
                 Toast.makeText(this, picturePath, Toast.LENGTH_SHORT).show();
 
                 //显示到view
-                showSelectedImage(selectedImageUri, picturePath, selectedImageImageView);
+                selectedImageImageView.setImageURI(selectedImageUri);
+
                 //设置当前bitmap
                 setCurrentBitmap(picturePath);
 
@@ -93,26 +145,14 @@ public class BitmapOperationActivity extends AppCompatActivity {
         }
     }
 
-
-    public void showSelectedImage(Uri imageUri, String imagePath, ImageView imageView) {
-        //显示到view
-        imageView.setImageURI(imageUri);
-    }
-
+    /**
+     * @param imagePath
+     */
     public void setCurrentBitmap(String imagePath) {
         //制作bitmap对象
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.outWidth = 200;
         options.outHeight = 200;
         selectedImageBitmap = BitmapFactory.decodeFile(imagePath, options);
-    }
-
-    public void cropImage() {
-        int cropWidth = 200;
-        int cropHeight = 200;
-        //在重建一个bitmap,传参数,实现裁剪
-        Bitmap cropedBitmap = Bitmap.createBitmap(selectedImageBitmap, 500, 500, cropWidth, cropHeight, null, false);
-        assert cropedBitmap != null;
-        croppedImageImageView.setImageBitmap(cropedBitmap);
     }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,24 +7,30 @@
     tools:context="com.liuyihui.client.myexample.example25_picture_demo.BitmapOperationActivity">
 
     <ImageView
-        android:id="@+id/selected_image"
+        android:id="@+id/selected_image_preview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_orange_dark"
-        android:minHeight="100dp"
-        android:minWidth="100dp"/>
+        android:minWidth="100dp"
+        android:minHeight="100dp" />
 
     <Button
-        android:layout_marginTop="20dp"
         android:id="@+id/do_crop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="裁剪"/>
+        android:layout_marginTop="20dp"
+        android:text="裁剪" />
+
+    <Button
+        android:id="@+id/do_water_mask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打水印" />
 
     <ImageView
-        android:layout_marginTop="20dp"
-        android:id="@+id/croped_image"
+        android:id="@+id/operated_result_image_show"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

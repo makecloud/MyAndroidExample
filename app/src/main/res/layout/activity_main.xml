@@ -298,6 +298,14 @@
                     android:onClick="btn_eg23Click"
                     android:text="启动crashActivity然后查看崩溃日志" />
 
+                <Button
+                    android:textAllCaps="false"
+                    android:id="@+id/btn_eg26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="btn_eg26Click"
+                    android:text="设置系统时间" />
+
             </LinearLayout>
         </ScrollView>
 
