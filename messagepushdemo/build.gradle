@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+
+    defaultConfig {
+        applicationId "com.oohlink.messagepush"
+        minSdkVersion 17
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //如果需要在模拟器上运行替换下行为
+//            abiFilters "armeabi", "x86"
+            abiFilters "armeabi"
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:appcompat-v7:${supportLibraryVer}"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.lovedise:permissiongen:0.0.6'
+
+
+    //基础组件库依赖(必须) Push 605版本必须升级新版本Common SDK
+    implementation 'com.umeng.umsdk:common:2.2.2'
+    implementation 'com.umeng.umsdk:utdid:1.5.2'
+
+    //友盟push相关依赖(必须)
+    implementation 'com.umeng.umsdk:push:6.0.5'
+
+    implementation 'com.umeng.umsdk:alicloud-httpdns:1.2.5'
+    implementation 'com.umeng.umsdk:alicloud-utils:1.1.5'
+    implementation 'com.umeng.umsdk:alicloud_beacon:1.0.1'
+
+    implementation 'com.umeng.umsdk:agoo-accs:3.3.8.8-open-fix2'
+    implementation 'com.umeng.umsdk:agoo_networksdk:3.5.5'
+    implementation 'com.umeng.umsdk:agoo_tlog:3.0.0.17'
+    implementation 'com.umeng.umsdk:agoo_tnet4android:3.1.14.9'
+}

@@ -4,6 +4,7 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
@@ -20,6 +21,7 @@ allprojects {
         flatDir { dirs 'libs' } //配置依赖第三方aar包的目录
         google()
         maven { url "https://jitpack.io" }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
 }
 
