@@ -1,56 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.oohlink.liuyihui.qrcode.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="startQrcode"
-        android:text="点击启动二维码扫描"/>
+        android:text="点击启动二维码扫描" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="输入内容:"/>
+        android:text="输入二维码内容:" />
 
     <EditText
         android:id="@+id/qr_code_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="genQrcode"
-        android:text="点击生成"/>
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="指定\n尺寸：" />
+
+        <EditText
+            android:id="@+id/sizeInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="300x300(字母x)" />
+
+        <RadioGroup
+            android:id="@+id/sizeUnitInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dp" />
+
+            <RadioButton
+                android:id="@+id/px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="px" />
+        </RadioGroup>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="genQrcode"
+            android:text="点击生成" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/add_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addImage"
-        android:text="点击添加图片"/>
+        android:text="点击添加图片" />
 
-    <ImageButton
+    <ImageView
+        android:layout_height="wrap_content"
         android:id="@+id/gen_qr_img"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitXY" />
 
 
 </LinearLayout>

@@ -56,13 +56,35 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 while (true) {
+                    if (!TextUtils.isEmpty(Constant.deviceToken)) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                deviceTokenTextView.setText(Constant.deviceToken);
+                            }
+                        });
+                        return;
+                    }
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+        //显示收到的推送
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             adapter.notifyDataSetChanged();
-                            if (!TextUtils.isEmpty(Constant.deviceToken)) {
-                                deviceTokenTextView.setText(Constant.deviceToken);
-                            }
+
                         }
                     });
                     try {

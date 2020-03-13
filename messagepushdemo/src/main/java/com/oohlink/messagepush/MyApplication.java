@@ -1,18 +1,21 @@
 package com.oohlink.messagepush;
 
 import android.app.Application;
+import android.app.Notification;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengMessageHandler;
 import com.umeng.message.entity.UMessage;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MyApplication extends Application {
 
@@ -65,16 +68,18 @@ public class MyApplication extends Application {
 
         //自定义消息的处理
         UmengMessageHandler messageHandler = new UmengMessageHandler() {
+            private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
             @Override
             public void dealWithCustomMessage(final Context context, final UMessage msg) {
                 new Handler(Looper.getMainLooper()).obtainMessage(0, "test").sendToTarget();
+
                 Log.i(TAG,
                       "dealWithCustomMessage: " + String.format("%s - %s", msg.title, msg.custom));
-                Constant.receivedMessageList.add(String.format("%s",msg.custom));
-
+                Constant.receivedMessageList.add(String.format("message： %s \n%s",
+                                                               msg.custom,
+                                                               simpleDateFormat.format(new Date())));
                 //Toast.makeText(context, "receive a message", Toast.LENGTH_SHORT).show();
-
 
                 /*new Handler(getMainLooper()).post(new Runnable() {
 
@@ -94,7 +99,19 @@ public class MyApplication extends Application {
                 });*/
             }
 
+
+            @Override
+            public Notification getNotification(Context context, UMessage msg) {
+                Constant.receivedMessageList.add(String.format("notification：%s \n%s",
+                                                               msg.text,
+                                                               simpleDateFormat.format(new Date())));
+                //默认为0，若填写的builder_id并不存在，也使用默认。
+                return super.getNotification(context, msg);
+            }
+
         };
+
+        mPushAgent.setMessageHandler(messageHandler);
 
         mPushAgent.setMessageHandler(messageHandler);
     }

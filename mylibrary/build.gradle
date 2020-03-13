@@ -19,15 +19,40 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    //这个配置去除gradle 对library mudule默认值只编译release buildType的限制。让library也可以用productFlavors
+//    publishNonDefault true
+    productFlavors {
+
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'lib', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation "com.android.support:appcompat-v7:${supportLibraryVer}"
     testImplementation 'junit:junit:4.12'
+
+    implementation "com.android.support:design:${supportLibraryVer}"
+    //okIO
+    implementation 'com.squareup.okio:okio:1.11.0'
+    //okhttp
+    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+
+    testImplementation "junit:junit:4.12"
+
+    implementation "com.alibaba:fastjson:1.2.16"
+
+    implementation "com.amap.api:location:3.3.0"
+    //rxjava
+    implementation 'io.reactivex:rxjava:1.3.1'
+    implementation 'io.reactivex:rxandroid:1.2.1'
 }
 
 android {

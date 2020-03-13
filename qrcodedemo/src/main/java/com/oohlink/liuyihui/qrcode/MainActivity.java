@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.oohlink.liuyihui.qrcode.qrcodegeneratebase.DensityUtils;
 import com.oohlink.liuyihui.qrcode.qrcodegeneratebase.QRcodeUtil;
 import com.oohlink.liuyihui.qrcode.qrcodescanbase.activity.CaptureActivity;
 
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText qrcodeContentEt;
     private ImageView qrImgImageView;
+    private EditText sizeInput;
+    private RadioGroup sizeUnitInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         qrcodeContentEt = findViewById(R.id.qr_code_content);
         qrImgImageView = findViewById(R.id.gen_qr_img);
+        sizeInput = findViewById(R.id.sizeInput);
+        sizeUnitInput = findViewById(R.id.sizeUnitInput);
     }
 
     public void startQrcode(View view) {
@@ -57,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public void genQrcode(View view) {
         String contentString = qrcodeContentEt.getText().toString();
         try {
-            if (contentString != null
-                    && contentString.trim().length() > 0) {
+            if (contentString != null && contentString.trim().length() > 0) {
                 // 根据字符串生成二维码图片并显示在界面上，第二个参数为图片的大小（350*350）
                 Bitmap qrCodeBitmap = QRcodeUtil.EncodeQRCode(contentString,
                                                               350,
@@ -66,12 +72,36 @@ public class MainActivity extends AppCompatActivity {
                                                               Color.WHITE,
                                                               null);
 
+                //sizeInput
+                try {
+
+                    String[] sizeStr = sizeInput.getText().toString().split("x");
+                    int width = Integer.parseInt(sizeStr[0]);
+                    int height = Integer.parseInt(sizeStr[1]);
+                    int selectSizeUnitId = sizeUnitInput.getCheckedRadioButtonId();
+
+
+                    LinearLayout.LayoutParams lp =
+                            (LinearLayout.LayoutParams) qrImgImageView.getLayoutParams();
+                    if (selectSizeUnitId == R.id.px) {
+                        lp.width = width;
+                        lp.height = height;
+                    } else if (selectSizeUnitId == R.id.dp) {
+                        lp.width = DensityUtils.dp2px(this, width);
+                        lp.height = DensityUtils.dp2px(this, height);
+                    }
+                    qrImgImageView.setLayoutParams(lp);
+                } catch (Exception e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+
+                //set image src
                 qrImgImageView.setImageBitmap(qrCodeBitmap);
                 saveJpeg(qrCodeBitmap);
             } else {
-                Toast.makeText(MainActivity.this,
-                               "Text can not be empty", Toast.LENGTH_SHORT)
-                        .show();
+                Toast.makeText(MainActivity.this, "Text can not be empty", Toast.LENGTH_SHORT)
+                     .show();
             }
         } catch (Exception e) {
             Log.e(TAG, "生成二维码错误", e);
