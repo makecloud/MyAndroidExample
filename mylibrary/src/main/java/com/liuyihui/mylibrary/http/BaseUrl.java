@@ -1,6 +1,7 @@
 package com.liuyihui.mylibrary.http;
 
-import com.liuyihui.client.mylibrary.BuildConfig;
+
+import com.liuyihui.mylibrary.BuildConfig;
 
 /**
  * 基础url接口
@@ -13,7 +14,7 @@ public final class BaseUrl {
     /**
      * 根据构建参数获取基础url是测试服务器，还是正式服务器
      */
-    public static final String baseurl = BuildConfig.BASE_URL;
+    public static final String baseurl = "";
 
 
     /**

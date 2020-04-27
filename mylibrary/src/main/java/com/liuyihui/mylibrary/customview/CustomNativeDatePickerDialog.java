@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 
-import com.liuyihui.client.mylibrary.R;
+import com.liuyihui.mylibrary.R;
 
 import java.util.Calendar;
 

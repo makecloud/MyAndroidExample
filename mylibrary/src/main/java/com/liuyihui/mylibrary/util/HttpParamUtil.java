@@ -14,29 +14,7 @@ import java.util.Map;
 public class HttpParamUtil {
     private static final String TAG = "HttpParamUtil";
 
-    /**
-     * @throws OohlinkException
-     */
-    public static Map<String, String> baseParamMap() {
-        Map<String, String> paramMap = new HashMap<>();
-        //获取token和五个基本参数
-        String androidId = AndroidUtil.getAndroidID(ContextUtil.getContext());
-        String token = "";
-        token = OohlinkSerializer.loadTokenFromFile();
-        String osType = AndroidUtil.osType;//系统类型
-        String deviceModel = AndroidUtil.deviceModel;//设备型号
-        String osVersion = AndroidUtil.osVersion;//android系统版本
-        String appVersion = String.valueOf(AndroidUtil.getAppVersionCode(ContextUtil.getContext()));//app版本码
 
-        //设置url参数
-        paramMap.put("deviceId", androidId);
-        paramMap.put("osType", osType);
-        paramMap.put("osVersion", osVersion);
-        paramMap.put("deviceModel", deviceModel);
-        paramMap.put("appVersion", appVersion);
-        paramMap.put("token", token);
-        return paramMap;
-    }
 
     /**
      * @return

@@ -36,7 +36,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.liuyihui.client.mylibrary.R;
+import com.liuyihui.mylibrary.R;
 
 
 public class MultiDirectionSlidingDrawer extends ViewGroup {

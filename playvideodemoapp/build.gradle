@@ -1,17 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "com.liuyihui.playvideodemo"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
@@ -20,31 +20,39 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile project(':mylibrary')
+    //compile project(':mylibrary')
 
-    compile "com.android.support:appcompat-v7:${supportLibraryVer}"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-
-    compile 'fm.jiecao:jiecaovideoplayer:5.5.2'
-
-    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    //ijk
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
 //    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
     // Other ABIs: optional
 //    compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.8.8'
 //    compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
 
-    implementation 'com.shuyu:gsyVideoPlayer-armv5:7.1.0'
 
-    // ExoPlayer as IMediaPlayer: optional, experimental
-//    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
 
-    compile 'com.linsea:universalvideoview:1.1.0@aar'
+    //universal
+    implementation 'com.linsea:universalvideoview:1.1.0@aar'
+
+
+    //exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.4'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.4'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.4'
+
 }

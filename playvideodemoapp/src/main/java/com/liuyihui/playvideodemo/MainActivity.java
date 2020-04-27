@@ -2,9 +2,10 @@ package com.liuyihui.playvideodemo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.VideoView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 使用videoView播放视频
@@ -37,11 +38,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, Main3Activity.class));
     }
 
-    /** JCVideoPlayer使用 */
-    public void playVideoDemo5Lick(View v) {
-        startActivity(new Intent(MainActivity.this, JCVideoPlayerActivity.class));
-    }
-
     /** IjkPlayer使用 */
     public void playVideoDemo6Lick(View v) {
         startActivity(new Intent(MainActivity.this, IjkPLayerActivity.class));
@@ -55,5 +51,9 @@ public class MainActivity extends AppCompatActivity {
     /** PLDroidPlayer使用 */
     public void playVideoDemo8Lick(View v) {
         startActivity(new Intent(MainActivity.this, UniversalVideoViewActivity.class));
+    }
+
+    public void exoPlayerDemoClick(View view) {
+        startActivity(new Intent(this, ExoPlayerActivity.class));
     }
 }

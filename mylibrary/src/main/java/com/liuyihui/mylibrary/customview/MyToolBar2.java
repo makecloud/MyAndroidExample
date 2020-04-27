@@ -9,8 +9,8 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.client.mylibrary.util.LogUtil;
-import com.liuyihui.client.mylibrary.R;
+import com.liuyihui.mylibrary.util.LogUtil;
+import com.liuyihui.mylibrary.R;
 
 import java.lang.reflect.Field;
 

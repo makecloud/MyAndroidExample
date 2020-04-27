@@ -2,10 +2,11 @@ package com.liuyihui.playvideodemo;
 
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.MediaController;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.liuyihui.playvideodemo.customerView.IjkVideoView;
 import com.liuyihui.playvideodemo.customerView.VideoPlayerListener;

@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    implementation "com.android.support:support-core-utils:25.3.0"
+}
+
+//apply from: 'https://raw.githubusercontent.com/Commit451/gradle-android-javadocs/1.0.0/gradle-android-javadocs.gradle'
+
+
+//打包war并放到本地maven仓库 目前是$userhome$/.m2/mavenrepository
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
+uploadArchives {
+    println project.name
+    repositories.mavenDeployer {
+        repository(url: localMavenRepo)
+        pom.groupId = "com.liuyihui"
+        pom.artifactId = project.name
+        pom.version = android.defaultConfig.versionName
+        pom.project {
+            name = project.name
+            packaging = 'aar'
+            description = 'description'
+        }
+    }
+}

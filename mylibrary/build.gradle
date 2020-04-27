@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -22,6 +24,13 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 
     //这个配置去除gradle 对library mudule默认值只编译release buildType的限制。让library也可以用productFlavors
@@ -55,11 +64,40 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.2.1'
 }
 
-android {
-    lintOptions {
-        checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
-        abortOnError false
+
+// 指定上传的路径
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
+
+//打包war并放到本地maven仓库 目前是$userhome$/.m2/mavenrepository
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: localMavenRepo)
+        pom.groupId = "com.liuyihui"
+        pom.artifactId = project.name
+        pom.version = android.defaultConfig.versionName
+        pom.project {
+            name = project.name
+            packaging = 'aar'
+            description = 'description'
+        }
+    }
+}
+
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            groupId 'com.wlqq.android'
+            artifactId project.name
+            version android.defaultConfig.versionName
+            // 若是 android gradle plugin 3.3.x ，这里需要改成 bundleReleaseAar
+            //artifact(bundleRelease)
+            //artifact(bundleReleaseAar)
+        }
+    }
+
+    repositories {
+        mavenLocal()
     }
 }

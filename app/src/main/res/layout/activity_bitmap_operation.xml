@@ -1,36 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.liuyihui.client.myexample.example25_picture_demo.BitmapOperationActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/selected_image_preview"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_dark"
-        android:minWidth="100dp"
-        android:minHeight="100dp" />
+        android:orientation="vertical"
+        tools:context="com.liuyihui.client.myexample.example25_picture_demo.BitmapOperationActivity">
 
-    <Button
-        android:id="@+id/do_crop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="裁剪" />
 
-    <Button
-        android:id="@+id/do_water_mask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="打水印" />
+        <ImageView
+            android:id="@+id/selected_image_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_orange_dark"
+            android:minWidth="100dp"
+            android:minHeight="100dp" />
 
-    <ImageView
-        android:id="@+id/operated_result_image_show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" />
+        <Button
+            android:id="@+id/do_crop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="裁剪" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/do_water_mask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打水印" />
+
+        <ImageView
+            android:id="@+id/operated_result_image_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/gray"
+            android:minWidth="100dp"
+            android:minHeight="100dp" />
+
+    </LinearLayout>
+
+
+</ScrollView>

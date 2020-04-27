@@ -5,6 +5,8 @@ buildscript {
         jcenter()
         google()
         maven { url 'https://dl.bintray.com/umsdk/release' }
+        mavenLocal() // 使用本地仓库
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
@@ -22,6 +24,8 @@ allprojects {
         google()
         maven { url "https://jitpack.io" }
         maven { url 'https://dl.bintray.com/umsdk/release' }
+
+        mavenLocal() // 使用本地仓库
     }
 }
 

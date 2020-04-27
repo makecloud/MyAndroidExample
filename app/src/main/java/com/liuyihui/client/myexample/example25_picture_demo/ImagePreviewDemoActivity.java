@@ -8,10 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.github.chrisbanes.photoview.PhotoView;
+import com.liuyihui.photoview.NoZoomMovedYListener;
+import com.liuyihui.photoview.PhotoView;
+import com.liuyihui.photoview.TouchUpLIstener;
 import com.liuyihui.client.myexample.R;
-import com.liuyihui.client.myexample.example25_picture_demo.customview.DragableImageView;
-import com.liuyihui.client.myexample.example25_picture_demo.customview.DragablePhotoView;
 
 /**
  * 单张图片展示demo
@@ -21,11 +21,10 @@ import com.liuyihui.client.myexample.example25_picture_demo.customview.DragableP
 public class ImagePreviewDemoActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
     FrameLayout rootLayout;
-    //    DragableImageView imageView;
-    DragablePhotoView imageView;
+    PhotoView photoView;
 
-    int screenHeight;
-    double responseHeight;
+    private boolean movedYEnoughToExit = false;
+    private double responseHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,56 +42,52 @@ public class ImagePreviewDemoActivity extends AppCompatActivity {
         DisplayMetrics metric = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metric);
         int screenHeight = metric.heightPixels;
+
         responseHeight = screenHeight * 0.25;
 
         //view
         rootLayout = findViewById(R.id.root_layout);
-        imageView = findViewById(R.id.image);
+        photoView = findViewById(R.id.image);
 
-        imageView.setMinimumScale(0.5f);
-        imageView.setMediumScale(1.2f);
-        imageView.setMaximumScale(1.5f);
-        /*imageView.setOnViewDragListener(new OnViewDragListener() {
-            @Override
-            public void onDrag(float dx, float dy) {
-                if (dy > 0) {
-                    // dy为屏幕y轴滑动距离。透明度的响应距离为，屏幕y轴的25%。即x轴滑动超过25%就全透明.
-                    int degree = (int) (255 - 255 * dy / responseHeight);
-                    Log.d(TAG, "onMove: dx:" + dy + ",degree:" + degree);
-                    changeTransparencyDegree(degree);
-                }
-            }
-        });*/
+        photoView.setMinimumScale(1.0f);
+        photoView.setMediumScale(1.5f);
+        photoView.setMaximumScale(2f);
+
         //set demo picture
-        imageView.setImageResource(R.drawable.testphoto);
+        photoView.setImageResource(R.drawable.testphoto);
 
 
-        //
-        imageView.setMoveListener(new DragablePhotoView.MoveListener() {
+        photoView.setNoZoomMovedYListener(new NoZoomMovedYListener() {
             @Override
-            public void onMove(int dx, int dy) {
-                if (dy > 0) {
-                    /*
-                     * dy为屏幕y轴滑动距离。透明度的响应距离为，屏幕y轴的25%。即x轴滑动超过25%就全透明.
-                     */
-                    int degree = (int) (255 - 255 * dy / responseHeight);
-                    Log.d(TAG, "onMove: dx:" + dy + ",degree:" + degree);
+            public void onMovedYRate(double moveRate) {
+
+                if (moveRate > 0) {
+                    // dy为屏幕y轴滑动距离。透明度的响应距离为，屏幕y轴的25%。即x轴滑动超过25%就全透明.
+                    int degree = 255 - (int) (moveRate * 255);
+                    if (degree < 0) {
+                        degree = 0;
+                        movedYEnoughToExit = true;
+                    } else {
+                        movedYEnoughToExit = false;
+                    }
+                    Log.d(TAG, "onMove: moveRate:" + moveRate + ",degree:" + degree);
                     changeTransparencyDegree(degree);
                 }
             }
         });
 
-        //
-        imageView.setTouchUpListerner(new DragablePhotoView.TouchUpListerner() {
+        photoView.setTouchUpListener(new TouchUpLIstener() {
             @Override
-            public void onTouchUp(int moveDx, int moveDy) {
-                if (moveDy < responseHeight) {
-                    changeTransparencyDegree(255);
-                } else {
+            public void onTouchUp() {
+                if (movedYEnoughToExit) {
+                    photoView.setWillBeExit(true);
                     finish();
+                } else {
+                    changeTransparencyDegree(255);
                 }
             }
         });
+
 
     }
 

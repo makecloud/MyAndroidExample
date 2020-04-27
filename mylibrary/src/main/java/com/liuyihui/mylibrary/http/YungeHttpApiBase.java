@@ -9,12 +9,12 @@ import android.text.TextUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.client.mylibrary.entitiy.system.ApiResponse;
-import com.client.mylibrary.exception.ExceptionCode;
-import com.client.mylibrary.exception.OohlinkException;
-import com.client.mylibrary.io.OohlinkSerializer;
-import com.client.mylibrary.util.ContextUtil;
-import com.client.mylibrary.util.LogUtil;
+import com.liuyihui.mylibrary.entitiy.system.ApiResponse;
+import com.liuyihui.mylibrary.exception.ExceptionCode;
+import com.liuyihui.mylibrary.exception.OohlinkException;
+import com.liuyihui.mylibrary.io.OohlinkSerializer;
+import com.liuyihui.mylibrary.util.ContextUtil;
+import com.liuyihui.mylibrary.util.LogUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -183,13 +183,8 @@ public class YungeHttpApiBase {
         }
         //处理token失效
         if (apiResponse.getCode() == ExceptionCode.TOKEN_INVALID.getValue()) {
-            //删除缓存中的登录用户缓存json
-            try {
-                OohlinkSerializer.saveLoginResultToFile("");
-            } catch (OohlinkException e) {
-                LogUtil.e(TAG, e.getMessage(), e);
-                throw new OohlinkException("登录信息异常");
-            }
+            //TODO 删除缓存中的登录用户缓存json
+
             //跳转到登录页
             gotoLoginActivity();
             throw new OohlinkException("登录无效,请重新登录");

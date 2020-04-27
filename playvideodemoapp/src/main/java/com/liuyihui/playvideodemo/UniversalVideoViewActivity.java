@@ -3,10 +3,11 @@ package com.liuyihui.playvideodemo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.MediaController;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.universalvideoview.UniversalMediaController;
 import com.universalvideoview.UniversalVideoView;

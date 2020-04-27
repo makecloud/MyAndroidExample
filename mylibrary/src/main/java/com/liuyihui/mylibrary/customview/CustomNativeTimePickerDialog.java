@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TimePicker;
 
-import com.liuyihui.client.mylibrary.R;
+import com.liuyihui.mylibrary.R;
 
 /**
  * 原生时间选择控件，做成对话框

@@ -74,4 +74,12 @@
         android:textAllCaps="false"/>
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="exoPlayerDemoClick"
+        android:text="exoplayerDemo"
+        android:textAllCaps="false"/>
+
+
 </LinearLayout>

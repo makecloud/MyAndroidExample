@@ -10,7 +10,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.liuyihui.client.mylibrary.R;
+import com.liuyihui.mylibrary.R;
+
 
 /**
  * @author Yue

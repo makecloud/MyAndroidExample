@@ -6,7 +6,6 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Surface;
@@ -15,7 +14,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.liuyihui.mylibrary.activity.MySuperActivity;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,8 @@ import java.io.IOException;
  * <p>
  * 附带 缩放功能
  */
-public class Main3Activity extends MySuperActivity {
+public class Main3Activity extends AppCompatActivity {
+    private final String TAG = getClass().getSimpleName();
 
     private TextureView textureView;
     private ImageView imageView;
@@ -82,7 +84,9 @@ public class Main3Activity extends MySuperActivity {
 
         //视频源文件路径
         String sdcardDir = Environment.getExternalStorageDirectory().getAbsolutePath();
-        String path = sdcardDir + "/DCIM/qqqq";
+//        String path = sdcardDir + "/DCIM/qqqq";
+        String path = Environment.getExternalStorageDirectory() + "/Android/data"
+                + "/com" + ".oohlink.smartbillborad/files/mat/video";
 //        String path = sdcardDir + "/DCIM/YiCarCamera/2016.MP4";
 //        String path = sdcardDir + "/360/30a58ee0d1b3be9313367ef8033f5483.mp4";
 //        String path = sdcardDir + "/360/C06FABBCF84118FD003D0D1269762C0E";

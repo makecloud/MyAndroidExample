@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_layout"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/root_layout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/black"
+tools:context="com.liuyihui.client.myexample.example25_picture_demo.ImagePreviewDemoActivity">
+
+<!--<com.liuyihui.client.myexample.example25_picture_demo.customview.DragableImageView
+    android:id="@+id/image"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context="com.liuyihui.client.myexample.example25_picture_demo.ImagePreviewDemoActivity">
+    android:background="@color/transparent"
+    android:scaleType="centerInside" />-->
 
-    <!--<com.liuyihui.client.myexample.example25_picture_demo.customview.DragableImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/transparent"
-        android:scaleType="centerInside" />-->
-
-    <com.liuyihui.client.myexample.example25_picture_demo.customview.DragablePhotoView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+<com.liuyihui.photoview.PhotoView
+    android:id="@+id/image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 
 
 </FrameLayout>

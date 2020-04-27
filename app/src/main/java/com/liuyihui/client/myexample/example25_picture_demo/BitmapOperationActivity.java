@@ -46,6 +46,12 @@ public class BitmapOperationActivity extends AppCompatActivity {
         doCropButton = findViewById(R.id.do_crop);
         doWaterMaskButton = findViewById(R.id.do_water_mask);
         operatedResultImageView = findViewById(R.id.operated_result_image_show);
+        operatedResultImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(BitmapOperationActivity.this, "aaa", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         //选择照片
@@ -97,7 +103,7 @@ public class BitmapOperationActivity extends AppCompatActivity {
                 }
                 Bitmap resultBitmap = ImageUtil.drawTextToRightBottom(BitmapOperationActivity.this,
                                                                       selectedImageBitmap,
-                                                                      "23413",
+                                                                      "23413\nrer",
                                                                       16,
                                                                       Color.GRAY,
                                                                       0,
@@ -134,6 +140,7 @@ public class BitmapOperationActivity extends AppCompatActivity {
                 c.close();
                 //弹窗显示图片路径
                 Toast.makeText(this, picturePath, Toast.LENGTH_SHORT).show();
+
 
                 //显示到view
                 selectedImageImageView.setImageURI(selectedImageUri);

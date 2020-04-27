@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--下拉抽屉布局用-->
+    <attr name="direction">
+        <enum name="rightToLeft" value="0" />
+        <enum name="bottomToTop" value="1" />
+        <enum name="leftToRight" value="2" />
+        <enum name="topToBottom" value="3" />
+    </attr>
+    <!--下拉抽屉布局用-->
+    <declare-styleable name="MultiDirectionSlidingDrawer">
+        <attr name="MultiDirectionSlidingDrawer" format="color" />
+        <attr name="handle" format="reference" />
+        <attr name="content" format="reference" />
+        <attr name="direction" />
+        <attr name="bottomOffset" format="dimension" />
+        <attr name="topOffset" format="dimension" />
+        <attr name="allowSingleTap" format="boolean" />
+        <attr name="animateOnClick" format="boolean" />
+    </declare-styleable>
+
+    <!--自定义标题居中的toolbar-->
+    <declare-styleable name="MyToolBar">
+        <attr name="titleText" format="string" />
+        <attr name="titleTextColor" format="color" />
+        <attr name="titleCenter" format="boolean" />
+    </declare-styleable>
+
+    <!--扇形进度view-->
+    <declare-styleable name="lu">
+        <attr name="progress" format="float" />
+        <attr name="shapeColor" format="color" />
+        <attr name="startPosition" format="float" />
+    </declare-styleable>
 
 </resources>

@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
-
         android:flipInterval="2000">
 
         <TextView
@@ -40,5 +39,12 @@
             android:text="第si个" />
     </ViewFlipper>
 
-    
+    <AdapterViewFlipper
+        android:id="@+id/adapterViewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/flipper"
+        android:layout_marginTop="20dp"
+        android:flipInterval="2000" />
+
 </RelativeLayout>
