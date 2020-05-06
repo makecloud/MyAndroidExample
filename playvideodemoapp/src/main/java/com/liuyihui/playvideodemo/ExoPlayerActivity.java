@@ -3,6 +3,7 @@ package com.liuyihui.playvideodemo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.service.autofill.Dataset;
 import android.view.SurfaceView;
 import android.view.View;
 
@@ -12,7 +13,10 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.upstream.ByteArrayDataSink;
+import com.google.android.exoplayer2.upstream.ByteArrayDataSource;
 import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
