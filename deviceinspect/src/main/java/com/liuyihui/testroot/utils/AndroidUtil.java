@@ -1,4 +1,4 @@
-package com.liuyihui.testroot;
+package com.liuyihui.testroot.utils;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

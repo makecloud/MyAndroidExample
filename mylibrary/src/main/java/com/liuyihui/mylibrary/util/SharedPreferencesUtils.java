@@ -215,6 +215,16 @@ public class SharedPreferencesUtils {
     }
 
     /**
+     * 移除
+     *
+     * @param key
+     * @return
+     */
+    public boolean remove(String key) {
+        return sp.edit().remove(key).commit();
+    }
+
+    /**
      * SP中清除所有数据
      */
     public void clear() {

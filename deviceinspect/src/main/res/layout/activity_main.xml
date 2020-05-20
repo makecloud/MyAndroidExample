@@ -73,4 +73,20 @@
         android:layout_height="wrap_content" />
 
 
+    <Button
+        android:text="计算md5"
+        android:onClick="evaluateMd5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+<TextView
+    android:id="@+id/md5value"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:onClick="downloadAFile"
+        android:text="下载一个文件"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

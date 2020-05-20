@@ -53,6 +53,8 @@ dependencies {
     implementation 'com.squareup.okio:okio:1.11.0'
     //okhttp
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    //
+    implementation 'commons-codec:commons-codec:1.11'
 
     testImplementation "junit:junit:4.12"
 
@@ -69,7 +71,7 @@ dependencies {
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
 
 
-//打包war并放到本地maven仓库 目前是$userhome$/.m2/mavenrepository
+//打包war并放到本地maven仓库 目前是$userhome$/.m2/mavenrepository。测试可行
 uploadArchives {
     repositories.mavenDeployer {
         repository(url: localMavenRepo)
@@ -85,6 +87,7 @@ uploadArchives {
 }
 
 
+//未测试是否管用
 publishing {
     publications {
         library(MavenPublication) {

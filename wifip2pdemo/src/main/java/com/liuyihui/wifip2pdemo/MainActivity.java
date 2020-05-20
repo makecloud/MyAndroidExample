@@ -44,6 +44,8 @@ import kr.co.namee.permissiongen.PermissionSuccess;
 
 /**
  * wifi p2p/Direct demo
+ * <p>
+ * wifi p2p连接后，用socket通信
  */
 public class MainActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     Switch discoverSwitcher;
     TextView connectStatusTextView;
     Button disconnectButton;
+    TextView socketStatusTextView;
 
     private MyReceiver receiver;
     private WifiP2pManager wifiP2pManager;
@@ -67,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
             new MyThreadHandler<>(new MyThreadHandler.IMessageProcessor<MainActivity>() {
         @Override
         public void processMessage(MainActivity mainActivity, Message msg) {
-
+            if (msg.what == 1) {
+                mainActivity.socketStatusTextView.setText((String) msg.obj);
+            }
         }
     });
 
@@ -78,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
             getPermission(this,
                           Manifest.permission.READ_EXTERNAL_STORAGE,
-                          Manifest.permission.CHANGE_WIFI_MULTICAST_STATE,
                           Manifest.permission.CHANGE_WIFI_STATE,
                           Manifest.permission.ACCESS_WIFI_STATE,
                           Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -93,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         disconnectButton = findViewById(R.id.disconnect);
         connectStatusTextView = findViewById(R.id.connectStatus);
+        socketStatusTextView = findViewById(R.id.socketStatus);
         deviceInfoTextView = findViewById(R.id.device_info);
         deviceListView = findViewById(R.id.listview);
         deviceListView.setAdapter(adapter);
@@ -264,21 +269,43 @@ public class MainActivity extends AppCompatActivity {
         discoverSwitcher.setChecked(isDiscover);
     }
 
-    public void updateConnectStatus(boolean connected) {
-        connectStatusTextView.setText(connected ? "已连接" : "未连接");
+    public void updateConnectStatus() {
+        wifiP2pManager.requestConnectionInfo(channel, new WifiP2pManager.ConnectionInfoListener() {
+            @Override
+            public void onConnectionInfoAvailable(WifiP2pInfo wifiP2pInfo) {
+                Log.d(TAG, "requestConnectInfo: " + String.format("%s", wifiP2pInfo.toString()));
+                String status = wifiP2pInfo.groupFormed ? "已连接\n" + (wifiP2pInfo.isGroupOwner ? "组长" : "组员") : "未连接";
+                connectStatusTextView.setText(status);
+            }
+        });
     }
 
     class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
+                //wifiP2p状态改变:
                 case WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION://最先收到这个广播，在这里检测p2p功能
                     boolean p2pIsEnable = intent.getIntExtra(WifiP2pManager.EXTRA_WIFI_STATE,
                                                              WifiP2pManager.WIFI_P2P_STATE_DISABLED) == WifiP2pManager.WIFI_P2P_STATE_ENABLED;
-                    Log.d(TAG, "onReceive: p2pIsEnable=" + p2pIsEnable);
+                    Log.d(TAG, "onReceive: wifiP2p状态改变 p2p启用=" + p2pIsEnable);
+
+                    //建组等待连接，这个逻辑只放在播控端，手机端不放。
+                    wifiP2pManager.createGroup(channel, new WifiP2pManager.ActionListener() {
+                        @Override
+                        public void onSuccess() {
+                            Log.d(TAG, "创建组成功;");
+                        }
+
+                        @Override
+                        public void onFailure(int reason) {
+                            Log.d(TAG, "创建组失败;");
+                        }
+                    });
                     break;
+                //端点列表变化:
                 case WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION:
-                    Log.d(TAG, "onReceive: WIFI_P2P_PEERS_CHANGED_ACTION");
+                    Log.d(TAG, "onReceive: 端点列表变化");
                     //获取到设备列表信息
                     WifiP2pDeviceList peers = intent.getParcelableExtra(WifiP2pManager.EXTRA_P2P_DEVICE_LIST);
                     p2pDeviceList.clear(); //清除旧的信息
@@ -286,32 +313,28 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();  //更新列表
 
                     break;
+                //连接状态变化:
                 case WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION:
-                    Log.d(TAG, "onReceive: WIFI_P2P_CONNECTION_CHANGED_ACTION");
-
+                    Log.d(TAG, "onReceive: 连接状态变化");
                     NetworkInfo networkInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
                     WifiP2pInfo wifiP2pInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_INFO);
                     WifiP2pGroup wifiP2pGroup = intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_GROUP);
-
-                    Log.d(TAG, "连接变化: " + (networkInfo.isConnected() ? "已连接" : "未连接"));
-                    updateConnectStatus(networkInfo.isConnected());
+                    updateConnectStatus();
                     //检测到链接成功：
                     if (networkInfo.isConnected()) {
-                        Log.d(TAG, String.format("成组:%s. %s", wifiP2pInfo.groupFormed, wifiP2pInfo.toString()));
-
-                        //todo 连接后基于socket通信
+                        //fixme 连接后基于socket通信
+                        //组长初始化等待连接
                         if (wifiP2pInfo.isGroupOwner) {
-                            SocketTrasmitManager.getInstance().initServerSocket();
+                            ServerSocketManager.getInstance().openServerSocket(wifiP2pInfo.groupOwnerAddress);
                         } else {
-                            SocketTrasmitManager.getInstance()
-                                                .initClientSocket(wifiP2pInfo.groupOwnerAddress.getHostAddress());
+                            ClientSocketManager.getInstance().initClientSocket(wifiP2pInfo.groupOwnerAddress);
                         }
-
                     }
 
                     break;
+                //设备信息变化:
                 case WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION:
-                    Log.d(TAG, "onReceive: WIFI_P2P_THIS_DEVICE_CHANGED_ACTION");
+                    Log.d(TAG, "onReceive: 设备信息变化");
                     WifiP2pDevice device = intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_DEVICE);
                     deviceInfoTextView.setText("deviceInfo:" + String.format("%s\n%s\n%s\n%s",
                                                                              device.deviceName,
@@ -319,23 +342,44 @@ public class MainActivity extends AppCompatActivity {
                                                                              device.deviceAddress,
                                                                              device.secondaryDeviceType));
                     break;
+                //发现状态变化:
                 case WifiP2pManager.WIFI_P2P_DISCOVERY_CHANGED_ACTION:
                     int discoveryState = intent.getIntExtra(WifiP2pManager.EXTRA_DISCOVERY_STATE,
                                                             WifiP2pManager.WIFI_P2P_DISCOVERY_STOPPED);
                     isDiscover = discoveryState == WifiP2pManager.WIFI_P2P_DISCOVERY_STARTED;
-                    Log.d(TAG, "onReceive: WIFI_P2P_DISCOVERY_CHANGED_ACTION " + isDiscover);
+                    Log.d(TAG, "onReceive: 发现状态变化 " + isDiscover);
                     updateDiscoverState(isDiscover);
                     break;
             }
         }
     }
 
+    //点击客户端socket发送
     public void pressSend(View view) {
-        SocketTrasmitManager.getInstance().handleSend();
+        ClientSocketManager.getInstance().handleSend();
     }
 
     public void pressClose(View view) {
-        SocketTrasmitManager.getInstance().closeSocket();
+        ServerSocketManager.getInstance().closeSocket();
+        ClientSocketManager.getInstance().closeSocket();
+    }
+
+    //手动检查连接信息
+    public void pressRequestConnectInfo(View view) {
+        wifiP2pManager.requestConnectionInfo(channel, new WifiP2pManager.ConnectionInfoListener() {
+            @Override
+            public void onConnectionInfoAvailable(final WifiP2pInfo wifiP2pInfo) {
+                updateConnectStatus();
+                //组长开始等待连接
+                if (wifiP2pInfo.groupFormed) {
+                    if (wifiP2pInfo.isGroupOwner) {
+                        ServerSocketManager.getInstance().openServerSocket(wifiP2pInfo.groupOwnerAddress);
+                    } else {
+                        ClientSocketManager.getInstance().initClientSocket(wifiP2pInfo.groupOwnerAddress);
+                    }
+                }
+            }
+        });
     }
 
     @Override

@@ -76,18 +76,49 @@ public class JsonUtil {
     }
 
     /**
-     * 文件 -> String
+     * json文件 ->  Pojo对象/list对象
+     *
+     * @param typeReference 示例:<code>new TypeReference<code><</code>List< Material></><code>></code>(){}</code>
+     * @param file
+     * @param <T>
+     * @return
+     * @throws IOException
+     */
+    public static <T> T readJsonFileToObject(TypeReference<T> typeReference, File file) throws IOException {
+        T type = null;
+        FileReadWriteLock lock = FileReadWriteLock.get(file.getAbsolutePath());
+        boolean flag = lock.obtain();
+        if (flag) {
+            type = JSON.parseObject(readStrFromFile(file), typeReference);
+            lock.unlock();
+        }
+        return type;
+    }
+
+    /**
+     * 文件内容 -> String
      *
      * @param fileName 文件名
      * @return 文件内容str
      */
-    public static String readStrFromFile(String fileName) throws IOException {
+    private static String readStrFromFile(String fileName) throws IOException {
+        return readStrFromFile(new File(fileName));
+    }
+
+    /**
+     * 文件内容 -> String
+     *
+     * @param file 文件对象
+     * @return 文件内容str
+     * @throws IOException
+     */
+    private static String readStrFromFile(File file) throws IOException {
         String result = "";
         char[] temp = new char[4096];
         Reader reader = null;
         int len;
         try {
-            reader = new InputStreamReader(new FileInputStream(fileName));
+            reader = new InputStreamReader(new FileInputStream(file));
             while ((len = reader.read(temp)) != -1) {
                 result += String.valueOf(temp, 0, len);
             }

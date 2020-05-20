@@ -1,16 +1,24 @@
 package com.liuyihui.testroot;
 
+import android.Manifest;
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.liuyihui.mylibrary.util.MD5Util;
+import com.liuyihui.testroot.httprepository.HttpApi;
 import com.liuyihui.testroot.netinfo.NetWork;
 import com.liuyihui.testroot.netinfo.NetworkUtils;
+import com.liuyihui.testroot.utils.AndroidUtil;
+import com.liuyihui.testroot.utils.DeviceUtils;
 
+import java.io.File;
 import java.util.List;
 
 import kr.co.namee.permissiongen.PermissionFail;
@@ -41,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
         androidFactoryTextView = findViewById(R.id.android_factory);
         androidSystemBuildVersionTextView = findViewById(R.id.android_build_display);
         netInfoTextView = findViewById(R.id.netinfo);
+
+        if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
+            getPermission(this,
+                          Manifest.permission.READ_EXTERNAL_STORAGE,
+                          Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                          Manifest.permission.ACCESS_COARSE_LOCATION);
+        }
 
         //
         boolean isroot = ReallyShellUtil.canRunRootCommands();
@@ -128,14 +143,29 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                netInfoTextView.append(String.format("%s=%s\n",
-                                                                     n.getType(),
-                                                                     n.getIpv4()));
-                                netInfoTextView.append(String.format("broadcast=%s\n",
-                                                                     n.getBroadCastIp()));
+                                netInfoTextView.append(String.format("%s=%s\n", n.getType(), n.getIpv4()));
+                                netInfoTextView.append(String.format("broadcast=%s\n", n.getBroadCastIp()));
                             }
                         });
                 }
+            }
+        }).start();
+    }
+
+    public void evaluateMd5(View view) {
+        TextView md5tv = findViewById(R.id.md5value);
+        File file = new File("/sdcard/oohlink/player/.screen/E94DEFEE0A1820286F051B54413FF42B");
+        File file2 = new File("/sdcard/com.liuyihui.networkcontrol/E94DEFEE0A1820286F051B54413FF42B");
+        md5tv.setText(MD5Util.getFileMD5String(file2));
+    }
+
+    public void downloadAFile(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String url = "http://res.oohlink.com/material/645/4F4709B19FB71DD85A406B2D0A0720C8.mp4";
+                String storePath = "/sdcard/oohlink/player/.screen/E94DEFEE0A1820286F051B54413FF42B";
+                HttpApi.getInstance().downFile(url, storePath);
             }
         }).start();
     }
@@ -153,12 +183,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        PermissionGen.onRequestPermissionsResult(MainActivity.this,
-                                                 requestCode,
-                                                 permissions,
-                                                 grantResults);
+        PermissionGen.onRequestPermissionsResult(MainActivity.this, requestCode, permissions, grantResults);
     }
 
     @PermissionSuccess(requestCode = 100)

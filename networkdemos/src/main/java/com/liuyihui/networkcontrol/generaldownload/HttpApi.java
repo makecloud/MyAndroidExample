@@ -1,10 +1,11 @@
-package com.liuyihui.networkcontrol.download;
+package com.liuyihui.networkcontrol.generaldownload;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.liuyihui.mylibrary.util.FileUtil;
 import com.liuyihui.networkcontrol.MyApplication;
+import com.liuyihui.networkcontrol.retrofitCommon.RetrofitHttpInterface;
 
 import java.io.File;
 import java.io.FileOutputStream;

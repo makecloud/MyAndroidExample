@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,19 +10,31 @@
         android:id="@+id/open_hotspot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="开关热点"/>
+        android:text="开关热点" />
 
     <Button
-        android:layout_marginTop="20dp"
         android:id="@+id/connect_wifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="连接wifi"/>
+        android:layout_marginTop="20dp"
+        android:text="连接wifi" />
 
     <Button
-        android:id="@+id/downfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="下载" />
+        android:onClick="testGeneralDownload"
+        android:text="普通方式下载" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="testPlayerSustainDown"
+        android:text="播控内的端点续传下载" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="testSystemProcessDownload"
+        android:text="使用系统下载服务下载" />
 
 </LinearLayout>

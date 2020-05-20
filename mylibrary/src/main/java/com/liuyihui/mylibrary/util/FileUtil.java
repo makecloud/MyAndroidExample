@@ -4,11 +4,17 @@ import com.alibaba.fastjson.JSON;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+
+import okhttp3.internal.Util;
+import okio.BufferedSink;
+import okio.BufferedSource;
+import okio.Okio;
 
 
 /**
@@ -57,12 +63,23 @@ public class FileUtil {
      * @return 文件内容str
      */
     public static String readStrFromFile(String fileName) throws IOException {
+        return readStrFromFile(new File(fileName));
+    }
+
+    /**
+     * 文件内容 -> String
+     *
+     * @param file 文件对象
+     * @return 文件内容str
+     * @throws IOException
+     */
+    public static String readStrFromFile(File file) throws IOException {
         String result = "";
         char[] temp = new char[4096];
         Reader reader = null;
         int len;
         try {
-            reader = new InputStreamReader(new FileInputStream(fileName));
+            reader = new InputStreamReader(new FileInputStream(file));
             while ((len = reader.read(temp)) != -1) {
                 result += String.valueOf(temp, 0, len);
             }
@@ -187,5 +204,48 @@ public class FileUtil {
         }
         // 目录此时为空，可以删除
         return dir.delete();
+    }
+
+
+    /**
+     * 将指定的输入流作为一个文件，保存至指定路径
+     */
+    public static boolean transferInputStreamToFile(InputStream iss, String outPath) {
+        if (iss == null || outPath == null)
+            return false;
+        BufferedSource source = Okio.buffer(Okio.source(iss));
+        BufferedSink sink = null;
+        try {
+            File mf = new File(outPath);
+            sink = Okio.buffer(Okio.sink(mf));
+            sink.writeAll(source);
+            sink.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            Util.closeQuietly(sink);
+            Util.closeQuietly(source);
+        }
+        return true;
+    }
+
+    /**
+     * 文件拷贝
+     *
+     * @param A FileA
+     * @param B FileB
+     * @author liuyihui 2017年11月20日12:08:43
+     */
+    public static boolean copyFileA2FileB(File A, File B) {
+        try {
+            transferInputStreamToFile(new FileInputStream(A), B.getAbsolutePath());
+            return true;
+        } catch (FileNotFoundException e) {
+            return false;
+        }
     }
 }

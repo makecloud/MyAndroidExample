@@ -1,4 +1,4 @@
-package com.liuyihui.networkcontrol.retrofit2convertor;
+package com.liuyihui.networkcontrol.retrofitCommon;
 
 /**
  * 异常编码枚举
