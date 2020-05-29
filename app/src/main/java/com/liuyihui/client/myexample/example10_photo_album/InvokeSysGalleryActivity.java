@@ -23,9 +23,12 @@ import java.util.ArrayList;
  */
 public class InvokeSysGalleryActivity extends AppCompatActivity {
     public final static String TAG = "InvokeSysGalleryActivit";
+    public final static int REQUEST_CODE_CAMERA = 0;
     public final static int REQUEST_CODE_PICTURE = 1;
     public final static int REQUEST_CODE_VIDEO = 2;
     public final static int REQUEST_CODE_DOC = 3;
+
+    private Button startCameraButton;
     private Button startGalleryButton;
     private Button startVideoGalleryButton;
     private Button startDocButton;
@@ -35,10 +38,26 @@ public class InvokeSysGalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoke_sys_gallery);
 
+        startCameraButton = findViewById(R.id.button0);
         startGalleryButton = findViewById(R.id.button1);
         startVideoGalleryButton = findViewById(R.id.button2);
         startDocButton = findViewById(R.id.button3);
 
+        startCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //调用系统相机,跟打开相机一样，貌似不会返回结果
+//                startActivityForResult(new Intent(MediaStore.INTENT_ACTION_VIDEO_CAMERA),
+//                                       REQUEST_CODE_CAMERA);
+
+                //打开相机拍照，返回照片结果
+//                startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE),
+//                                       REQUEST_CODE_CAMERA);
+                //打开相机拍摄视频，返回视频结果
+                startActivityForResult(new Intent(MediaStore.ACTION_VIDEO_CAPTURE),
+                                       REQUEST_CODE_CAMERA);
+            }
+        });
         startGalleryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
