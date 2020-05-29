@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by liuyh on 2016/12/8.
@@ -65,5 +66,28 @@ public class TimeUtil {
         return dateStr.replace("-", ".");
     }
 
+    /**
+     * 过期于今天
+     *
+     * @param timeStr
+     * @return
+     */
+    public static boolean isPast(String timeStr) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINESE);
+        try {
+            Date date = simpleDateFormat.parse(timeStr);
+            if (calendar.getTimeInMillis() > date.getTime()) {
+                return true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }

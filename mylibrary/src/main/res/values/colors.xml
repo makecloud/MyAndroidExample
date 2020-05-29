@@ -8,6 +8,46 @@
     <color name="myToolBarTitleTextDefaultColor">@color/white</color>
     <color name="textHint">#666666</color>
 
+
+    <color name="yunge_A_black">#000000</color><!--黑色-->
+    <color name="yunge_B_black">#666666</color>
+    <color name="yunge_C_black">#888888</color>
+    <color name="yunge_D_gray_button">#CACACA</color><!--灰色按钮背景、描边、线条-->
+    <color name="yunge_E_blue">#0A6EDF</color><!--蓝色-->
+    <color name="yunge_F_orange">#FF8505</color><!--橘色-->
+    <color name="yunge_G_yellow">#fff000</color><!--黄色-->
+    <color name="yunge_H_cyan">#3cb5d9</color><!--青色-->
+    <color name="yunge_I_red">#E14123</color><!--红色-->
+    <color name="yunge_J_deep_blue">#0893bc</color><!--深蓝色按钮-->
+    <color name="yunge_K_shallow_blue">#f6fdff</color><!--浅蓝色按钮-->
+    <color name="yunge_L_search_page_bg">#f7f7f7</color><!--搜索页面背景色-->
+
+    <color name="yunge_label_blue_bg">#e4f1ff</color><!--标签-蓝色背景-->
+    <color name="yunge_label_blue_font">#7abaff</color><!--标签-蓝色字体-->
+    <color name="yunge_lable_green_bg">#e7f9d4</color><!--标签-绿色背景-->
+    <color name="yunge_lable_green_fong">#8eb269</color><!--标签-绿色背景-->
+    <color name="yunge_label_red_bg">#ffeaea</color><!--标签-红色背景-->
+    <color name="yunge_label_red_font">#e48585</color><!--标签-红色背景-->
+
+    <color name="yunge_ic_b1_b4_normal">#666666</color>
+    <color name="yunge_ic_b1_b4_selected">#3CB5D9</color>
+    <color name="yunge_ic_b5_b14">#888888</color>
+    <color name="yunge_ic_b15">#666666</color>
+    <color name="yunge_ic_g1">#21a900</color>
+    <color name="yunge_ic_o1_o3">#FF8505</color>
+    <color name="yunge_ic_w1_w6">#ffffff</color>
+    <color name="isBoundLabelBg">#f2f2f2</color>
+
+    <color name="selected">#0263c8</color>
+    <color name="oohlink_agreement_title">#f9dc59</color>
+
+    <!--二维码demo所用-->
+    <color name="viewfinder_mask">#60000000</color><!--二维码相机界面masker颜色，灰色透明 -->
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+
     <!-- 备用颜色-->
     <color name="transparent">#00000000</color><!--透明色-->
     <color name="white">#FFFFFF</color><!--白色 -->

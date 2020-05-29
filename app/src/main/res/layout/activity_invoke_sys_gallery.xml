@@ -18,4 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="打开系统相册,选视频" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选文档" />
 </LinearLayout>

@@ -21,7 +21,6 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.widget.Toast;
 
-
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.oohlink.liuyihui.qrcode.R;
@@ -54,7 +53,7 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
     private boolean playBeep;
     private static final float BEEP_VOLUME = 0.10f;
     private boolean vibrate;
-//    private Button cancelScanButton;
+    //    private Button cancelScanButton;
 
     /** Called when the activity is first created. */
     @Override
@@ -66,15 +65,20 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
         setSupportActionBar(toolbar); //取代actionbar为toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//设置toolbar返回按钮
         getSupportActionBar().setTitle("二维码");
-        if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
-            getPermission(this, Manifest.permission.CAMERA);
-        }
         //ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
         CameraManager.init(getApplication());
         viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
-//        cancelScanButton = (Button) this.findViewById(R.id.btn_cancel_scan);
+        //        cancelScanButton = (Button) this.findViewById(R.id.btn_cancel_scan);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
+
+        if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
+            getPermission(this,
+                          Manifest.permission.CAMERA,
+                          Manifest.permission.READ_EXTERNAL_STORAGE,
+                          Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                          Manifest.permission.ACCESS_COARSE_LOCATION);
+        }
     }
 
     @Override
@@ -104,12 +108,12 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
         vibrate = true;
 
         //quit the scan view
-//        cancelScanButton.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                CaptureActivity.this.finish();
-//            }
-//        });
+        //        cancelScanButton.setOnClickListener(new OnClickListener() {
+        //            @Override
+        //            public void onClick(View v) {
+        //                CaptureActivity.this.finish();
+        //            }
+        //        });
     }
 
     @Override
@@ -142,7 +146,7 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
         if (resultString.equals("")) {
             Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
         } else {
-//			System.out.println("Result:"+resultString);
+            //			System.out.println("Result:"+resultString);
             Intent resultIntent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putString("result", resultString);
@@ -210,7 +214,9 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
 
             AssetFileDescriptor file = getResources().openRawResourceFd(R.raw.qrcode_completed);
             try {
-                mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
+                mediaPlayer.setDataSource(file.getFileDescriptor(),
+                                          file.getStartOffset(),
+                                          file.getLength());
                 file.close();
                 mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
                 mediaPlayer.prepare();
@@ -246,7 +252,6 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
      * 操作栏按钮点击事件
      *
      * @param item
-     *
      * @return
      */
     @Override
@@ -272,8 +277,13 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        PermissionGen.onRequestPermissionsResult(CaptureActivity.this, requestCode, permissions, grantResults);
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        PermissionGen.onRequestPermissionsResult(CaptureActivity.this,
+                                                 requestCode,
+                                                 permissions,
+                                                 grantResults);
     }
 
     @PermissionSuccess(requestCode = 100)

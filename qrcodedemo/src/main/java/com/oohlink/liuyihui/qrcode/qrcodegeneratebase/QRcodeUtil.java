@@ -51,7 +51,11 @@ public final class QRcodeUtil {
             }
             Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
             bitmap.setPixels(pixels, 0, size, 0, 0, size, size);
-            return addLogoToQRCode(bitmap, logo);
+            if (logo != null) {
+                return addLogoToQRCode(bitmap, logo);
+            } else {
+                return bitmap;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -65,7 +69,7 @@ public final class QRcodeUtil {
      * @param logo
      * @return
      */
-    private static Bitmap addLogoToQRCode(Bitmap src, Bitmap logo) {
+    public static Bitmap addLogoToQRCode(Bitmap src, Bitmap logo) {
         if (src == null || logo == null) {
             return src;
         }

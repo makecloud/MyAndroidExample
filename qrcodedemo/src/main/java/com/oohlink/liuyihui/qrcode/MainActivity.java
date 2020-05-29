@@ -2,9 +2,11 @@ package com.oohlink.liuyihui.qrcode;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,10 +21,7 @@ import com.oohlink.liuyihui.qrcode.qrcodegeneratebase.DensityUtils;
 import com.oohlink.liuyihui.qrcode.qrcodegeneratebase.QRcodeUtil;
 import com.oohlink.liuyihui.qrcode.qrcodescanbase.activity.CaptureActivity;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "MainActivity";
@@ -34,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap mBitmap;
 
     private EditText qrcodeContentEt;
+    private Bitmap generatedQrCodeBitmap;
     private ImageView qrImgImageView;
     private EditText sizeInput;
     private RadioGroup sizeUnitInput;
@@ -66,15 +66,14 @@ public class MainActivity extends AppCompatActivity {
         try {
             if (contentString != null && contentString.trim().length() > 0) {
                 // 根据字符串生成二维码图片并显示在界面上，第二个参数为图片的大小（350*350）
-                Bitmap qrCodeBitmap = QRcodeUtil.EncodeQRCode(contentString,
-                                                              350,
-                                                              Color.BLACK,
-                                                              Color.WHITE,
-                                                              null);
+                generatedQrCodeBitmap = QRcodeUtil.EncodeQRCode(contentString,
+                                                                350,
+                                                                Color.BLACK,
+                                                                Color.WHITE,
+                                                                null);
 
-                //sizeInput
+                //get input size
                 try {
-
                     String[] sizeStr = sizeInput.getText().toString().split("x");
                     int width = Integer.parseInt(sizeStr[0]);
                     int height = Integer.parseInt(sizeStr[1]);
@@ -95,10 +94,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
-
-                //set image src
-                qrImgImageView.setImageBitmap(qrCodeBitmap);
-                saveJpeg(qrCodeBitmap);
+                //show image src
+                qrImgImageView.setImageBitmap(generatedQrCodeBitmap);
             } else {
                 Toast.makeText(MainActivity.this, "Text can not be empty", Toast.LENGTH_SHORT)
                      .show();
@@ -116,14 +113,15 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void addImage(View view) {
-        String contentString = qrcodeContentEt.getText().toString();
-        if (!TextUtils.isEmpty(contentString)) {
-            Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
-            getAlbum.setType(IMAGE_TYPE);
-            startActivityForResult(getAlbum, IMAGE_CODE);
-        } else {
-            Toast.makeText(getApplication(), "未填写信息", Toast.LENGTH_LONG).show();
+        if (qrImgImageView.getDrawable() == null) {
+            Toast.makeText(getApplication(), "请先生成二维码", Toast.LENGTH_LONG).show();
+            return;
         }
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        //        intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //        intent.setType(IMAGE_TYPE);
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(intent, IMAGE_CODE);
     }
 
 
@@ -156,24 +154,53 @@ public class MainActivity extends AppCompatActivity {
                                                                   Color.WHITE,
                                                                   qrPicture);
                     qrImgImageView.setImageBitmap(qrCodeBitmap);
-                    saveJpeg(qrCodeBitmap);
                 }
+                break;
+            case IMAGE_CODE:
+                if (resultCode != RESULT_OK) {
+                    return;
+                }
+                String picturePath = UriUtil.getFilePathByUri(this, data.getData());
+                Log.d(TAG, "onActivityResult: " + picturePath);
+
+                Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+                generatedQrCodeBitmap = QRcodeUtil.addLogoToQRCode(generatedQrCodeBitmap, bitmap);
+                qrImgImageView.setImageBitmap(generatedQrCodeBitmap);
                 break;
             default:
                 break;
         }
     }
 
+    public void saveQrCode(View view) {
+        saveJpeg(generatedQrCodeBitmap, System.currentTimeMillis() + "");
+    }
 
     /**
      * 保存图片
      *
      * @param bm
+     * @param name
      */
-    public void saveJpeg(Bitmap bm) {
-        long dataTake = System.currentTimeMillis();
-        String jpegName = initSavePath() + dataTake + ".jpg";
-        // File jpegFile = new File(jpegName);
+    public void saveJpeg(Bitmap bm, String name) {
+
+        //存入内部存储Picture下，微信里能看到
+        String publicPicturePath =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                                              .getAbsolutePath();
+        File file = new File(publicPicturePath, name);
+        if (!file.exists()) {
+            //这个存粗到sdcard/Picture下了
+            MediaStore.Images.Media.insertImage(getContentResolver(), bm, name, "no");
+        }
+
+        Toast.makeText(this, "保存成功！", Toast.LENGTH_SHORT).show();
+
+        //存到DCIM微信还不能看到，微信能看到DCIM/Camera下的
+        /*String DCIMPath = Environment.getExternalStoragePublicDirectory(Environment
+        .DIRECTORY_DCIM)
+                                     .getAbsolutePath();
+        String jpegName = DCIMPath + System.currentTimeMillis() + ".jpg";
         try {
             FileOutputStream fout = new FileOutputStream(jpegName);
             BufferedOutputStream bos = new BufferedOutputStream(fout);
@@ -184,22 +211,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e(TAG, "保存图片异常", e);
             e.printStackTrace();
-        }
+        }*/
     }
-
-    /**
-     * 初始化保存路径
-     *
-     * @return
-     */
-    public String initSavePath() {
-        File dateDir = Environment.getExternalStorageDirectory();
-        String path = dateDir.getAbsolutePath() + "/RectPhoto/";
-        File folder = new File(path);
-        if (!folder.exists()) {
-            folder.mkdir();
-        }
-        return path;
-    }
-
 }

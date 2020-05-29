@@ -10,6 +10,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //如果需要在模拟器上运行替换下行为
+//            abiFilters "armeabi", "x86"
+            abiFilters "armeabi"
+//            abiFilters "x86"
+        }
     }
     buildTypes {
         release {
@@ -21,7 +28,8 @@ android {
 
 dependencies {
     //liji.library.dev:citypickerview:5.1.0这个依赖包中也有pinyin4j，只能在这排除下本地的
-    implementation fileTree(include: ['*.jar'], dir: 'libs', exclude: 'pinyin4j-2.5.0.jar')
+    //com.liuyihui.mylibrary依赖包中也有sunjce，只能在这排除下本地的
+    implementation fileTree(include: ['*.jar'], dir: 'libs', exclude: ['pinyin4j-2.5.0.jar','sunjce_provider.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -49,4 +57,7 @@ dependencies {
     //implementation 'com.github.chrisbanes:PhotoView:2.1.4'
 
     implementation project(':photoview')
+    implementation('com.liuyihui:mylibrary:1.0') {
+        exclude group: 'com.amap.api', module: 'location'
+    }
 }

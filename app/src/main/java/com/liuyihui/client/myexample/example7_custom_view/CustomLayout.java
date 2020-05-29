@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
+/**
+ * 自定义布局。区别于自定义viewgroup，自定义布局是继承sdk自带的XxxLayout
+ */
 public class CustomLayout extends FrameLayout {
     private final String TAG = getClass().getSimpleName();
 

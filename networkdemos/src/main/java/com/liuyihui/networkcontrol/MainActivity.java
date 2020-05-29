@@ -2,6 +2,7 @@ package com.liuyihui.networkcontrol;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.liuyihui.networkcontrol.generaldownload.HttpApi;
 import com.liuyihui.networkcontrol.queueDownload.DataRepository;
 import com.liuyihui.networkcontrol.queueDownload.DownInfo;
 import com.liuyihui.networkcontrol.queueDownload.PlayerDownloadManager;
+import com.liuyihui.networkcontrol.socketTransmit.SocketTransmitDemoActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -77,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             String url = "https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com/material/40" +
                     "/BFA91EE06E2EE723A2C08B4B656605D8.mp4";
-            String url2 = "http://res.oohlink.com/material/645/4F4709B19FB71DD85A406B2D0A0720C8" +
-                    ".mp4";
+            String url2 =
+                    "http://res.oohlink.com/material/645/4F4709B19FB71DD85A406B2D0A0720C8" + ".mp4";
             String filePath = OohlinkSerializer.getAppSDPath(MainActivity.this) +
                     "E94DEFEE0A1820286F051B54413FF42B";
             HttpApi.getInstance().downFile(url2, filePath);
@@ -129,9 +131,18 @@ public class MainActivity extends AppCompatActivity {
         PlayerDownloadManager.getInstance().startDown(downInfo);
     }
 
-    //测试使用系统下载服务下载
+    //todo 测试使用系统下载服务下载
     public void testSystemProcessDownload(View view) {
         // TODO: 2020-05-19
+    }
+
+    /**
+     * socket传送
+     *
+     * @param view
+     */
+    public void testSocketTransmit(View view) {
+        startActivity(new Intent(this, SocketTransmitDemoActivity.class));
     }
 
     /**
