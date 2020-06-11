@@ -49,18 +49,28 @@ public class MainActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
 
         //表明该事件已经被当前view/activity的dispatchTouchEvent给消费掉。之后系统不再传递此事件，事件到此消失
-//        Log.d(TAG, "dispatchTouchEvent: return true");
-//        return true;
+        //Log.d(TAG, "dispatchTouchEvent: return true");
+        //return true;
 
         //返回false事件不再被分发给下级即子view，被activity拦截。但是，事件会继续以冒泡的方式被传递给外层的view/activity的onTouchEvent方法进行处理
-//        Log.d(TAG, "dispatchTouchEvent: return false;");
-//        return false;
+        //Log.d(TAG, "dispatchTouchEvent: return false;");
+        //return false;
     }
 
+    /**
+     * 返回true false super 分别的含义，区别
+     *
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i(TAG, "onTouchEvent called");
+        Log.d(TAG, "onTouchEvent called");
         Log.d(TAG, "onTouchEvent: return super");
         return super.onTouchEvent(event);
+        //
+        //return true;
+        //
+        //return false;
     }
 }

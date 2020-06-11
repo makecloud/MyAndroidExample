@@ -1,6 +1,7 @@
 package com.oohlink.liuyihui.qrcode;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -8,13 +9,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.oohlink.liuyihui.qrcode.qrcodegeneratebase.DensityUtils;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     int[] pixels = new int[2 * IMAGE_HALFWIDTH * 2 * IMAGE_HALFWIDTH];
     private Bitmap mBitmap;
 
+    TextView scaningResultTextView;
     private EditText qrcodeContentEt;
     private Bitmap generatedQrCodeBitmap;
     private ImageView qrImgImageView;
@@ -42,10 +44,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         qrcodeContentEt = findViewById(R.id.qr_code_content);
         qrImgImageView = findViewById(R.id.gen_qr_img);
         sizeInput = findViewById(R.id.sizeInput);
         sizeUnitInput = findViewById(R.id.sizeUnitInput);
+        scaningResultTextView = findViewById(R.id.return_scan_result);
     }
 
     public void startQrcode(View view) {
@@ -136,24 +141,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
+            //扫码返回
             case SCANNIN_GREQUEST_CODE:
                 if (resultCode == RESULT_OK) {
                     Bundle bundle = data.getExtras();
-                    String QRcodeContentStr = bundle.getString("result");//得到二维码内容字符串
-                    Bitmap qrPicture = data.getParcelableExtra("bitmap");//得到二维码里的照片
-                    Toast.makeText(this, QRcodeContentStr, Toast.LENGTH_SHORT).show();
+                    String scanedOutStr = bundle.getString("result");//得到二维码内容字符串
+                    Bitmap scanedQrPicture = data.getParcelableExtra("bitmap");//得到二维码里的照片
+                    Toast.makeText(this, scanedOutStr, Toast.LENGTH_SHORT).show();
 
-                    String contentString = qrcodeContentEt.getText().toString();
-                    if (TextUtils.isEmpty(contentString)) {
-                        Toast.makeText(this, "输入内容为空", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    Bitmap qrCodeBitmap = QRcodeUtil.EncodeQRCode(contentString,
-                                                                  350,
-                                                                  Color.BLACK,
-                                                                  Color.WHITE,
-                                                                  qrPicture);
-                    qrImgImageView.setImageBitmap(qrCodeBitmap);
+
+                    scaningResultTextView.setText(scanedOutStr);
                 }
                 break;
             case IMAGE_CODE:

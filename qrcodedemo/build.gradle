@@ -16,12 +16,27 @@ android {
 
     }
 
+    signingConfigs {
+
+        debug {
+        }
+        release {
+            storeFile file("media-kestorefile.jks")
+            storePassword "6459881"
+            keyAlias "media"
+            keyPassword "6459881"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
+
 
 }
 

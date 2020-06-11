@@ -20,7 +20,7 @@ import kr.co.namee.permissiongen.PermissionGen;
 import kr.co.namee.permissiongen.PermissionSuccess;
 
 /**
- * android获取权限实践
+ * 使用permissionGen框架
  */
 public class MainActivity extends AppCompatActivity {
     private TextView msg1;
@@ -113,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         PermissionGen.onRequestPermissionsResult(MainActivity.this,
                                                  requestCode,

@@ -59,15 +59,23 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate: ");
         ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
             getPermission(this,
                           Manifest.permission.READ_EXTERNAL_STORAGE,
                           Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                          Manifest.permission.RECORD_AUDIO,
                           Manifest.permission.ACCESS_COARSE_LOCATION);
         }
         //test
         subThreadWork();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: ");
     }
 
     public void btn_eg1Click(View view) {

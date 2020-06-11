@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,10 +24,11 @@ import java.util.ArrayList;
  */
 public class InvokeSysGalleryActivity extends AppCompatActivity {
     public final static String TAG = "InvokeSysGalleryActivit";
-    public final static int REQUEST_CODE_CAMERA = 0;
+    public final static int REQUEST_CODE_CAMERA_PHOTO = 0;
     public final static int REQUEST_CODE_PICTURE = 1;
     public final static int REQUEST_CODE_VIDEO = 2;
     public final static int REQUEST_CODE_DOC = 3;
+    private static final int REQUEST_CODE_CAMERA_VIDEO = 4;
 
     private Button startCameraButton;
     private Button startGalleryButton;
@@ -47,15 +49,17 @@ public class InvokeSysGalleryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //调用系统相机,跟打开相机一样，貌似不会返回结果
-//                startActivityForResult(new Intent(MediaStore.INTENT_ACTION_VIDEO_CAMERA),
-//                                       REQUEST_CODE_CAMERA);
+                //                startActivityForResult(new Intent(MediaStore
+                //                .INTENT_ACTION_VIDEO_CAMERA),
+                //                                       REQUEST_CODE_CAMERA);
 
                 //打开相机拍照，返回照片结果
-//                startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE),
-//                                       REQUEST_CODE_CAMERA);
+                //                startActivityForResult(new Intent(MediaStore
+                //                .ACTION_IMAGE_CAPTURE),
+                //                                       REQUEST_CODE_CAMERA_PHOTO);
                 //打开相机拍摄视频，返回视频结果
                 startActivityForResult(new Intent(MediaStore.ACTION_VIDEO_CAPTURE),
-                                       REQUEST_CODE_CAMERA);
+                                       REQUEST_CODE_CAMERA_VIDEO);
             }
         });
         startGalleryButton.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +110,7 @@ public class InvokeSysGalleryActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //获取图片返回
+        //进相册选图片返回
         if (requestCode == REQUEST_CODE_PICTURE && resultCode == Activity.RESULT_OK && null != data) {
 
             //多选返回时为null
@@ -133,7 +137,7 @@ public class InvokeSysGalleryActivity extends AppCompatActivity {
             }
         }
 
-        //选视频返回
+        //进相册选视频返回
         if (requestCode == REQUEST_CODE_VIDEO && resultCode == Activity.RESULT_OK && null != data) {
             ClipData clipData = data.getClipData();
             for (int i = 0; i < clipData.getItemCount(); i++) {
@@ -149,6 +153,16 @@ public class InvokeSysGalleryActivity extends AppCompatActivity {
                 String filePath = UriUtil.getFilePathByUri(this, clipData.getItemAt(i).getUri());
                 Log.d(TAG, "onActivityResult: " + filePath);
             }
+        }
+
+        //打开相机拍照片返回
+        if (requestCode == REQUEST_CODE_CAMERA_PHOTO) {
+            Bitmap bitmap = data.getParcelableExtra("data");
+        }
+
+        //打开相机拍视频返回
+        if (requestCode == REQUEST_CODE_CAMERA_VIDEO) {
+            // TODO: 2020-06-01
         }
     }
 }

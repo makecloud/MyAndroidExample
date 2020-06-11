@@ -54,7 +54,9 @@ public class BitmapUtils {
         return null;
     }
 
-    public static int computeSampleSize(BitmapFactory.Options options, int minSideLength, int maxNumOfPixels) {
+    public static int computeSampleSize(BitmapFactory.Options options,
+                                        int minSideLength,
+                                        int maxNumOfPixels) {
         int initialSize = computeInitialSampleSize(options, minSideLength, maxNumOfPixels);
         int roundedSize;
         if (initialSize <= 8) {
@@ -68,10 +70,13 @@ public class BitmapUtils {
         return roundedSize;
     }
 
-    private static int computeInitialSampleSize(BitmapFactory.Options options, int minSideLength, int maxNumOfPixels) {
+    private static int computeInitialSampleSize(BitmapFactory.Options options,
+                                                int minSideLength,
+                                                int maxNumOfPixels) {
         double w = options.outWidth;
         double h = options.outHeight;
-        int lowerBound = (maxNumOfPixels == -1) ? 1 : (int) Math.ceil(Math.sqrt(w * h / maxNumOfPixels));
+        int lowerBound = (maxNumOfPixels == -1) ? 1 :
+                (int) Math.ceil(Math.sqrt(w * h / maxNumOfPixels));
         int upperBound = (minSideLength == -1) ? 128 : (int) Math.min(Math.floor(w / minSideLength),
                                                                       Math.floor(h / minSideLength));
         if (upperBound < lowerBound) {
@@ -90,7 +95,20 @@ public class BitmapUtils {
     /**
      * bitmap保存到文件
      */
-    public static String writeBitmapToFile(Bitmap pBitmap, String saveName, String savePath, int quality) {
+    public static String writeBitmapToFile(Bitmap pBitmap,
+                                           String saveName,
+                                           String savePath,
+                                           int quality) {
+        return writeBitmapToFile(pBitmap, saveName, savePath, quality, Bitmap.CompressFormat.JPEG);
+
+    }
+
+    public static String writeBitmapToFile(Bitmap pBitmap,
+                                           String saveName,
+                                           String savePath,
+                                           int quality,
+                                           Bitmap.CompressFormat compressFormat) {
+
         File file = new File(savePath, saveName);
         try {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));

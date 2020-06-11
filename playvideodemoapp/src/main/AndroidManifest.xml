@@ -24,7 +24,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExoPlayerActivity"></activity>
+
+        <activity android:name=".ExoPlayerActivity">
+            <intent-filter>
+                <action android:name="android.intent.VIEW" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

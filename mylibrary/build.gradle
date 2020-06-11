@@ -67,11 +67,9 @@ dependencies {
 }
 
 
-// 指定上传的路径
+// 指定上传仓库的路径
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
-
-
-//打包war并放到本地maven仓库 目前是$userhome$/.m2/mavenrepository。测试可行
+//打包war并上传(放)到本地maven仓库 目前是$userhome$/.m2/mavenrepository。测试可行
 uploadArchives {
     repositories.mavenDeployer {
         repository(url: localMavenRepo)

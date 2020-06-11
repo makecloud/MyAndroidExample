@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
  * @author liuyihui 2018年4月19日13:18:28
  */
 public class DragExchangeViewActivity extends AppCompatActivity {
-    private final static String TAG = "DragExchangeViewActivity";
+    private final static String TAG = "DragExchangeViewAc";
     /** 三个容器 */
     private LinearLayout view1_container;
     private LinearLayout view2_container;
