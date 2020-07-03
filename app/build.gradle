@@ -29,7 +29,7 @@ android {
 dependencies {
     //liji.library.dev:citypickerview:5.1.0这个依赖包中也有pinyin4j，只能在这排除下本地的
     //com.liuyihui.mylibrary依赖包中也有sunjce，只能在这排除下本地的
-    implementation fileTree(include: ['*.jar'], dir: 'libs', exclude: ['pinyin4j-2.5.0.jar','sunjce_provider.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs', exclude: ['pinyin4j-2.5.0.jar', 'sunjce_provider.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })

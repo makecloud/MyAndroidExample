@@ -15,17 +15,12 @@ import android.widget.FrameLayout;
 public class AFramelayout extends FrameLayout {
     private final String TAG = "AFramelayout";
 
-    public AFramelayout(@NonNull Context context) {
-        super(context);
-    }
+
 
     public AFramelayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AFramelayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
 
     /**
      * 分发事件. 分发?
@@ -35,11 +30,12 @@ public class AFramelayout extends FrameLayout {
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.i(TAG, " ");
-        Log.i(TAG, "\ndispatchTouchEvent called。EventAction：" + ev.getAction());
+        StringBuilder sb = new StringBuilder();
+        sb.append("dispatchTouchEvent called。EventAction：" + ev.getAction());
+        sb.append(" dispatchTouchEvent: return super");
+        Log.d(TAG, sb.toString());
 
         //表明该事件将会被分发。此时当前ViewGroup的onIntercepterTouchEvent方法会捕获该事件，判断需不需要进行事件的拦截
-        Log.d(TAG, "dispatchTouchEvent: return super");
         return super.dispatchTouchEvent(ev);
 
         //表明该事件已经被当前view/activity的dispatchTouchEvent给消费掉。之后系统不再传递此事件，事件到此消失
@@ -57,16 +53,21 @@ public class AFramelayout extends FrameLayout {
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.d(TAG, "onInterceptTouchEvent called。EventAction："+ev.getAction());
-        Log.d(TAG, "onInterceptTouchEvent: return super");
+        StringBuilder sb = new StringBuilder();
+        sb.append("onInterceptTouchEvent called。EventAction："+ev.getAction());
+        sb.append(" onInterceptTouchEvent: return super");
+        Log.d(TAG, sb.toString());
         return super.onInterceptTouchEvent(ev);
 //        return true;//true代表告诉系统我AFrameLayout拦截了event. 结果导致系统不再拿事件去回调任何AFrameLayout的子view
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "onTouchEvent called。EventAction："+event.getAction());
-        Log.d(TAG, "onTouchEvent: return super");
+        StringBuilder sb = new StringBuilder();
+        sb.append("onTouchEvent called。EventAction：" + event.getAction());
+        sb.append(" onTouchEvent: return super");
+        Log.d(TAG, sb.toString());
+
         return super.onTouchEvent(event);
     }
 }

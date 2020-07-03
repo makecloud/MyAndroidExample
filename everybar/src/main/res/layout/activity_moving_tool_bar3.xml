@@ -52,7 +52,7 @@
         <com.scwang.smartrefresh.header.StoreHouseHeader
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:shhText="OOHLINK" />
+            />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/media_position_recyclerview"

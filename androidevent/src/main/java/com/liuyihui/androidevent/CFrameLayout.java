@@ -42,9 +42,10 @@ public class CFrameLayout extends FrameLayout {
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.d(TAG, "dispatchTouchEvent: ");
-        Log.d(TAG, "\ndispatchTouchEvent called。EventAction：" + ev.getAction());
-        Log.d(TAG, "dispatchTouchEvent: return super");
+        StringBuilder sb = new StringBuilder();
+        sb.append("dispatchTouchEvent called。EventAction：" + ev.getAction());
+        sb.append(" dispatchTouchEvent: return super");
+        Log.d(TAG, sb.toString());
         return super.dispatchTouchEvent(ev);
 
 //        Log.d(TAG, "dispatchTouchEvent: return true");
@@ -60,16 +61,20 @@ public class CFrameLayout extends FrameLayout {
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.d(TAG, "onInterceptTouchEvent: ");
-        Log.d(TAG, "onInterceptTouchEvent called。EventAction：" + ev.getAction());
-        Log.d(TAG, "onInterceptTouchEvent: return super");
+        StringBuilder sb = new StringBuilder();
+        sb.append("onInterceptTouchEvent called。EventAction："+ev.getAction());
+        sb.append(" onInterceptTouchEvent: return super");
+        Log.d(TAG, sb.toString());
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "onTouchEvent: ");
-        Log.d(TAG, "onTouchEvent called。EventAction：" + event.getAction());
+        StringBuilder sb = new StringBuilder();
+        sb.append("onTouchEvent called。EventAction：" + event.getAction());
+        sb.append(" onTouchEvent: return super");
+        Log.d(TAG, sb.toString());
+
 
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {

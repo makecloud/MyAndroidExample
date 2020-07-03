@@ -1,9 +1,11 @@
 package com.liuyihui.bar;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -20,6 +22,8 @@ import butterknife.ButterKnife;
 public class MovingToolBarActivity extends AppCompatActivity {
 
     private static final String TAG = "MovingToolBarActivity";
+    @BindView(R.id.appbarlayout)
+    AppBarLayout appBarLayout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.nestedscrollview)
@@ -57,5 +61,7 @@ public class MovingToolBarActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void fabClick(View view) {
+    }
 
 }

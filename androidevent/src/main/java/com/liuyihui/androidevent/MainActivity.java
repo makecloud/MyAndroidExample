@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    /*
+    首先弄清，android里的view怎么分层的，谁是最上层最先收到touch event，谁是最下层最后收到touch event ！
+    结果：按布局包含原理来，外层布局包含内层布局view，外层先收到event
+     */
 
 
     /**
@@ -41,11 +45,12 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.i(TAG, " ");
-        Log.i(TAG, "\n\rdispatchTouchEvent called。EventAction：" + ev.getAction());
-
         //表明该事件将会被分发。此时当前ViewGroup的onIntercepterTouchEvent方法会捕获该事件，判断需不需要进行事件的拦截
-        Log.d(TAG, "dispatchTouchEvent: return super");
+        StringBuilder sb = new StringBuilder();
+        sb.append("dispatchTouchEvent called。EventAction：" + ev.getAction());
+        sb.append(" dispatchTouchEvent: return super");
+        Log.d(TAG, sb.toString());
+
         return super.dispatchTouchEvent(ev);
 
         //表明该事件已经被当前view/activity的dispatchTouchEvent给消费掉。之后系统不再传递此事件，事件到此消失
@@ -65,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "onTouchEvent called");
-        Log.d(TAG, "onTouchEvent: return super");
+        StringBuilder sb = new StringBuilder();
+        sb.append("onTouchEvent called");
+        sb.append(" onTouchEvent: return super");
+        Log.d(TAG, sb.toString());
         return super.onTouchEvent(event);
         //
         //return true;

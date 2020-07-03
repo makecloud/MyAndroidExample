@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
     /** mediaPlayer + surfaceView播放视频 */
     public void playVideoDemo2CLick(View v) {
-        startActivity(new Intent(MainActivity.this, Main2Activity.class));
+        startActivity(new Intent(MainActivity.this, SurfaceViewPlayActivity.class));
     }
 
     /** mediaplayer + textureView播放视频 */
     public void playVideoDemo3CLick(View v) {
-        startActivity(new Intent(MainActivity.this, Main3Activity.class));
+        startActivity(new Intent(MainActivity.this, TextureViewPlayActivity.class));
     }
 
     /** IjkPlayer使用 */

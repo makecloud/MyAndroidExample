@@ -146,6 +146,7 @@ public class ExoPlayerActivity extends AppCompatActivity {
         String path = Environment.getExternalStorageDirectory() +
                 "/B00D01FECB38E8F56AFECB9E4B33B992";
         Uri videoUri = Uri.fromFile(new File(path));
+        videoUri = Uri.parse("http://ivi.bupt.edu.cn/hls/chchd.m3u8");
         // This is the MediaSource representing the media to be played.
         MediaSource videoSource =
                 new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(
@@ -194,8 +195,8 @@ public class ExoPlayerActivity extends AppCompatActivity {
         player.stop();
         //exoPlayerView.setVisibility(View.INVISIBLE);
     }
-    //测试播放中调用prepare准备其他视频，会怎样?
 
+    //测试播放中调用prepare准备其他视频，会怎样?
     //结果之前的视频停止，并显示下一个视频的第一帧
     public void changeSrcWhenPlaying(View view) {
         player.setPlayWhenReady(false);

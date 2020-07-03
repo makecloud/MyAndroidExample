@@ -15,16 +15,9 @@ import android.widget.FrameLayout;
 public class BFramelayout extends FrameLayout {
     private final String TAG = "BFramelayout";
 
-    public BFramelayout(@NonNull Context context) {
-        super(context);
-    }
 
     public BFramelayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-    }
-
-    public BFramelayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
     }
 
     /**
@@ -35,9 +28,10 @@ public class BFramelayout extends FrameLayout {
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.i(TAG, " ");
-        Log.i(TAG, "\ndispatchTouchEvent called。EventAction：" + ev.getAction());
-        Log.d(TAG, "dispatchTouchEvent: return super");
+        StringBuilder sb = new StringBuilder();
+        sb.append("dispatchTouchEvent called。EventAction：" + ev.getAction());
+        sb.append(" dispatchTouchEvent: return super");
+        Log.d(TAG, sb.toString());
         return super.dispatchTouchEvent(ev);
 
 //        Log.d(TAG, "dispatchTouchEvent: return true");
@@ -52,15 +46,20 @@ public class BFramelayout extends FrameLayout {
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "onInterceptTouchEvent called。EventAction："+ev.getAction());
-        Log.d(TAG, "onInterceptTouchEvent: return super");
+        StringBuilder sb = new StringBuilder();
+        sb.append("onInterceptTouchEvent called。EventAction："+ev.getAction());
+        sb.append(" onInterceptTouchEvent: return super");
+        Log.d(TAG, sb.toString());
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i(TAG,"onTouchEvent called。EventAction："+event.getAction());
-        Log.d(TAG, "onTouchEvent: return super");
+        StringBuilder sb = new StringBuilder();
+        sb.append("onTouchEvent called。EventAction：" + event.getAction());
+        sb.append(" onTouchEvent: return super");
+        Log.d(TAG, sb.toString());
+
         return super.onTouchEvent(event);
 //        return true;
     }

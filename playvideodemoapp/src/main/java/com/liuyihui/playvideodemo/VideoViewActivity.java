@@ -33,10 +33,9 @@ public class VideoViewActivity extends AppCompatActivity {
         //视频源文件路径
         //设置videoview
 //        myVideoView.setVideoURI(Uri.parse("http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4"));
-        myVideoView.setVideoURI(Uri.parse("https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com" + "/material/40" +
-                                                  "/BFA91EE06E2EE723A2C08B4B656605D8.mp4"));
-//        String videoPath = Environment.getExternalStorageDirectory() + "/DCIM/qqqq";
-//        myVideoView.setVideoPath(videoPath);
+//        myVideoView.setVideoURI(Uri.parse("https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com" + "/material/40" +
+//                                                  "/BFA91EE06E2EE723A2C08B4B656605D8.mp4"));
+        myVideoView.setVideoURI(Uri.parse("https://ygsd-test.oss-cn-beijing.aliyuncs.com/material/40/BFA91EE06E2EE723A2C08B4B656605D8.mp4"));
         myVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
@@ -44,6 +43,7 @@ public class VideoViewActivity extends AppCompatActivity {
             }
         });
 
+        MediaPlayer mediaPlayer;
         myVideoView.setOnPreparedListener(new OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {

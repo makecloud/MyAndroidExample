@@ -2,10 +2,11 @@ package com.liuyihui.requestpermission;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class RequestPermissionActivity extends AppCompatActivity {
     private static final String[] PERMISSIONS = new String[]{Manifest.permission.READ_PHONE_STATE,
                                                              Manifest.permission.ACCESS_NETWORK_STATE,
                                                              Manifest.permission.INTERNET,
+                                                             Manifest.permission.RECEIVE_BOOT_COMPLETED,
                                                              Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private static final int PERMISSION_CODES = 1;
@@ -31,7 +33,7 @@ public class RequestPermissionActivity extends AppCompatActivity {
     }
 
 
-    private void requestPermission() {
+    public void requestPermission(View view) {
         List<String> p = new ArrayList<>();
         for (String permission : PERMISSIONS) {
             if (ContextCompat.checkSelfPermission(this,
@@ -55,7 +57,8 @@ public class RequestPermissionActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_CODES) {
             if (hasAllPermissionsGranted(grantResults)) {

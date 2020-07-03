@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.liuyihui.client.myexample.example1.Demo1Activity;
 import com.liuyihui.client.myexample.example1.Example1Activity;
 import com.liuyihui.client.myexample.example1.Example1_1Activity;
 import com.liuyihui.client.myexample.example10_photo_album.InvokeSysGalleryActivity;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btn_eg1Click(View view) {
-        startActivity(Example1Activity.class);
+        startActivity(Demo1Activity.class);
     }
 
     public void btn_eg1_1Click(View view) {

@@ -38,8 +38,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity"></activity>
-        <activity android:name=".Main3Activity"></activity>
+        <activity android:name=".SurfaceViewPlayActivity">
+            <intent-filter>
+                <action android:name="view" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".TextureViewPlayActivity"></activity>
         <activity android:name=".VideoViewActivity"></activity>
         <activity android:name=".IjkPLayerActivity"></activity>
         <activity android:name=".PLDroidPlayerActivity"></activity>
