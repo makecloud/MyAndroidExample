@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
     //视差效果操作栏示例
     public void startParallaxImageShow(View view) {
-        startActivity(new Intent(this, ParallaxStyleBarActivity.class));
+        startActivity(new Intent(this, ParallaxBarDemoActivity.class));
     }
 
-    //视差效果操作栏示例
+    //隐藏操作栏示例
     public void startBaraHideDemo(View view) {
         startActivity(new Intent(this, BarHideDemoActivity.class));
     }

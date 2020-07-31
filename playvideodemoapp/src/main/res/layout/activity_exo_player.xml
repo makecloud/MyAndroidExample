@@ -106,8 +106,9 @@
 
 
     <FrameLayout
+        android:id="@+id/fl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:layout_below="@+id/ll1">
 
         <com.google.android.exoplayer2.ui.PlayerView
@@ -123,5 +124,12 @@
             android:layout_gravity="center"
             android:visibility="gone" />
     </FrameLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/fl"
+        android:src="@drawable/redcow"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

@@ -12,10 +12,10 @@ import android.view.WindowManager;
 import com.oohlink.wifiprobe.everybar.R;
 
 /**
- * 操作actionBar
+ * 操作栏 actionBar
  * <p>
- * 移除title
- * 更改bar的颜色等。
+ * 移除操作栏 title
+ * 更改操作栏 颜色等。
  * <p>
  */
 public class ActionBarBaseDemoActivity extends AppCompatActivity {

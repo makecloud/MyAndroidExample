@@ -6,9 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class VideoViewActivity extends AppCompatActivity {
     private final String TAG = "VideoViewActivity";
     private VideoView myVideoView;
+    private MediaPlayer mediaPlayer;
     private MediaController mediaController;
 
     @Override
@@ -32,22 +33,27 @@ public class VideoViewActivity extends AppCompatActivity {
     private void init() {
         //视频源文件路径
         //设置videoview
-//        myVideoView.setVideoURI(Uri.parse("http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4"));
-//        myVideoView.setVideoURI(Uri.parse("https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com" + "/material/40" +
-//                                                  "/BFA91EE06E2EE723A2C08B4B656605D8.mp4"));
-        myVideoView.setVideoURI(Uri.parse("https://ygsd-test.oss-cn-beijing.aliyuncs.com/material/40/BFA91EE06E2EE723A2C08B4B656605D8.mp4"));
+        //        myVideoView.setVideoURI(Uri.parse("http://2449.vod.myqcloud
+        //        .com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4"));
+        //        myVideoView.setVideoURI(Uri.parse("https://ygsd-test.oss-cn-beijing.aliyuncs" +
+        //        ".com" + "/material/40" +
+        //                                                  "/BFA91EE06E2EE723A2C08B4B656605D8
+        //                                                  .mp4"));
+        myVideoView.setVideoURI(Uri.parse("https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com" +
+                                                  "/material/40/BFA91EE06E2EE723A2C08B4B656605D8" + ".mp4"));
+        //播放结束回调
         myVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                //
+                Log.d(TAG, "onCompletion: ");
             }
         });
 
-        MediaPlayer mediaPlayer;
+        //加载素材回调. 未执行start也会回调，应该是设置了资源就会准备，准备到可以播放了就会回调
         myVideoView.setOnPreparedListener(new OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
-
+                Log.d(TAG, "onPrepared: ");
                 //控制视频按比例缩小或者拉伸
                 {
                     // 首先取得video的宽和高
@@ -76,7 +82,7 @@ public class VideoViewActivity extends AppCompatActivity {
                                                                                      vHeight);
                         lp.gravity = Gravity.CENTER;
                         //如果用的surfaceView 则设置surfaceView的布局参数
-//                    surfaceView.setLayoutParams(lp);
+                        //                    surfaceView.setLayoutParams(lp);
                         //如果用的videoView 则设置surfaceView的布局参数
                         myVideoView.setLayoutParams(lp);
                     }
@@ -97,7 +103,7 @@ public class VideoViewActivity extends AppCompatActivity {
                                                                                      vHeight);
                         lp.gravity = Gravity.CENTER;
                         //如果用的surfaceView 则设置surfaceView的布局参数
-//                    surfaceView.setLayoutParams(lp);
+                        //                    surfaceView.setLayoutParams(lp);
                         //如果用的videoView 则设置surfaceView的布局参数
                         myVideoView.setLayoutParams(lp);
                     }
@@ -106,15 +112,32 @@ public class VideoViewActivity extends AppCompatActivity {
             }
         });
 
-        //
+        //info？ 回调。start后会回调：MEDIA_INFO_VIDEO_RENDERING_START
+        myVideoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+            @Override
+            public boolean onInfo(MediaPlayer mp, int what, int extra) {
+                //MediaPlayer.MEDIA_INFO_AUDIO_NOT_PLAYING;//804
+                //MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START;//3
+                //MediaPlayer.MEDIA_INFO_STARTED_AS_NEXT;//2
+                Log.d(TAG, "onInfo: " + what);
+                return false;
+            }
+        });
+
+        //设置 控制器view
         mediaController = new MediaController(this);
         myVideoView.setMediaController(mediaController);
 
-        //
 
         // 启动播放
-        myVideoView.start();
-        myVideoView.requestFocus();
+        //myVideoView.start();
+        //myVideoView.requestFocus();
 
+    }
+
+    //按钮启动播放
+    public void startPlay(View view) {
+        myVideoView.start();
+        //        myVideoView.requestFocus();
     }
 }

@@ -9,18 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.liuyihui.bar.BarHideDemoActivity"></activity>
+        <activity android:name="com.liuyihui.bar.SystemUIDemoActivity"
+            android:theme="@style/systemuidemo">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.liuyihui.bar.BarHideDemoActivity" />
         <activity android:name="com.liuyihui.bar.MovingToolBarActivity3" />
         <activity
-            android:name="com.liuyihui.bar.ToolbarActivity"
+            android:name="com.liuyihui.bar.ToolbarDemoActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity android:name="com.liuyihui.bar.ActionBarBaseDemoActivity" />
-        <activity android:name="com.liuyihui.bar.SearchToolBarActivity" />
-        <activity android:name="com.liuyihui.bar.ParallaxStyleBarActivity" />
+        <activity android:name="com.liuyihui.bar.ToolBarMenuDemoActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.liuyihui.bar.ParallaxBarDemoActivity" />
         <activity android:name="com.liuyihui.bar.MovingToolBarActivity" />
         <activity android:name="com.liuyihui.bar.MainActivity">
             <intent-filter>

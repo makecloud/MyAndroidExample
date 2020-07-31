@@ -17,14 +17,14 @@ import com.liuyihui.client.myexample.R;
  */
 public class Example18Activity extends AppCompatActivity {
     private final static String TAG = "Example18Activity";
-    
+
     private Button startServiceButton;//启动服务按钮
     private Button stopServiceButton;//停止服务按钮
     private Button bindServiceButton;//绑定服务
     private Button unbindServiceButton;//解绑服务
-    
+
     private MyService.DownloadBinder binder;//绑定对象
-    
+
     /**
      * 与服务的连接对象
      */
@@ -39,14 +39,14 @@ public class Example18Activity extends AppCompatActivity {
             binder = (MyService.DownloadBinder) iBinder;
             Log.i(TAG, "onServiceConnected() executed .");
         }
-        
+
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             Log.i(TAG, "onServiceDisConnected() executed .");
         }
     };
-    
-    
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +77,9 @@ public class Example18Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //activity绑定一个服务。使用一个connection对象
-                bindService(new Intent(Example18Activity.this, MyService.class), connection, BIND_AUTO_CREATE);
+                bindService(new Intent(Example18Activity.this, MyService.class),
+                            connection,
+                            BIND_AUTO_CREATE);
 
             }
         });
@@ -90,6 +92,21 @@ public class Example18Activity extends AppCompatActivity {
             }
         });
     }
-    
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: ");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: ");
+    }
+
+    public void startIntentService(View view) {
+        Intent intent = new Intent(this, PollService.class);
+        startService(intent);
+    }
 }

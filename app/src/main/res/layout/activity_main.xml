@@ -118,7 +118,7 @@
                     android:id="@+id/btn_eg25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="btn_eg25Click"
+                    android:onClick="open_adb_tcp"
                     android:text="启动adb tcp" />
 
                 <Button

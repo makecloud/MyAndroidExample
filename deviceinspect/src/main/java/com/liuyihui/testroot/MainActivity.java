@@ -2,9 +2,11 @@ package com.liuyihui.testroot;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.liuyihui.mylibrary.util.MD5Util;
+import com.liuyihui.mylibrary.util.ScreenUtil;
 import com.liuyihui.testroot.httprepository.HttpApi;
 import com.liuyihui.testroot.netinfo.NetWork;
 import com.liuyihui.testroot.netinfo.NetworkUtils;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView androidFactoryTextView;
     private TextView androidSystemBuildVersionTextView;
     private TextView netInfoTextView;
+    private TextView dipInfoTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         androidFactoryTextView = findViewById(R.id.android_factory);
         androidSystemBuildVersionTextView = findViewById(R.id.android_build_display);
         netInfoTextView = findViewById(R.id.netinfo);
+        dipInfoTextView = findViewById(R.id.dipInfo);
 
         if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
             getPermission(this,
@@ -127,6 +132,27 @@ public class MainActivity extends AppCompatActivity {
 
         loadNetWorkInfo();
         //getPermission(this, Manifest.permission.INTERNET, Manifest.permission.ACCESS_WIFI_STATE);
+
+        //show screen dip info
+        float density = getResources().getDisplayMetrics().density;
+        float densityDpi = getResources().getDisplayMetrics().densityDpi;
+        float xdpi = getResources().getDisplayMetrics().xdpi;
+        float ydpi = getResources().getDisplayMetrics().ydpi;
+        float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
+        float heightPixels = getResources().getDisplayMetrics().heightPixels;
+        float widthPixels = getResources().getDisplayMetrics().widthPixels;
+        int onedpPx = ScreenUtil.dip2px(this, 1);
+        String dpInfo = String.format("density=%s,1dp=%spx,densityDpi=%s,xdpi=%s,ydpi=%s," +
+                                              "scaleDensity=%s,heightPx=%s,widthPx=%s",
+                                      density,
+                                      onedpPx,
+                                      densityDpi,
+                                      xdpi,
+                                      ydpi,
+                                      scaledDensity,
+                                      heightPixels,
+                                      widthPixels);
+        dipInfoTextView.setText(dpInfo);
     }
 
     private void loadNetWorkInfo() {
@@ -143,8 +169,11 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                netInfoTextView.append(String.format("%s=%s\n", n.getType(), n.getIpv4()));
-                                netInfoTextView.append(String.format("broadcast=%s\n", n.getBroadCastIp()));
+                                netInfoTextView.append(String.format("%s=%s\n",
+                                                                     n.getType(),
+                                                                     n.getIpv4()));
+                                netInfoTextView.append(String.format("broadcast=%s\n",
+                                                                     n.getBroadCastIp()));
                             }
                         });
                 }
@@ -155,7 +184,8 @@ public class MainActivity extends AppCompatActivity {
     public void evaluateMd5(View view) {
         TextView md5tv = findViewById(R.id.md5value);
         File file = new File("/sdcard/oohlink/player/.screen/E94DEFEE0A1820286F051B54413FF42B");
-        File file2 = new File("/sdcard/com.liuyihui.networkcontrol/E94DEFEE0A1820286F051B54413FF42B");
+        File file2 = new File("/sdcard/com.liuyihui" + ".networkcontrol" +
+                                      "/E94DEFEE0A1820286F051B54413FF42B");
         md5tv.setText(MD5Util.getFileMD5String(file2));
     }
 
@@ -163,13 +193,25 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String url = "http://res.oohlink.com/material/645/4F4709B19FB71DD85A406B2D0A0720C8.mp4";
-                String storePath = "/sdcard/oohlink/player/.screen/E94DEFEE0A1820286F051B54413FF42B";
+                String url = "http://res.oohlink" + ".com/material/645" +
+                        "/4F4709B19FB71DD85A406B2D0A0720C8.mp4";
+                String storePath = "/sdcard/oohlink/player/" + ".screen" +
+                        "/E94DEFEE0A1820286F051B54413FF42B";
                 HttpApi.getInstance().downFile(url, storePath);
             }
         }).start();
     }
 
+
+    public void startSettings(View view) {
+        Intent intent = new Intent(Settings.ACTION_SETTINGS);
+        startActivity(intent);
+    }
+
+    public void startDevelopSetting(View view) {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
+        startActivity(intent);
+    }
 
     /**
      * 以下4个方法，使用PermissionGen 框架，针对android 6.x sdk 获取系统某些权限
@@ -186,7 +228,10 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        PermissionGen.onRequestPermissionsResult(MainActivity.this, requestCode, permissions, grantResults);
+        PermissionGen.onRequestPermissionsResult(MainActivity.this,
+                                                 requestCode,
+                                                 permissions,
+                                                 grantResults);
     }
 
     @PermissionSuccess(requestCode = 100)

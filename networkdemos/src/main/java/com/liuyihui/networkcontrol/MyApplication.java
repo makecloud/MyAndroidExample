@@ -1,10 +1,9 @@
 package com.liuyihui.networkcontrol;
 
-import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 
-import com.liuyihui.networkcontrol.retrofitCommon.MyGsonConverterFactory;
+import com.liuyihui.networkcontrol.http.retrofitCommon.MyGsonConverterFactory;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.liuyihui.bar.SearchToolBarActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.liuyihui.bar.ToolBarMenuDemoActivity">
+
 
     <item
         android:id="@+id/action_search"
-        android:orderInCategory="60"
-        android:title="action_search"
         android:icon="@drawable/ic_yunge_search"
-        app:showAsAction="ifRoom"/>
+        android:title="搜索"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
 </menu>

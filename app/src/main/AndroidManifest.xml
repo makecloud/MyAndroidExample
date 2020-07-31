@@ -26,14 +26,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".demo27_tabhost.TabDemoActivity"></activity>
+        <activity android:name=".example7_custom_view.CustViewGroupActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".example1.Demo3Activity"
+            android:name=".example1_activity.Demo3Activity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".example1.Demo2Activity"
+            android:name=".example1_activity.Demo2Activity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".example1.Demo1Activity"
+            android:name=".example1_activity.Demo1Activity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".example24_datetimepicker.DateTimePickerActivity">
             <intent-filter>
@@ -80,7 +86,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example1.ViewCoordinateActivity">
+        <activity android:name=".example1_activity.ViewCoordinateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -109,13 +115,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".example1.Example1Activity">
+        <activity android:name=".example1_activity.Example1Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".example1.Example1_1Activity"
+            android:name=".example1_activity.Example1_1Activity"
             android:theme="@style/AppTheme.OverlayActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -206,9 +212,14 @@
 
         <service android:name=".example18_service.MyService" />
 
-        <activity android:name=".example18_service.Example18Activity" />
+        <activity android:name=".example18_service.Example18Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".example19_serviceUI.ServiceUI" />
+        <service android:name=".example18_service.PollService" />
 
         <activity android:name=".example19_serviceUI.example19Activity">
             <intent-filter>
@@ -255,6 +266,13 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".example1_activity.IntentFlagDemoActivity1">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".example1_activity.IntentFlagDemoActivity2" />
+        <activity android:name=".example1_activity.IntentFlagDemoActivity3" />
     </application>
 
 </manifest>

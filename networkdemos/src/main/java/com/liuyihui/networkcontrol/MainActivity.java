@@ -11,30 +11,31 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.liuyihui.mylibrary.io.OohlinkSerializer;
 import com.liuyihui.mylibrary.util.ToastUtil;
 import com.liuyihui.networkcontrol.devicenetwork.ApManager;
 import com.liuyihui.networkcontrol.devicenetwork.WifiControlUtil;
-import com.liuyihui.networkcontrol.generaldownload.HttpApi;
-import com.liuyihui.networkcontrol.queueDownload.DataRepository;
-import com.liuyihui.networkcontrol.queueDownload.DownInfo;
-import com.liuyihui.networkcontrol.queueDownload.PlayerDownloadManager;
+import com.liuyihui.networkcontrol.http.TestApi;
+import com.liuyihui.networkcontrol.httpdownload.generaldownload.HttpApi;
+import com.liuyihui.networkcontrol.httpdownload.queueDownload.DataRepository;
+import com.liuyihui.networkcontrol.httpdownload.queueDownload.DownInfo;
+import com.liuyihui.networkcontrol.httpdownload.queueDownload.PlayerDownloadManager;
 import com.liuyihui.networkcontrol.socketTransmit.SocketTransmitDemoActivity;
+import com.liuyihui.networkcontrol.systemProcessedDownload.DownloadUseSystemService;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.Observable;
 
 import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
 import kr.co.namee.permissiongen.PermissionSuccess;
 
 /**
- * wifi、热点 控制
+ * wifi、热点、网络demo
  */
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
-    Button openHotspotButton;
-    Button connectWifiButton;
+    private Button openHotspotButton;
+    private Button connectWifiButton;
 
 
     @Override
@@ -43,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         openHotspotButton = findViewById(R.id.open_hotspot);
         connectWifiButton = findViewById(R.id.connect_wifi);
+
+
+        //permission
+        if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
+            getPermission(this,
+                          Manifest.permission.READ_EXTERNAL_STORAGE,
+                          Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
 
         //通过按钮事件设置热点
         openHotspotButton.setOnClickListener(new View.OnClickListener() {
@@ -66,27 +75,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //permission
-        if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
-            getPermission(this,
-                          Manifest.permission.READ_EXTERNAL_STORAGE,
-                          Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
     }
 
     //测试我自己写的普通方式下载文件
     public void testGeneralDownload(View view) {
-        try {
-            String url = "https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com/material/40" +
-                    "/BFA91EE06E2EE723A2C08B4B656605D8.mp4";
-            String url2 =
-                    "http://res.oohlink.com/material/645/4F4709B19FB71DD85A406B2D0A0720C8" + ".mp4";
-            String filePath = OohlinkSerializer.getAppSDPath(MainActivity.this) +
-                    "E94DEFEE0A1820286F051B54413FF42B";
-            HttpApi.getInstance().downFile(url2, filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String url = "https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com/material/40" +
+                "/BFA91EE06E2EE723A2C08B4B656605D8.mp4";
+
+        String url2 = "http://res.oohlink.com/material/645/4F4709B19FB71DD85A406B2D0A0720C8" +
+                ".mp4";
+
+        String filePath = getExternalFilesDir(null).getAbsolutePath() + "/downloaded.mp4";
+
+        HttpApi.getInstance().downFile(url2, filePath);
+
     }
 
     //测试播控内写的端点续传下载
@@ -134,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
     //todo 测试使用系统下载服务下载
     public void testSystemProcessDownload(View view) {
         // TODO: 2020-05-19
+        DownloadUseSystemService.getInstance().downloadFile();
+
+    }
+
+    public void testConcat(View view) {
+        TestApi.getInstance().getPlayerInfo();
     }
 
     /**

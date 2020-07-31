@@ -52,6 +52,7 @@ public class ExoPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo_player);
 
+
         startButton = findViewById(R.id.button1);
         stopButton = findViewById(R.id.button2);
         changeSrcButton = findViewById(R.id.button3);
@@ -138,27 +139,24 @@ public class ExoPlayerActivity extends AppCompatActivity {
 
         player.addListener(eventListener);
         player2.addListener(eventListener);
+
     }
 
 
     public void prepareVideo(View view) {
-        //        String path = "/sdcard/oohlink/player/.screen/B00D01FECB38E8F56AFECB9E4B33B992";
-        String path = Environment.getExternalStorageDirectory() +
-                "/B00D01FECB38E8F56AFECB9E4B33B992";
+        String path = getExternalFilesDir(null).getAbsolutePath()+
+                "/8B9357192E4DBF750B99FD3C4C5CA1CC.mp4";
         Uri videoUri = Uri.fromFile(new File(path));
-        videoUri = Uri.parse("http://ivi.bupt.edu.cn/hls/chchd.m3u8");
         // This is the MediaSource representing the media to be played.
         MediaSource videoSource =
                 new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(
                 videoUri);
+        player.setRepeatMode(Player.REPEAT_MODE_ALL);
         // Prepare the player with the source.
         player.prepare(videoSource);
     }
 
     public void prepareVideo2(View view) {
-        //        String path = Environment.getExternalStorageDirectory() + "/Android/data" +
-        //        "/com" +
-        //                ".oohlink" + ".smartbillborad/files/material/video";
         String path = Environment.getExternalStorageDirectory() + "/video";
         Uri videoUri = Uri.fromFile(new File(path));
         // This is the MediaSource representing the media to be played.

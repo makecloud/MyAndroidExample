@@ -11,15 +11,21 @@ import android.util.Log;
  */
 
 public class PollService extends IntentService {
-    
+
     private static final String TAG = "PollService";
-    
+
     public PollService() {
         super(TAG);
     }
-    
+
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.i(TAG, "received an intent:" + intent);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d(TAG, "onCreate: ");
     }
 }
