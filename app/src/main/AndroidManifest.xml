@@ -241,7 +241,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example21_framelayout_hierarchy.Example21Activity">
+        <activity android:name=".demo21_framelayout_hierarchy.Example21Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>

@@ -2,7 +2,6 @@ package com.liuyihui.playvideodemo;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -36,11 +35,9 @@ import java.io.File;
 public class ExoPlayerActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
 
-    private Button startButton;
-    private Button stopButton;
     private Button changeSrcButton;
     private SurfaceView surfaceView;
-    private SimpleExoPlayer player;
+    private SimpleExoPlayer player1;
     private SimpleExoPlayer player2;
     private PlayerView exoPlayerView;
     private ProgressBar progressBar;
@@ -52,15 +49,12 @@ public class ExoPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo_player);
 
-
-        startButton = findViewById(R.id.button1);
-        stopButton = findViewById(R.id.button2);
         changeSrcButton = findViewById(R.id.button3);
         surfaceView = findViewById(R.id.sufaceView);
         exoPlayerView = findViewById(R.id.exoPlayerView);
         progressBar = findViewById(R.id.progressBar);
 
-        player = new SimpleExoPlayer.Builder(this).build();
+        player1 = new SimpleExoPlayer.Builder(this).build();
         player2 = new SimpleExoPlayer.Builder(this).build();
         //        exoPlayerView.setPlayer(player);
         // Produces DataSource instances through which media data is loaded.
@@ -89,7 +83,7 @@ public class ExoPlayerActivity extends AppCompatActivity {
 
             @Override
             public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                //                Player.STATE_READY;//3
+                //                Player.STATE_READY;//3, 显示第一帧可以播放了应该是
                 //                Player.STATE_BUFFERING;//2
                 //                Player.STATE_IDLE;//1
                 //                Player.STATE_ENDED;//4
@@ -137,38 +131,44 @@ public class ExoPlayerActivity extends AppCompatActivity {
             }
         };
 
-        player.addListener(eventListener);
+        player1.addListener(eventListener);
         player2.addListener(eventListener);
 
     }
 
 
-    public void prepareVideo(View view) {
-        String path = getExternalFilesDir(null).getAbsolutePath()+
-                "/8B9357192E4DBF750B99FD3C4C5CA1CC.mp4";
+    public void prepareVideo1(View view) {
+        player1 = new SimpleExoPlayer.Builder(this).build();
+        //        String path = getExternalFilesDir(null).getAbsolutePath() +
+        //                "/8B9357192E4DBF750B99FD3C4C5CA1CC.mp4";
+        String path = "/sdcard/oohlink/player/.screen/0A638DE2475566D0691CECD3F00B19D3";
         Uri videoUri = Uri.fromFile(new File(path));
         // This is the MediaSource representing the media to be played.
         MediaSource videoSource =
                 new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(
                 videoUri);
-        player.setRepeatMode(Player.REPEAT_MODE_ALL);
+        player1.setRepeatMode(Player.REPEAT_MODE_OFF);
         // Prepare the player with the source.
-        player.prepare(videoSource);
+        player1.prepare(videoSource);
     }
 
     public void prepareVideo2(View view) {
-        String path = Environment.getExternalStorageDirectory() + "/video";
+        player2 = new SimpleExoPlayer.Builder(this).build();
+        //        String path = getExternalFilesDir(null).getAbsolutePath() + File.separator +
+        //                "91AB45CDBFCADD696B37E49FD51F48C4.mp4";
+        String path = "/sdcard/oohlink/player/.screen/549A2C1EBCC166B1CD6104B4BC0609A9";
         Uri videoUri = Uri.fromFile(new File(path));
         // This is the MediaSource representing the media to be played.
         MediaSource videoSource =
                 new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(
                 videoUri);
         // Prepare the player with the source.
+        player2.setRepeatMode(Player.REPEAT_MODE_OFF);
         player2.prepare(videoSource);
     }
 
-    public void exoPlayerStart(View view) {
-        player.setPlayWhenReady(true);
+    public void exoPlayer1Start(View view) {
+        player1.setPlayWhenReady(true);
     }
 
     public void exoPlayer2Start(View view) {
@@ -176,46 +176,62 @@ public class ExoPlayerActivity extends AppCompatActivity {
     }
 
     //测试是否可以动态更改exoPlayer的view
-    public void exoPlayerSetView(View view) {
-        exoPlayerView.setPlayer(player);
+    public void ViewSetexoPlayer1(View view) {
+        exoPlayerView.setPlayer(player1);
+        player2.release();
         exoPlayerView.setVisibility(View.VISIBLE);
 
     }
 
     //测试是否可以动态更改exoPlayer的view
-    public void exoPlayer2SetView(View view) {
+    public void ViewSetexoPlayer2(View view) {
         exoPlayerView.setPlayer(player2);
+        player1.release();
         exoPlayerView.setVisibility(View.VISIBLE);
 
     }
 
-    public void exoPlayerStop(View view) {
-        player.stop();
-        //exoPlayerView.setVisibility(View.INVISIBLE);
+    public void player1stop(View view) {
+        player1.stop(false);
+
     }
+
+    public void player2stop(View view) {
+        player2.stop();
+
+    }
+
 
     //测试播放中调用prepare准备其他视频，会怎样?
     //结果之前的视频停止，并显示下一个视频的第一帧
-    public void changeSrcWhenPlaying(View view) {
-        player.setPlayWhenReady(false);
-        Uri videoUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory() +
-                                                     "/Android/data/com" + ".oohlink" +
-                                                     ".smartbillborad/files/mat/video2"));
+    public void testChangeVideo1SrcWhenPlaying(View view) {
+        player1.setPlayWhenReady(false);
+        String path = getExternalFilesDir(null).getAbsolutePath() + File.separator +
+                "91AB45CDBFCADD696B37E49FD51F48C4.mp4";
+        Uri videoUri = Uri.fromFile(new File(path));
 
         // This is the MediaSource representing the media to be played.
         MediaSource videoSource =
                 new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(
                 videoUri);
+        //player.stop(false);
         // Prepare the player with the source.
-        player.prepare(videoSource);
-        player.addListener(new Player.EventListener() {});
+        player1.prepare(videoSource);
+        player1.addListener(new Player.EventListener() {});
+
+    }
+
+    //测试播放过程中改变另一个player
+    public void testChangePlayerWhenPlaying() {
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        player.stop();
-        player.release();
+        player1.stop();
+        player1.release();
+        player2.stop();
+        player2.release();
     }
 }

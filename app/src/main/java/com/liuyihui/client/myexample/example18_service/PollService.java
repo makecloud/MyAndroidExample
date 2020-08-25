@@ -18,6 +18,11 @@ public class PollService extends IntentService {
         super(TAG);
     }
 
+    /**
+     * 每次startIntent都会用传递的intent回调此方法，即使已经服务在运行了，供处理传递的intent
+     *
+     * @param intent
+     */
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.i(TAG, "received an intent:" + intent);

@@ -32,14 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<String> adapter;
 
-    Handler handler = new Handler(Looper.getMainLooper()) {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Toast.makeText(MainActivity.this, "mainActivity handle msg", Toast.LENGTH_SHORT).show();
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

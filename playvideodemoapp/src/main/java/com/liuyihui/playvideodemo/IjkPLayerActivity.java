@@ -1,15 +1,13 @@
 package com.liuyihui.playvideodemo;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.widget.MediaController;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.liuyihui.playvideodemo.customerView.IjkVideoView;
-import com.liuyihui.playvideodemo.customerView.VideoPlayerListener;
+import com.liuyihui.playvideodemo.customerView.TotalVideoPlayerListener;
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
@@ -36,7 +34,8 @@ public class IjkPLayerActivity extends AppCompatActivity {
             Log.e(TAG, ",", e);
         }
 
-        ijkVideoView.setListener(new VideoPlayerListener() {
+
+        ijkVideoView.setListener(new TotalVideoPlayerListener() {
             @Override
             public void onBufferingUpdate(IMediaPlayer mp, int percent) {
             }
@@ -76,15 +75,11 @@ public class IjkPLayerActivity extends AppCompatActivity {
         //String videoUrl = "http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4";//test line
 //        String videoUrl = "http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4";//test line
 //        String videoUrl = "http://test.yungeshidai.com/material/eec76c455d081e4498c0ad7a55fb67e1.mp4";//test line
-        String videoUrl = Environment.getExternalStorageDirectory()
-                                     .getAbsolutePath() + "/DCIM/qqqq.mp4";
-        Toast.makeText(this, videoUrl, Toast.LENGTH_SHORT)
-             .show();
-        ijkVideoView.setVideoPath(videoUrl);
+        String path = "/sdcard/oohlink/player/.screen/0A638DE2475566D0691CECD3F00B19D3";
+        ijkVideoView.setVideoPath(path);
 
 
     }
-
 
     @Override
     protected void onStop() {

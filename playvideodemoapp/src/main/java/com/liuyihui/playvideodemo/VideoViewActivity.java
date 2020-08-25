@@ -32,15 +32,12 @@ public class VideoViewActivity extends AppCompatActivity {
 
     private void init() {
         //视频源文件路径
-        //设置videoview
-        //        myVideoView.setVideoURI(Uri.parse("http://2449.vod.myqcloud
-        //        .com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4"));
-        //        myVideoView.setVideoURI(Uri.parse("https://ygsd-test.oss-cn-beijing.aliyuncs" +
-        //        ".com" + "/material/40" +
-        //                                                  "/BFA91EE06E2EE723A2C08B4B656605D8
-        //                                                  .mp4"));
-        myVideoView.setVideoURI(Uri.parse("https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com" +
-                                                  "/material/40/BFA91EE06E2EE723A2C08B4B656605D8" + ".mp4"));
+        String url1 = "https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com/material/40" +
+                "/BFA91EE06E2EE723A2C08B4B656605D8.mp4";
+        String url2 =
+                "http://test.yungeshidai.com/material/40/8b057e2daf3ee51e8af3f2765cf78f95" + ".jpg";
+        String url3 = "/sdcard/oohlink/player/.screen/549A2C1EBCC166B1CD6104B4BC0609A9";
+        myVideoView.setVideoURI(Uri.parse(url3));
         //播放结束回调
         myVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -54,6 +51,9 @@ public class VideoViewActivity extends AppCompatActivity {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 Log.d(TAG, "onPrepared: ");
+                //拿到mediaPlayer才能设置循环播放
+                //mediaPlayer.setLooping(true);
+
                 //控制视频按比例缩小或者拉伸
                 {
                     // 首先取得video的宽和高

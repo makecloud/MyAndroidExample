@@ -23,14 +23,14 @@
                 android:id="@+id/button0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="prepareVideo"
+                android:onClick="prepareVideo1"
                 android:text="Prepare1"
                 android:textAllCaps="false" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="exoPlayerStart"
+                android:onClick="exoPlayer1Start"
                 android:text="Player1Start"
                 android:textAllCaps="false" />
 
@@ -39,11 +39,30 @@
                 android:id="@+id/button01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="exoPlayerSetView"
-                android:text="Player1SetView"
+                android:onClick="ViewSetexoPlayer1"
+                android:text="Player1SetToView"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/button03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="player1stop"
+                android:text="stop1"
                 android:textAllCaps="false" />
 
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="testChangeVideo1SrcWhenPlaying"
+                android:text="播放中\n改resource" />
         </LinearLayout>
 
         <LinearLayout
@@ -68,38 +87,19 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="exoPlayer2SetView"
-                android:text="Player2SetView"
+                android:onClick="ViewSetexoPlayer2"
+                android:text="Player2SetToView"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/button04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="player2stop"
+                android:text="stop2"
                 android:textAllCaps="false" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="exoPlayerStart"
-                android:text="PlayerStart"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="exoPlayerStop"
-                android:text="PlayerStop"
-                android:textAllCaps="false" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="changeSrcWhenPlaying"
-                android:text="播放中\n改resource" />
-        </LinearLayout>
 
 
     </LinearLayout>
@@ -108,7 +108,7 @@
     <FrameLayout
         android:id="@+id/fl"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:layout_below="@+id/ll1">
 
         <com.google.android.exoplayer2.ui.PlayerView
@@ -125,11 +125,5 @@
             android:visibility="gone" />
     </FrameLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@id/fl"
-        android:src="@drawable/redcow"
-        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

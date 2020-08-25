@@ -4,52 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.liuyihui.client.myexample.example21_framelayout_hierarchy.Example21Activity">
+    tools:context="com.liuyihui.client.myexample.demo21_framelayout_hierarchy.Example21Activity">
 
     <Button
-        android:id="@+id/upon1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="move1Up"
-        android:text="上移1" />
+        android:onClick="addViewToFrameLayout"
+        android:text="添加View"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/upon2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="move2Up"
-        android:text="上移2" />
+        android:onClick="bringChildViewToFront"
+        android:text="bringToFront"
+        android:textAllCaps="false" />
 
     <FrameLayout
+        android:id="@+id/containerFramelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/azure">
 
-        <FrameLayout
-            android:id="@+id/f1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/button_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:text="第一个button" />
-        </FrameLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="第一个button" />
 
-        <FrameLayout
-            android:id="@+id/f2"
-            android:layout_width="400dp"
-            android:layout_height="600dp">
-
-            <Button
-                android:id="@+id/button_2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:text="第二个buton" />
-        </FrameLayout>
 
     </FrameLayout>
 

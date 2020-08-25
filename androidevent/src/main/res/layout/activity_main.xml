@@ -8,12 +8,14 @@
     tools:context="com.liuyihui.androidevent.MainActivity">
 
     <TextView
+        android:tag="atxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="AFrameLayout"
         android:textAllCaps="false" />
 
     <com.liuyihui.androidevent.BFramelayout
+        android:tag="blayout"
         android:id="@+id/b_framelayout"
         android:layout_width="180dp"
         android:layout_height="280dp"

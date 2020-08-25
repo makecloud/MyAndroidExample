@@ -12,6 +12,8 @@ import android.widget.Button;
 
 import com.liuyihui.client.myexample.R;
 
+import java.security.PublicKey;
+
 /**
  * 使用android 服务demo
  */
@@ -91,6 +93,11 @@ public class Example18Activity extends AppCompatActivity {
                 unbindService(connection);
             }
         });
+
+
+
+        Intent intent = new Intent(this, IntentServiceDemoService.class);
+        startService(intent);
     }
 
     @Override

@@ -35,14 +35,14 @@
                 android:id="@+id/button0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="prepareVideo"
+                android:onClick="prepareVideo1"
                 android:text="Prepare1"
                 android:textAllCaps="false" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="PlayerStart"
+                android:onClick="Player1Start"
                 android:text="Player1Start"
                 android:textAllCaps="false" />
 
@@ -51,7 +51,7 @@
                 android:id="@+id/button01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="PlayerSetView"
+                android:onClick="Player1SetView"
                 android:text="Player1SetView"
                 android:textAllCaps="false" />
 

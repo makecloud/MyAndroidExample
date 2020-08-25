@@ -28,7 +28,7 @@ import com.liuyihui.client.myexample.example17_DESencrypt.TestDesActivity;
 import com.liuyihui.client.myexample.example18_service.Example18Activity;
 import com.liuyihui.client.myexample.example19_serviceUI.example19Activity;
 import com.liuyihui.client.myexample.example20_activityGroup.ContainerActivity;
-import com.liuyihui.client.myexample.example21_framelayout_hierarchy.Example21Activity;
+import com.liuyihui.client.myexample.demo21_framelayout_hierarchy.Example21Activity;
 import com.liuyihui.client.myexample.example22_awakenSelf.Example22Activity;
 import com.liuyihui.client.myexample.example23_CrashHandler.Example23Activity;
 import com.liuyihui.client.myexample.example25_picture_demo.ImagePreviewDemoActivity;

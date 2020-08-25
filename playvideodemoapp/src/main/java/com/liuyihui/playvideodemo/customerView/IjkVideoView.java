@@ -20,6 +20,7 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * 自定义ijkPlayerView
+ * <p>
  * Created by liuyi on 2018/9/4.
  */
 
@@ -32,12 +33,11 @@ public class IjkVideoView extends FrameLayout {
     /**
      * 视频文件地址
      */
-
     private String mPath = "";
 
     private SurfaceView surfaceView;
 
-    private VideoPlayerListener listener;
+    private TotalVideoPlayerListener listener;
     private Context mContext;
 
     public IjkVideoView(@NonNull Context context) {
@@ -50,7 +50,9 @@ public class IjkVideoView extends FrameLayout {
         initVideoView(context);
     }
 
-    public IjkVideoView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+    public IjkVideoView(@NonNull Context context,
+                        @Nullable AttributeSet attrs,
+                        @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initVideoView(context);
     }
@@ -82,38 +84,34 @@ public class IjkVideoView extends FrameLayout {
     }
 
     /*
-     *
      * 新建一个surfaceview
      */
     private void createSurfaceView() {
         //生成一个新的surface view
         surfaceView = new SurfaceView(mContext);
-        surfaceView.getHolder()
-                   .addCallback(new LmnSurfaceCallback());
+        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+                //surfaceview创建成功后，加载视频
+                load();
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+
+            }
+        });
+
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,
                                                      LayoutParams.MATCH_PARENT,
                                                      Gravity.CENTER);
         surfaceView.setLayoutParams(layoutParams);
         this.addView(surfaceView);
-    }
-
-    /**
-     * surfaceView的监听器
-     */
-    private class LmnSurfaceCallback implements SurfaceHolder.Callback {
-        @Override
-        public void surfaceCreated(SurfaceHolder holder) {
-        }
-
-        @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            //surfaceview创建成功后，加载视频
-            load();
-        }
-
-        @Override
-        public void surfaceDestroyed(SurfaceHolder holder) {
-        }
     }
 
     /* *
@@ -159,7 +157,7 @@ public class IjkVideoView extends FrameLayout {
     }
 
 
-    public void setListener(VideoPlayerListener listener) {
+    public void setListener(TotalVideoPlayerListener listener) {
         this.listener = listener;
         if (mMediaPlayer != null) {
             mMediaPlayer.setOnPreparedListener(listener);

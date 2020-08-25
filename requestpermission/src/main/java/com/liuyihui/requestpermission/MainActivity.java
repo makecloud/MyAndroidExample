@@ -2,10 +2,12 @@ package com.liuyihui.requestpermission;
 
 import android.Manifest;
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import kr.co.namee.permissiongen.PermissionSuccess;
  * 使用permissionGen框架
  */
 public class MainActivity extends AppCompatActivity {
+
     private TextView msg1;
     private TextView msg2;
 
@@ -35,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
 
         checkSdcardDirectoryAccessable();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Bitmap bitmap = MediaUtil.getLocalVideoBitmap(
+                "/storage/emulated/0/oohlink/player/.screen/0A638DE2475566D0691CECD3F00B19D3");
+
+        Log.d("MainActivity", "onResume: " + bitmap);
     }
 
     /**
@@ -56,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
             dir = getFilesDir().getPath();
             msg2.setText("sd卡未启用fileDir：" + dir);
         }
-
 
         File fDir = new File(dir);
 

@@ -81,5 +81,12 @@
         android:text="exoplayerDemo"
         android:textAllCaps="false"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="switchVideoViewDemoClick"
+        android:text="切换videoview"
+        android:textAllCaps="false"/>
+
 
 </LinearLayout>

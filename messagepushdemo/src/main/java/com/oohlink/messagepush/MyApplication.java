@@ -3,9 +3,6 @@ package com.oohlink.messagepush;
 import android.app.Application;
 import android.app.Notification;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
 
 import com.umeng.commonsdk.UMConfigure;
@@ -38,6 +35,7 @@ public class MyApplication extends Application {
                          "754e607d5d9621877e26ea52144a7b90");
 
 
+        //发现不在 Application的OnCreate方法里初始化pushSDK，推送无法回调。。。
         //获取消息推送代理示例
         PushAgent mPushAgent = PushAgent.getInstance(this);
         //注册推送服务，每次调用register方法都会回调该接口
@@ -48,12 +46,6 @@ public class MyApplication extends Application {
                 //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
                 Log.i(TAG, "注册成功：deviceToken：-------->  " + deviceToken);
                 Constant.deviceToken = deviceToken;
-
-                Message message = new Message();
-                message.what = 0;
-                message.obj = "test handler send";
-
-                new Handler(getMainLooper()).obtainMessage(0, "test").sendToTarget();
             }
 
             @Override
@@ -72,10 +64,10 @@ public class MyApplication extends Application {
 
             @Override
             public void dealWithCustomMessage(final Context context, final UMessage msg) {
-                new Handler(Looper.getMainLooper()).obtainMessage(0, "test").sendToTarget();
 
                 Log.i(TAG,
                       "dealWithCustomMessage: " + String.format("%s - %s", msg.title, msg.custom));
+
                 Constant.receivedMessageList.add(String.format("message： %s \n%s",
                                                                msg.custom,
                                                                simpleDateFormat.format(new Date())));
@@ -102,6 +94,7 @@ public class MyApplication extends Application {
 
             @Override
             public Notification getNotification(Context context, UMessage msg) {
+                Log.d(TAG, "getNotification: " + msg.extra);
                 Constant.receivedMessageList.add(String.format("notification：%s \n%s",
                                                                msg.text,
                                                                simpleDateFormat.format(new Date())));
@@ -111,7 +104,6 @@ public class MyApplication extends Application {
 
         };
 
-        mPushAgent.setMessageHandler(messageHandler);
 
         mPushAgent.setMessageHandler(messageHandler);
     }

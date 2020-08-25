@@ -28,14 +28,17 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
     /*
     首先弄清，android里的view怎么分层的，谁是最上层最先收到touch event，谁是最下层最后收到touch event ！
     结果：按布局包含原理来，外层布局包含内层布局view，外层先收到event
      */
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     /**
      * 分发事件. 分发?
