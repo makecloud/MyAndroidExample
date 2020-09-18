@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_example7"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.liuyihui.client.myexample.example7_custom_view.Example7Activity">
+    tools:context="com.liuyihui.client.myexample.demo7_custom_view.Example7Activity">
 
 
-    <com.liuyihui.client.myexample.example7_custom_view.CustomLayout
-        android:id="@+id/custom_layout"
+    <com.liuyihui.client.myexample.demo7_custom_view.CustomViewGroup
+        android:id="@+id/custom_viewGroup"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/red">
 
-    </com.liuyihui.client.myexample.example7_custom_view.CustomLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray" />
 
-    <com.liuyihui.client.myexample.example7_custom_view.CustomView
+    </com.liuyihui.client.myexample.demo7_custom_view.CustomViewGroup>
+
+    <com.liuyihui.client.myexample.demo7_custom_view.CustomView
+        android:id="@+id/customView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/custom_viewGroup"
+        android:background="@color/blue" />
+
+
+    <com.liuyihui.client.myexample.demo7_custom_view.CustomFrameLayout
+        android:id="@+id/customFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/customView"
+        android:background="@color/red" />
+
 </RelativeLayout>

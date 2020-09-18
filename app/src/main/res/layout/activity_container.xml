@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.liuyihui.client.myexample.example20_activityGroup.ContainerActivity">
+    tools:context="com.liuyihui.client.myexample.demo20_activityGroup.ContainerActivity">
 
     <LinearLayout
         android:id="@+id/parent_linearlayout"

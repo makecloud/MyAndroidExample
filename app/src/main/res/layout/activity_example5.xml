@@ -4,7 +4,7 @@
     android:id="@+id/activity_example5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.liuyihui.client.myexample.example5_use_amap.Example5Activity">
+    tools:context="com.liuyihui.client.myexample.demo5_use_amap.Example5Activity">
 
     <com.amap.api.maps.MapView
 

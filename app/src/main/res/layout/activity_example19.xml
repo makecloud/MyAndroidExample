@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.liuyihui.client.myexample.example19_serviceUI.example19Activity">
+    tools:context="com.liuyihui.client.myexample.demo19_serviceUI.example19Activity">
 
     <Button
         android:id="@+id/start_service"

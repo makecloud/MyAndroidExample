@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.liuyihui.client.myexample.example14_gridview.UseGridViewActivity">
+    tools:context="com.liuyihui.client.myexample.demo14_gridview.UseGridViewActivity">
 
-    <com.liuyihui.client.myexample.example14_gridview.CustomGridView
+    <com.liuyihui.client.myexample.demo14_gridview.CustomGridView
         android:id="@+id/girdView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:numColumns="3"
         android:verticalSpacing="10dp">
 
-    </com.liuyihui.client.myexample.example14_gridview.CustomGridView>
+    </com.liuyihui.client.myexample.demo14_gridview.CustomGridView>
 
     <Button
         android:layout_marginTop="30dp"

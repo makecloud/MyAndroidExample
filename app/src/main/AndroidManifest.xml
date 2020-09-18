@@ -26,77 +26,86 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".demo27_tabhost.TabDemoActivity"></activity>
-        <activity android:name=".example7_custom_view.CustViewGroupActivity">
+        <activity android:name=".demo28_focus.FocusDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".demo27_tabhost.TabDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".demo7_custom_view.CustViewGroupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".example1_activity.Demo3Activity"
+            android:name=".demo1_activity.Demo3Activity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".example1_activity.Demo2Activity"
+            android:name=".demo1_activity.Demo2Activity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".example1_activity.Demo1Activity"
+            android:name=".demo1_activity.Demo1Activity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".example24_datetimepicker.DateTimePickerActivity">
+        <activity android:name=".demo24_datetimepicker.DateTimePickerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".example25_picture_demo.ImagePreviewDemoActivity"
+            android:name=".demo25_picture_demo.ImagePreviewDemoActivity"
             android:theme="@style/transparenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example25_picture_demo.ImageViewScaleActivity" />
-        <activity android:name=".example25_picture_demo.DrawableTypeDemoActivity">
+        <activity android:name=".demo25_picture_demo.ImageViewScaleActivity" />
+        <activity android:name=".demo25_picture_demo.DrawableTypeDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".example19_serviceUI.WindowModeActivity"
+            android:name=".demo19_serviceUI.WindowModeActivity"
             android:theme="@style/AppTheme.NoActionBar.DialogType">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example8_2_choose_city_demo2.ChooseCityDemo2Activity">
+        <activity android:name=".demo8_2_choose_city_demo2.ChooseCityDemo2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example10_photo_album.MatisseDemoActivity">
+        <activity android:name=".demo10_photo_album.MatisseDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example10_photo_album.PicassoDemoActivity">
+        <activity android:name=".demo10_photo_album.PicassoDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example2_notification.NotificationDemoActivity">
+        <activity android:name=".demo2_notification.NotificationDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example1_activity.ViewCoordinateActivity">
+        <activity android:name=".demo1_activity.ViewCoordinateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example26_progressbar.ProgressBarDemoActivity">
+        <activity android:name=".demo26_progressbar.ProgressBarDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example14_2_GridLayout.GridLayoutActivity">
+        <activity android:name=".demo14_2_GridLayout.GridLayoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -115,61 +124,61 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".example1_activity.Example1Activity">
+        <activity android:name=".demo1_activity.Example1Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".example1_activity.Example1_1Activity"
+            android:name=".demo1_activity.Example1_1Activity"
             android:theme="@style/AppTheme.OverlayActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".example4_use_camera.Example4Activity"
+            android:name=".demo4_use_camera.Example4Activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example5_use_amap.Example5Activity">
+        <activity android:name=".demo5_use_amap.Example5Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example5_use_amap.BaseMapFragmentActivity" />
+        <activity android:name=".demo5_use_amap.BaseMapFragmentActivity" />
 
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".example6_use_popupwindow.Example6Activity">
+        <activity android:name=".demo6_use_popupwindow.Example6Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example7_custom_view.Example7Activity">
+        <activity android:name=".demo7_custom_view.Example7Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example8_choose_city_demo.ChoseCityActivity">
+        <activity android:name=".demo8_choose_city_demo.ChoseCityActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example9_qrcode_scan.ScanResultActivity">
+        <activity android:name=".demo9_qrcode_scan.ScanResultActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example10_photo_album.InvokeSysGalleryActivity">
+        <activity android:name=".demo10_photo_album.InvokeSysGalleryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".example9_qrcode_scan.zxing.activity.CaptureActivity"
+            android:name=".demo9_qrcode_scan.zxing.activity.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -178,65 +187,65 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example11_slideshow_banner.ShuffleImagesActivity">
+        <activity android:name=".demo11_slideshow_banner.ShuffleImagesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example13_viewflipper.UseViewFlipperActivity">
+        <activity android:name=".demo13_viewflipper.UseViewFlipperActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example15_viewpager.UseViewPagerActivity">
+        <activity android:name=".demo15_viewpager.UseViewPagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example14_gridview.UseGridViewActivity">
+        <activity android:name=".demo14_gridview.UseGridViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example15_viewpager.ViewPagerFragmentActivity">
+        <activity android:name=".demo15_viewpager.ViewPagerFragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example16_recyclerview.Example16Activity">
+        <activity android:name=".demo16_recyclerview.Example16Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example17_DESencrypt.TestDesActivity" />
+        <activity android:name=".demo17_DESencrypt.TestDesActivity" />
 
-        <service android:name=".example18_service.MyService" />
+        <service android:name=".demo18_service.MyService" />
 
-        <activity android:name=".example18_service.Example18Activity">
+        <activity android:name=".demo18_service.Example18Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
 
-        <service android:name=".example19_serviceUI.ServiceUI" />
-        <service android:name=".example18_service.PollService" />
+        <service android:name=".demo19_serviceUI.ServiceUI" />
+        <service android:name=".demo18_service.PollService" />
 
-        <activity android:name=".example19_serviceUI.example19Activity">
+        <activity android:name=".demo19_serviceUI.example19Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example20_activityGroup.ContainerActivity">
+        <activity android:name=".demo20_activityGroup.ContainerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example20_activityGroup.TheFirstActivity">
+        <activity android:name=".demo20_activityGroup.TheFirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example20_activityGroup.TheSecondActivity">
+        <activity android:name=".demo20_activityGroup.TheSecondActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -246,33 +255,33 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example22_awakenSelf.Example22Activity">
+        <activity android:name=".demo22_awakenSelf.Example22Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example23_CrashHandler.Example23Activity">
+        <activity android:name=".demo23_CrashHandler.Example23Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example5_1_use_amaplocate.GetLocationActivity">
+        <activity android:name=".demo5_1_use_amaplocate.GetLocationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example25_picture_demo.BitmapOperationActivity">
+        <activity android:name=".demo25_picture_demo.BitmapOperationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example1_activity.IntentFlagDemoActivity1">
+        <activity android:name=".demo1_activity.IntentFlagDemoActivity1">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".example1_activity.IntentFlagDemoActivity2" />
-        <activity android:name=".example1_activity.IntentFlagDemoActivity3" />
+        <activity android:name=".demo1_activity.IntentFlagDemoActivity2" />
+        <activity android:name=".demo1_activity.IntentFlagDemoActivity3" />
     </application>
 
 </manifest>

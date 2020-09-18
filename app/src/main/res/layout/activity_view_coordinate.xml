@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/testripple"
-    tools:context="com.liuyihui.client.myexample.example1_activity.ViewCoordinateActivity">
+    tools:context="com.liuyihui.client.myexample.demo1_activity.ViewCoordinateActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

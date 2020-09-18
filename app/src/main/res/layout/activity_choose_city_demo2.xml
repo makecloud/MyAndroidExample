@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.liuyihui.client.myexample.example8_2_choose_city_demo2.ChooseCityDemo2Activity">
+    tools:context="com.liuyihui.client.myexample.demo8_2_choose_city_demo2.ChooseCityDemo2Activity">
 
     <Button
         android:layout_width="wrap_content"

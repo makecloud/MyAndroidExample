@@ -5,7 +5,7 @@ android:id="@+id/root_layout"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@color/black"
-tools:context="com.liuyihui.client.myexample.example25_picture_demo.ImagePreviewDemoActivity">
+tools:context="com.liuyihui.client.myexample.demo25_picture_demo.ImagePreviewDemoActivity">
 
 <!--<com.liuyihui.client.myexample.example25_picture_demo.customview.DragableImageView
     android:id="@+id/image"

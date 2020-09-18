@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.liuyihui.client.myexample.example24_datetimepicker.CustomNativeDatePickerDialog">
+    tools:context="com.liuyihui.client.myexample.demo24_datetimepicker.CustomNativeDatePickerDialog">
 
     <DatePicker
         android:id="@+id/datePicker"

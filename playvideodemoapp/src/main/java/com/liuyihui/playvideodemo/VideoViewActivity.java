@@ -36,13 +36,19 @@ public class VideoViewActivity extends AppCompatActivity {
                 "/BFA91EE06E2EE723A2C08B4B656605D8.mp4";
         String url2 =
                 "http://test.yungeshidai.com/material/40/8b057e2daf3ee51e8af3f2765cf78f95" + ".jpg";
-        String url3 = "/sdcard/oohlink/player/.screen/549A2C1EBCC166B1CD6104B4BC0609A9";
+        String url3 = "/sdcard/oohlink/player/.screen/0A638DE2475566D0691CECD3F00B19D3";
         myVideoView.setVideoURI(Uri.parse(url3));
         //播放结束回调
         myVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 Log.d(TAG, "onCompletion: ");
+                mediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+                    @Override
+                    public void onSeekComplete(MediaPlayer mp) {
+                        mp.start();
+                    }
+                });
             }
         });
 
@@ -131,13 +137,23 @@ public class VideoViewActivity extends AppCompatActivity {
 
         // 启动播放
         //myVideoView.start();
-        //myVideoView.requestFocus();
 
     }
 
     //按钮启动播放
     public void startPlay(View view) {
         myVideoView.start();
-        //        myVideoView.requestFocus();
+    }
+
+    public void getInfo(View view) {
+        //查看
+        Log.d(TAG, "getInfo: isPlaying:" + myVideoView.isPlaying());
+    }
+
+    public void seekTo(View view) {
+        myVideoView.seekTo(0);
+        Log.d(TAG, "seekTo: 0");
+
+
     }
 }

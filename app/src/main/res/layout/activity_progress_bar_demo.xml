@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.liuyihui.client.myexample.example26_progressbar.ProgressBarDemoActivity">
+    tools:context="com.liuyihui.client.myexample.demo26_progressbar.ProgressBarDemoActivity">
 
     <!--普通圆形进度条-->
     <ProgressBar

@@ -53,7 +53,6 @@ public class SurfaceViewPlayActivity extends AppCompatActivity {
             @Override
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
                 Log.d(TAG, "surfaceDestroyed: ");
-
                 mediaPlayer1.stop();
                 mediaPlayer1.release();
                 mediaPlayer2.stop();

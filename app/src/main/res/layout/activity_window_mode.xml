@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     app:cardCornerRadius="10dp"
-    tools:context="com.liuyihui.client.myexample.example19_serviceUI.WindowModeActivity">
+    tools:context="com.liuyihui.client.myexample.demo19_serviceUI.WindowModeActivity">
 
     <TextView
         android:layout_width="wrap_content"

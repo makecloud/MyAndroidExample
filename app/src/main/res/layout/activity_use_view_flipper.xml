@@ -4,7 +4,7 @@
     android:id="@+id/activity_use_view_flipper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.liuyihui.client.myexample.example13_viewflipper.UseViewFlipperActivity">
+    tools:context="com.liuyihui.client.myexample.demo13_viewflipper.UseViewFlipperActivity">
 
     <ViewFlipper
         android:id="@+id/flipper"

@@ -1,7 +1,6 @@
 package com.liuyihui.playvideodemo.customerView;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -59,46 +58,17 @@ public class IjkVideoView extends FrameLayout {
 
     private void initVideoView(Context context) {
         mContext = context;
-
-        //获取焦点，不知道有没有必要~。~
-        setFocusable(true);
-    }
-
-    /**
-     * 设置视频地址。
-     * 根据是否第一次播放视频，做不同的操作。
-     *
-     * @param path the path of the video.
-     */
-
-    public void setVideoPath(String path) {
-        if (TextUtils.equals("", mPath)) {
-            //如果是第一次播放视频，那就创建一个新的surfaceView
-            mPath = path;
-            createSurfaceView();
-        } else {
-            //否则就直接load
-            mPath = path;
-            load();
-        }
-    }
-
-    /*
-     * 新建一个surfaceview
-     */
-    private void createSurfaceView() {
         //生成一个新的surface view
         surfaceView = new SurfaceView(mContext);
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-
+                mMediaPlayer.setDisplay(holder);
             }
 
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
                 //surfaceview创建成功后，加载视频
-                load();
             }
 
             @Override
@@ -112,6 +82,17 @@ public class IjkVideoView extends FrameLayout {
                                                      Gravity.CENTER);
         surfaceView.setLayoutParams(layoutParams);
         this.addView(surfaceView);
+    }
+
+    /**
+     * 设置视频地址。
+     * 根据是否第一次播放视频，做不同的操作。
+     *
+     * @param path the path of the video.
+     */
+    public void setVideoPath(String path) {
+        mPath = path;
+        load();
     }
 
     /* *
@@ -177,6 +158,7 @@ public class IjkVideoView extends FrameLayout {
     public void release() {
         if (mMediaPlayer != null) {
             mMediaPlayer.reset();
+            mMediaPlayer.setDisplay(null);
             mMediaPlayer.release();
             mMediaPlayer = null;
         }

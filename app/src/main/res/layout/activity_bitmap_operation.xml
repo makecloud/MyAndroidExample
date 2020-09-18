@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context="com.liuyihui.client.myexample.example25_picture_demo.BitmapOperationActivity">
+        tools:context="com.liuyihui.client.myexample.demo25_picture_demo.BitmapOperationActivity">
 
 
         <ImageView

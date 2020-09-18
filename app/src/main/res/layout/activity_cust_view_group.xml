@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.liuyihui.client.myexample.example7_custom_view.CustViewGroupActivity">
+    tools:context="com.liuyihui.client.myexample.demo7_custom_view.CustViewGroupActivity">
 
-    <com.liuyihui.client.myexample.example7_custom_view.CustomViewGroup
+    <com.liuyihui.client.myexample.demo7_custom_view.CustomViewGroup
         android:layout_width="180dp"
         android:layout_height="290dp"
         android:layout_gravity="center"
         android:background="@color/gray">
 
-    </com.liuyihui.client.myexample.example7_custom_view.CustomViewGroup>
+    </com.liuyihui.client.myexample.demo7_custom_view.CustomViewGroup>
 </FrameLayout>

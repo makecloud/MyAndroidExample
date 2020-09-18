@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.liuyihui.client.myexample.example14_2_GridLayout.GridLayoutActivity">
+    tools:context="com.liuyihui.client.myexample.demo14_2_GridLayout.GridLayoutActivity">
 
     <GridLayout
         android:id="@+id/gridLayout"

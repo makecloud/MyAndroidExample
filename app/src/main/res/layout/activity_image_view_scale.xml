@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.liuyihui.client.myexample.example25_picture_demo.ImageViewScaleActivity">
+    tools:context="com.liuyihui.client.myexample.demo25_picture_demo.ImageViewScaleActivity">
 
 </android.support.constraint.ConstraintLayout>

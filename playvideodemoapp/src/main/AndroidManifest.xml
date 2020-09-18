@@ -27,11 +27,12 @@
         <activity android:name=".TestSwitchVideoViewActivity"></activity>
         <activity android:name=".ExoPlayerActivity">
             <intent-filter>
-                <action android:name="android.intent.VIEW" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -42,12 +43,49 @@
                 <action android:name="view" />
             </intent-filter>
         </activity>
-        <activity android:name=".TextureViewPlayActivity" />
-        <activity android:name=".VideoViewActivity" />
-        <activity android:name=".IjkPLayerActivity" />
-        <activity android:name=".PLDroidPlayerActivity" />
-        <activity android:name=".UniversalVideoViewActivity" />
-        <activity android:name=".TestSwitchIjkViewActivity" />
+        <activity android:name=".TextureViewPlayActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".VideoViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".IjkPLayerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PLDroidPlayerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UniversalVideoViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".TestSwitchIjkViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TestVideoViewChangeSizeBlackActivity"
+            android:theme="@style/themeFromOOhlinkPlayer">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".MySurfaceVideoViewDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

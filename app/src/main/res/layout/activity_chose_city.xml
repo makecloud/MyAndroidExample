@@ -55,7 +55,7 @@
         android:textSize="16sp"
         android:visibility="gone" />
 
-    <com.liuyihui.client.myexample.example8_choose_city_demo.MyLetterListView
+    <com.liuyihui.client.myexample.demo8_choose_city_demo.MyLetterListView
         android:id="@+id/MyLetterListView01"
         android:layout_width="25dip"
         android:layout_height="fill_parent"

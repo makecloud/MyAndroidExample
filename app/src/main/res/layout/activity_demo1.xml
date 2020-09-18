@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.liuyihui.client.myexample.example1_activity.Demo1Activity">
+    tools:context="com.liuyihui.client.myexample.demo1_activity.Demo1Activity">
 
     <TextView
         android:id="@+id/t1"
