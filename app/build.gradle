@@ -4,7 +4,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.liuyihui.client.myexample.part1"
+        applicationId "com.liuyihui.client.myexample"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -60,4 +60,8 @@ dependencies {
     implementation('com.liuyihui:mylibrary:1.0') {
         exclude group: 'com.amap.api', module: 'location'
     }
+
+    //pdfview
+    //implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 }

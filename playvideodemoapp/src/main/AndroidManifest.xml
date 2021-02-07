@@ -24,7 +24,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestSwitchVideoViewActivity"></activity>
+        <activity android:name=".TestSwitchVideoViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ExoPlayerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -38,7 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SurfaceViewPlayActivity">
+        <activity android:name=".DoubleSurfaceViewPlayActivity">
             <intent-filter>
                 <action android:name="view" />
             </intent-filter>
@@ -82,6 +86,11 @@
         </activity>
 
         <activity android:name=".MySurfaceVideoViewDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SurfaceViewPlayActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>

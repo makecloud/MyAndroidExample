@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.liuyihui.mylibrary.util.FileUtil;
 import com.liuyihui.networkcontrol.MyApplication;
-import com.liuyihui.networkcontrol.http.retrofitCommon.RetrofitHttpInterface;
 
 import java.io.File;
 import java.io.FileOutputStream;

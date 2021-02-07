@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item>
+        <shape> <!-- 第一层的颜色为白色 -->
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+
+    <!-- 第二层 -->
+    <item
+        android:drawable="@drawable/logo_jufeng"
+
+        android:gravity="center">
+
+        <!--<inset android:drawable="@drawable/galaxy_276_300" />-->
+        <!--<bitmap
+            android:gravity="center"
+            android:src="@drawable/logo_jufeng" />-->
+    </item>
+
+</layer-list>

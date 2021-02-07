@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** mediaPlayer + surfaceView播放视频 */
     public void playVideoDemo2CLick(View v) {
-        startActivity(new Intent(MainActivity.this, SurfaceViewPlayActivity.class));
+        startActivity(new Intent(MainActivity.this, DoubleSurfaceViewPlayActivity.class));
     }
 
     /** mediaplayer + textureView播放视频 */

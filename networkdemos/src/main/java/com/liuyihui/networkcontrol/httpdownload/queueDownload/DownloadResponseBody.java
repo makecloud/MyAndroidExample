@@ -13,7 +13,7 @@ import okio.Okio;
 import okio.Source;
 
 /**
- * Created by gaowen on 2017/7/10.
+ * 自定义读取数据的响应体
  */
 
 public class DownloadResponseBody extends ResponseBody {
@@ -54,13 +54,18 @@ public class DownloadResponseBody extends ResponseBody {
 
             @Override
             public long read(Buffer sink, long byteCount) throws IOException {
+                //一次读取的 字节
                 long bytesRead = super.read(sink, byteCount);
                 // read() returns the number of bytes read, or -1 if this source is exhausted.
+
+                //累计总共读取的字节
                 totalBytesRead += bytesRead != -1 ? bytesRead : 0;
+
+                //回调进度监听对象
                 if (null != progressListener) {
-                    progressListener.update(totalBytesRead,
-                                            responseBody.contentLength(),
-                                            bytesRead == -1);
+                    progressListener.onUpdate(totalBytesRead,
+                                              responseBody.contentLength(),
+                                              bytesRead == -1);
                 }
                 return bytesRead;
             }

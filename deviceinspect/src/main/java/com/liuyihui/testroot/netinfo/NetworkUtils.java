@@ -7,6 +7,7 @@ import android.net.TrafficStats;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import java.net.InetAddress;
 import java.net.InterfaceAddress;
@@ -25,9 +26,8 @@ import static android.telephony.CellSignalStrength.SIGNAL_STRENGTH_NONE_OR_UNKNO
 import static android.telephony.CellSignalStrength.SIGNAL_STRENGTH_POOR;
 
 /**
- * Created by gaowen on 2017/7/6.
+ * revise by liuyihui
  */
-
 public class NetworkUtils {
     private static final int NETWORK_TYPE_GSM = 16;
     private static final int NETWORK_TYPE_TD_SCDMA = 17;
@@ -114,9 +114,14 @@ public class NetworkUtils {
         return false;
     }
 
-    public static List<NetWork> getNetworks() {
+    /**
+     * 获取简单网络接口信息列表。只过滤其中几个接口名称，同时顺序排列相同的网络接口名
+     *
+     * @return
+     */
+    public static List<NetWork> getSimpleNetworks() {
         List<NetWork> networkItemList = new ArrayList<>();
-        Map<String, NetWork> netFaces = getAllMacAddress();
+        Map<String, NetWork> netFaces = getAllNetworks();
         if (!netFaces.isEmpty()) {
             for (int i = 0; i < 10; ++i) {
                 if (netFaces.containsKey("eth" + i)) {
@@ -149,23 +154,31 @@ public class NetworkUtils {
         return networkItemList;
     }
 
-    public static Map<String, NetWork> getAllMacAddress() {
-        Map<String, NetWork> netFaces = new HashMap<>(4);
+    /**
+     * 获取所有网络接口信息(后封装简单信息)
+     *
+     * @return
+     */
+    public static Map<String, NetWork> getAllNetworks() {
+        Map<String, NetWork> networksMap = new HashMap<>(4);
         try {
             //NetworkInterface.getNetworkInterfaces()需要 INTERNET 权限
-            Enumeration<NetworkInterface> networkInterfaces =
-                    NetworkInterface.getNetworkInterfaces();
-            while (networkInterfaces.hasMoreElements()) {
-                NetworkInterface nFace = networkInterfaces.nextElement();
-                String name = nFace.getName();
+            //遍历获取到的网络接口，提取网络信息到map
+            Enumeration<NetworkInterface> nFaces = NetworkInterface.getNetworkInterfaces();
+            while (nFaces.hasMoreElements()) {
+                //得到一个网络接口对象(例如eth、tun、lo)
+                NetworkInterface nFace = nFaces.nextElement();
+
+                //该网络接口的名称(例如eth、tun、lo)
+                String nFaceName = nFace.getName();
 
                 /**
                  * <p>tun0 vpn hardware address, ppp0 for mobile network</p>
                  */
-                if (name.contains("tun") || name.contains("ppp")) {
+                /*if (nFaceName.contains("tun") || nFaceName.contains("ppp")) {
                     List<InterfaceAddress> interfaceAddressList = nFace.getInterfaceAddresses();
-                    NetWork networkItem = new NetWork();
 
+                    NetWork networkItem = new NetWork();
                     for (InterfaceAddress address : interfaceAddressList) {
                         String ip = address.getAddress().getHostAddress();
                         if (null == ip || ip.length() == 0) {
@@ -183,11 +196,17 @@ public class NetworkUtils {
                             networkItem.setIsEnable(false);
                         }
                     }
-                    networkItem.setType(getDevType(name).getValue());
-                    netFaces.put(name, networkItem);
-                }
+                    //
+                    networkItem.setType(getNetDevType(nFaceName).getValue());
+                    networksMap.put(nFaceName, networkItem);
+                }*/
 
+                //创建一个简化的网络信息pojo对象,收集该网络接口的信息
+                NetWork networkItem = new NetWork();
+
+                //将到这个网络接口(例如eth、tun、lo)的硬件mac
                 byte[] data = nFace.getHardwareAddress();
+                //如果不存在硬件mac地址忽略该网络接口
                 if (null == data || data.length < 1) {
                     continue;
                 }
@@ -195,27 +214,28 @@ public class NetworkUtils {
                 for (byte bt : data) {
                     stringBuilder.append(String.format("%02x:", bt));
                 }
-
-                NetWork networkItem = new NetWork();
                 networkItem.setMac(stringBuilder.deleteCharAt(stringBuilder.length() - 1)
                                                 .toString()
                                                 .toUpperCase());
+
+                networkItem.setIsEnable(nFace.isUp());
+
+                //得到这个网络接口(例如eth、tun、lo)下的所有ip地址(一般都有ipv4、ipv6地址、广播地址等)
                 List<InterfaceAddress> interfaceAddressList = nFace.getInterfaceAddresses();
                 if (!interfaceAddressList.isEmpty()) {
+                    //收集这个网络接口的所有ip地址
                     for (InterfaceAddress interfaceAddress : interfaceAddressList) {
                         //获取ip字符串
                         String ip = interfaceAddress.getAddress().getHostAddress();
                         if (null != ip && ip.length() > 0) {
                             if (ip.contains(".")) {
                                 networkItem.setIpv4(ip);
-                                networkItem.setIsEnable(true);
                             } else {
                                 int index = ip.length();
                                 if (ip.contains("%")) {
                                     index = ip.indexOf("%");
                                 }
                                 networkItem.setIpv6(ip.substring(0, index));
-                                networkItem.setIsEnable(false);
                             }
                         }
                         //获取广播ip字符串
@@ -226,20 +246,19 @@ public class NetworkUtils {
                                 networkItem.setBroadCastIp(broadCast);
                             }
                         }
-
                     }
                 }
 
-                networkItem.setType(getDevType(name).getValue());
-                netFaces.put(name, networkItem);
+                networkItem.setType(getNetDevType(nFaceName).getValue());
+                networksMap.put(nFaceName, networkItem);
             }
         } catch (SocketException e) {
             e.printStackTrace();
         }
-        return netFaces;
+        return networksMap;
     }
 
-    private static CloudDevType getDevType(String name) {
+    private static CloudDevType getNetDevType(String name) {
         if ("wlan0".equalsIgnoreCase(name)) {
             return CloudDevType.WIFI;
         } else if ("ppp0".equalsIgnoreCase(name)) {

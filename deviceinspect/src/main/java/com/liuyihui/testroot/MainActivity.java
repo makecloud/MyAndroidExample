@@ -28,6 +28,9 @@ import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
 import kr.co.namee.permissiongen.PermissionSuccess;
 
+/**
+ * 设备检测工具
+ */
 public class MainActivity extends AppCompatActivity {
     private TextView isRootTextView;
     private TextView androidIdTextView;
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView androidFactoryTextView;
     private TextView androidSystemBuildVersionTextView;
     private TextView netInfoTextView;
-    private TextView dipInfoTextView;
+    private TextView displayInfoTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         androidFactoryTextView = findViewById(R.id.android_factory);
         androidSystemBuildVersionTextView = findViewById(R.id.android_build_display);
         netInfoTextView = findViewById(R.id.netinfo);
-        dipInfoTextView = findViewById(R.id.dipInfo);
+        displayInfoTextView = findViewById(R.id.displayInfo);
 
         if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
             getPermission(this,
@@ -141,9 +144,15 @@ public class MainActivity extends AppCompatActivity {
         float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
         float heightPixels = getResources().getDisplayMetrics().heightPixels;
         float widthPixels = getResources().getDisplayMetrics().widthPixels;
+        int UIWidth = ScreenUtil.getUIWidth(this);
+        int UIHeight = ScreenUtil.getUIHeight(this);
+        int physicalHeight = ScreenUtil.getPhysicalHeight(this);
+        int physicalWidth = ScreenUtil.getPhysicalWidth(this);
         int onedpPx = ScreenUtil.dip2px(this, 1);
         String dpInfo = String.format("density=%s,1dp=%spx,densityDpi=%s,xdpi=%s,ydpi=%s," +
-                                              "scaleDensity=%s,heightPx=%s,widthPx=%s",
+                                              "scaleDensity=%s,heightPx=%s,widthPx=%s," +
+                                              "UIWidth=%s,UIHeight=%s,physicalWidthPx=%s," +
+                                              "physicalHeightPx=%s",
                                       density,
                                       onedpPx,
                                       densityDpi,
@@ -151,29 +160,36 @@ public class MainActivity extends AppCompatActivity {
                                       ydpi,
                                       scaledDensity,
                                       heightPixels,
-                                      widthPixels);
-        dipInfoTextView.setText(dpInfo);
+                                      widthPixels,
+                                      UIWidth,
+                                      UIHeight,
+                                      physicalWidth,
+                                      physicalHeight);
+        displayInfoTextView.setText(dpInfo);
     }
 
     private void loadNetWorkInfo() {
         //网络信息
-        netInfoTextView.append(NetworkUtils.getNetworkType(this).name());
+        netInfoTextView.append("net type:" + NetworkUtils.getNetworkType(this).name());
         netInfoTextView.append("\n");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List<NetWork> networks = NetworkUtils.getNetworks();
+                List<NetWork> networks = NetworkUtils.getSimpleNetworks();
                 if (networks != null) {
-                    for (final NetWork n : networks)
+                    for (final NetWork netWork : networks)
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                netInfoTextView.append(String.format("%s=%s\n",
-                                                                     n.getType(),
-                                                                     n.getIpv4()));
-                                netInfoTextView.append(String.format("broadcast=%s\n",
-                                                                     n.getBroadCastIp()));
+                                netInfoTextView.append(String.format("interfaceName:%s ipv4:%s " +
+                                                                             "enable:%s",
+                                                                     netWork.getType(),
+                                                                     netWork.getIpv4(),
+                                                                     netWork.getIsEnable()));
+                                netInfoTextView.append(String.format(" broadcastIp:%s",
+                                                                     netWork.getBroadCastIp()));
+                                netInfoTextView.append("\n");
                             }
                         });
                 }

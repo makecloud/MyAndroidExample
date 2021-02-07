@@ -11,5 +11,5 @@ public interface DownloadProgressListener {
      * @param contentLength
      * @param done
      */
-    void update(long bytesRead, long contentLength, boolean done);
+    void onUpdate(long bytesRead, long contentLength, boolean done);
 }

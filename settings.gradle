@@ -1,4 +1,4 @@
-include ':app', ':ffmpegdemo', ':fitscreendemo'
+include ':app', ':ffmpegdemo', ':fitscreendemo', ':datarepositorylibrary', ':pituregraphic', ':fragmentdemo'
 include ':snapshotapplication'
 include ':floatplayercontroller'
 include ':mylibrary'

@@ -15,7 +15,6 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 public class IjkPLayerActivity extends AppCompatActivity {
     private final static String TAG = "IjkPLayerActivity";
 
-    public IjkMediaPlayer videoView;
     public MediaController mediaController;
     public IjkVideoView ijkVideoView;
 
@@ -46,6 +45,7 @@ public class IjkPLayerActivity extends AppCompatActivity {
 
             @Override
             public boolean onError(IMediaPlayer mp, int what, int extra) {
+                Log.e(TAG, "onError: what:" + what + ",extra:" + extra);
                 return false;
             }
 
@@ -58,6 +58,9 @@ public class IjkPLayerActivity extends AppCompatActivity {
             public void onPrepared(IMediaPlayer mp) {
                 // 视频准备好播放了，但是他不会自动播放，需要手动让他开始。
                 mp.start();
+
+                //0到1  0:静音,1:系统设置多大音量就多大音量
+                //mp.setVolume(1f, 1f);
             }
 
             @Override
@@ -66,16 +69,19 @@ public class IjkPLayerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onVideoSizeChanged(IMediaPlayer mp, int width, int height, int sar_num, int sar_den) {
+            public void onVideoSizeChanged(IMediaPlayer mp,
+                                           int width,
+                                           int height,
+                                           int sar_num,
+                                           int sar_den) {
                 //在此可以获取到视频的宽和高
             }
         });
 
         //设置url
-        //String videoUrl = "http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4";//test line
-//        String videoUrl = "http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4";//test line
-//        String videoUrl = "http://test.yungeshidai.com/material/eec76c455d081e4498c0ad7a55fb67e1.mp4";//test line
-        String path = "/sdcard/oohlink/player/.screen/0A638DE2475566D0691CECD3F00B19D3";
+        //String path = "http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4";
+        String path = "/mnt/internal_sd/oohlink/player/.screen/125C3E76400B7F629665C39C95DA207E";
+        //String path = "rtsp://218.204.223.237:554/live/1/66251FC11353191F/e7ooqwcfbqjoo80j.sdp";
         ijkVideoView.setVideoPath(path);
 
 

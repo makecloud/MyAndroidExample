@@ -67,6 +67,10 @@ public class SharedPreferencesUtils {
         sp.edit().putString(key, value).apply();
     }
 
+    public void remove(@NonNull final String key) {
+        sp.edit().remove(key).apply();
+    }
+
     /**
      * SP中读取String
      *

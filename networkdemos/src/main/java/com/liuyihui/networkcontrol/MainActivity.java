@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,16 +15,14 @@ import android.widget.Button;
 import com.liuyihui.mylibrary.util.ToastUtil;
 import com.liuyihui.networkcontrol.devicenetwork.ApManager;
 import com.liuyihui.networkcontrol.devicenetwork.WifiControlUtil;
-import com.liuyihui.networkcontrol.http.TestApi;
+import com.liuyihui.networkcontrol.http.TestHttpApi;
 import com.liuyihui.networkcontrol.httpdownload.generaldownload.HttpApi;
-import com.liuyihui.networkcontrol.httpdownload.queueDownload.DataRepository;
 import com.liuyihui.networkcontrol.httpdownload.queueDownload.DownInfo;
-import com.liuyihui.networkcontrol.httpdownload.queueDownload.PlayerDownloadManager;
+import com.liuyihui.networkcontrol.httpdownload.queueDownload.DownloadManager;
 import com.liuyihui.networkcontrol.socketTransmit.SocketTransmitDemoActivity;
 import com.liuyihui.networkcontrol.systemProcessedDownload.DownloadUseSystemService;
 
 import java.io.File;
-import java.util.Observable;
 
 import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
@@ -36,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     private Button openHotspotButton;
     private Button connectWifiButton;
+
+    private String appDir;
 
 
     @Override
@@ -51,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
             getPermission(this,
                           Manifest.permission.READ_EXTERNAL_STORAGE,
                           Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
+        //创建目录
+        appDir =
+                Environment.getExternalStorageDirectory() + File.separator + BuildConfig.APPLICATION_ID;
+        File appDirFile = new File(appDir);
+        if (!appDirFile.exists()) {
+            appDirFile.mkdir();
         }
 
         //通过按钮事件设置热点
@@ -97,25 +106,18 @@ public class MainActivity extends AppCompatActivity {
         final String matMD5 = "E94DEFEE0A1820286F051B54413FF42B";
         String contentType = null;
         final Integer matType = 2;
-        final String savePath = "/sdcard/com.liuyihui.networkcontrol" + File.separator + matMD5;
+        final String savePath = appDir + File.separator + matMD5;
 
         DownInfo downInfo = new DownInfo();
-        downInfo.setMatUrl(matUrl);
-        downInfo.setMatMd5(matMD5);
-        downInfo.setConetntType(null);
+        downInfo.setFileUrl(matUrl);
+        downInfo.setFileMd5(matMD5);
+        downInfo.setContentType(null);
         downInfo.setType(DownInfo.FileType.SCREEN_MATERIAL);
         downInfo.setSavePathName(savePath);
-        downInfo.setDownLoadCompletedListener(new DownInfo.DownLoadCompletedListener() {
+        downInfo.setDownLoadingListener(new DownInfo.DownLoadingListener() {
             @Override
             public void onCompleted() {
                 Log.d(TAG, "onCompleted: download completed");
-                /*if (matType == 2) {
-                    File file = new File(savePath, matMD5);
-                    if (file.exists()) {
-                        Bitmap bitmap = getLocalVideoBitmap(file.getAbsolutePath());
-                        FileUtils.writePlaceholderBitmapToFile(bitmap, matMD5);
-                    }
-                }*/
             }
 
             @Override
@@ -123,25 +125,22 @@ public class MainActivity extends AppCompatActivity {
                 //测试发现downInfo.getDownloadSize()是下载进度
                 System.out.print("onProgress: ");
                 Log.d(TAG,
-                      "onProgress: " + downInfo.getReadSize() + "," + downInfo.getDownloadSize());
+                      "onProgress:  readSize=" + downInfo.getReadSize() + ",downloadSize=" + downInfo.getDownloadSize());
 
             }
         });
 
-        DataRepository dataRepository = new DataRepository();
-        PlayerDownloadManager.getInstance().setPlayerDataRepository(dataRepository);
-        PlayerDownloadManager.getInstance().startDown(downInfo);
+        DownloadManager.getInstance().enqueneDownTaskByInfo(downInfo);
     }
 
     //todo 测试使用系统下载服务下载
     public void testSystemProcessDownload(View view) {
         // TODO: 2020-05-19
         DownloadUseSystemService.getInstance().downloadFile();
-
     }
 
     public void testConcat(View view) {
-        TestApi.getInstance().getPlayerInfo();
+        TestHttpApi.getInstance().getPlayerInfoDoubleSource();
     }
 
     /**
@@ -153,6 +152,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, SocketTransmitDemoActivity.class));
     }
 
+    public void callHttpUrl(View view) {
+        TestHttpApi.getInstance().getPlayerInfo();
+    }
     /**
      * 以下4个方法，使用PermissionGen 框架，针对android 6.x sdk 获取系统某些权限
      * by liuyihui

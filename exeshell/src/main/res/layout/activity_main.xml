@@ -84,6 +84,12 @@
         android:onClick="rdateTime"
         android:text="同步时间rdate" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="runScreencap"
+        android:text="执行截图命令" />
+
     <TextView
         android:id="@+id/checkRootResultText"
         android:layout_width="wrap_content"

@@ -1,6 +1,8 @@
 package com.liuyihui.testroot.netinfo;
 
 /**
+ * 自定义的网络信息pojo类，信息量比较少
+ * <p>
  * Created by gaowen on 2017/8/11.
  */
 

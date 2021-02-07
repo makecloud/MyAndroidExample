@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.concurrent.TimeUnit;
+
 import util.ReallyShellUtil;
 import util.ShellUtils;
 import util.TopActivityUtil;
@@ -18,7 +20,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         resultTextView = findViewById(R.id.checkRootResultText);
-        seeTopActivity(null);
+        //seeTopActivity(null);
     }
 
     /**
@@ -55,8 +57,8 @@ public class MainActivity extends BaseActivity {
 
             //方式2
             ShellUtils.CommandResult commandResult = ShellUtils.execCommand(startOOHLinkOpenvpnCmd,
-                                                                            true,
-                                                                            true);
+                    true,
+                    true);
             //            ShellUtils.CommandResult commandResult = ShellUtils.execCommand(new
             //            String[]{cmd0, cmd1, cmd2}, true);
             showCommandResult(commandResult);
@@ -139,9 +141,9 @@ public class MainActivity extends BaseActivity {
         ShellUtils.CommandResult commandResult = null;
         try {
             commandResult = ShellUtils.execCommand("pm install -r /mnt/internal_sd/alisport" +
-                                                           "/player/" + ".apk" +
-                                                           "/3FBBFCCF28DBB340500FAAC109B32B9E.apk",
-                                                   true);
+                            "/player/" + ".apk" +
+                            "/3FBBFCCF28DBB340500FAAC109B32B9E.apk",
+                    true);
             showCommandResult(commandResult);
         } catch (Exception e) {
             e.printStackTrace();
@@ -243,6 +245,22 @@ public class MainActivity extends BaseActivity {
             }
         }).start();
 
+    }
+
+
+    public void runScreencap(View view) {
+        ShellUtils.CommandResult commandResult = null;
+        try {
+            commandResult = ShellUtils.execCommand("/system/bin/screencap -p /sdcard/oohlink/aaa.png", false);
+            showCommandResult(commandResult);
+
+            Process process = Runtime.getRuntime().exec("/system/bin/screencap -p /sdcard/oohlink/ccc.png");
+            int result = process.waitFor();
+            Log.d(TAG, "runScreencap: " + result);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -1,24 +1,24 @@
 package com.liuyihui.playvideodemo;
 
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.MediaController;
-import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.liuyihui.playvideodemo.customerView.CustomZoomVideoView;
 
 /**
  * 使用videoView 播放视频
  */
 public class VideoViewActivity extends AppCompatActivity {
     private final String TAG = "VideoViewActivity";
-    private VideoView myVideoView;
+    private FrameLayout frameLayout;
+    private CustomZoomVideoView myVideoView;
     private MediaPlayer mediaPlayer;
     private MediaController mediaController;
 
@@ -26,18 +26,27 @@ public class VideoViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
-        myVideoView = findViewById(R.id.myVideoView);
         init();
     }
 
     private void init() {
+        frameLayout = findViewById(R.id.frameLayout);
+        myVideoView = new CustomZoomVideoView(this);
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(1920, 400);
+        //lp.gravity = Gravity.CENTER;
+        myVideoView.setLayoutParams(lp);
+        frameLayout.addView(myVideoView, lp);
+
+
         //视频源文件路径
-        String url1 = "https://ygsd-test.oss-cn-beijing.aliyuncs" + ".com/material/40" +
-                "/BFA91EE06E2EE723A2C08B4B656605D8.mp4";
-        String url2 =
-                "http://test.yungeshidai.com/material/40/8b057e2daf3ee51e8af3f2765cf78f95" + ".jpg";
-        String url3 = "/sdcard/oohlink/player/.screen/0A638DE2475566D0691CECD3F00B19D3";
-        myVideoView.setVideoURI(Uri.parse(url3));
+        //String url1 = "http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4";
+        //myVideoView.setVideoURI(Uri.parse(url1));
+        String url3 = "/sdcard/oohlink/player/.screen/7373A6508D9791C53DFE3E0F2B272DF7";
+        myVideoView.setVideoPath(url3);
+
+        //试了很多方式，只能通过自定义view，修改测量尺寸改变
+        myVideoView.setSize(1080, 500);
+
         //播放结束回调
         myVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -50,18 +59,19 @@ public class VideoViewActivity extends AppCompatActivity {
                     }
                 });
             }
+
         });
 
+
         //加载素材回调. 未执行start也会回调，应该是设置了资源就会准备，准备到可以播放了就会回调
-        myVideoView.setOnPreparedListener(new OnPreparedListener() {
+        /*myVideoView.setOnPreparedListener(new OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 Log.d(TAG, "onPrepared: ");
                 //拿到mediaPlayer才能设置循环播放
                 //mediaPlayer.setLooping(true);
-
                 //控制视频按比例缩小或者拉伸
-                {
+                *//*{
                     // 首先取得video的宽和高
                     int vWidth = mediaPlayer.getVideoWidth();
                     int vHeight = mediaPlayer.getVideoHeight();
@@ -114,9 +124,17 @@ public class VideoViewActivity extends AppCompatActivity {
                         myVideoView.setLayoutParams(lp);
                     }
 
-                }
+                }*//*
+
+                //myVideoView.setBackgroundColor(Color.BLACK);
+                FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) myVideoView
+                .getLayoutParams();
+                lp.width = 1080;
+                lp.height = 400;
+                //lp.gravity = Gravity.CENTER;
+                myVideoView.setLayoutParams(lp);
             }
-        });
+        });*/
 
         //info？ 回调。start后会回调：MEDIA_INFO_VIDEO_RENDERING_START
         myVideoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
@@ -126,17 +144,31 @@ public class VideoViewActivity extends AppCompatActivity {
                 //MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START;//3
                 //MediaPlayer.MEDIA_INFO_STARTED_AS_NEXT;//2
                 Log.d(TAG, "onInfo: " + what);
+                FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) myVideoView
+                        .getLayoutParams();
+                lp.width = 1080;
+                lp.height = 400;
+                //lp.gravity = Gravity.CENTER;
+                myVideoView.setLayoutParams(lp);
+                return false;
+            }
+        });
+
+        myVideoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                Log.e(TAG, "onError: " + what + "," + extra);
                 return false;
             }
         });
 
         //设置 控制器view
         mediaController = new MediaController(this);
-        myVideoView.setMediaController(mediaController);
+        //myVideoView.setMediaController(mediaController);
 
 
         // 启动播放
-        //myVideoView.start();
+        myVideoView.start();
 
     }
 

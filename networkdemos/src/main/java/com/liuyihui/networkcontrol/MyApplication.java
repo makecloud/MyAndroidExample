@@ -3,7 +3,11 @@ package com.liuyihui.networkcontrol;
 import android.app.Application;
 import android.content.Context;
 
+import com.liuyihui.mylibrary.exception.OohlinkException;
 import com.liuyihui.networkcontrol.http.retrofitCommon.MyGsonConverterFactory;
+import com.liuyihui.networkcontrol.http.retrofitCommon.NetInterceptor;
+
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -19,24 +23,44 @@ public class MyApplication extends Application {
         super.onCreate();
         context = getApplicationContext();
 
-        //创建带日志的okhttp client
-        //声明日志类
+
+        //定义okHttp日志拦截器
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        //设定日志级别
         httpLoggingInterceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY :
-                                                HttpLoggingInterceptor.Level.NONE);
+                HttpLoggingInterceptor.Level.NONE);
+
         //自定义OkHttpClient
-        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
-        //添加拦截器
-        okHttpClient.addInterceptor(httpLoggingInterceptor);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                //.addNetworkInterceptor(new NetInterceptor())
+                .addInterceptor(new NetInterceptor())
+                .build();
 
-        //初始化retrofit
+
+        //创建retrofit实例
         retrofit = new Retrofit.Builder().baseUrl(BuildConfig.BASE_URL + "/")
-                                         .client(okHttpClient.build())
-                                         .addConverterFactory(MyGsonConverterFactory.create())
-                                         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                                         .build();
+                .client(okHttpClient)
+                .addConverterFactory(MyGsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
 
+    }
+
+    public OkHttpClient createOkHttpClient() {
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.connectTimeout(30, TimeUnit.SECONDS);
+        httpClientBuilder.readTimeout(30, TimeUnit.SECONDS);
+        httpClientBuilder.writeTimeout(30, TimeUnit.SECONDS);
+        if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            httpClientBuilder.addInterceptor(logging);
+        }
+        httpClientBuilder.addNetworkInterceptor(new NetInterceptor());
+        return httpClientBuilder.build();
     }
 
 }

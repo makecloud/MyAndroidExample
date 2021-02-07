@@ -7,12 +7,23 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 
 public class DownInfo {
+
+
     @JSONField
-    private String matUrl;
+    private String fileUrl;
+    /**
+     * 文件自身大小。
+     * <p>
+     * 注意：被赋值为首次得到http响应体的contentLength
+     */
     @JSONField
-    private long matSize;
+    private long fileSize;
     @JSONField
-    private String matMd5;
+    private String fileMd5;
+    /**
+     * 已经累计下载的字节数量。
+     * 解析：包含每次断点续传的字节的累计
+     */
     @JSONField
     private long readSize;
     @JSONField
@@ -22,33 +33,38 @@ public class DownInfo {
     @JSONField
     private FileType type;
     @JSONField
-    private String conetntType;
+    private String contentType;
+    /**
+     * 记录本次下载的字节。
+     * 解析：如果没有产生再次断点续传下载，则为从文件的第0个字节累计，如果产生再次断点续传，则为从续传位置累计的字节
+     */
     @JSONField
     private long downloadSize;
-    private DownLoadCompletedListener downLoadCompletedListener;
 
-    public String getMatUrl() {
-        return matUrl;
+    private DownLoadingListener downLoadingListener;
+
+    public String getFileUrl() {
+        return fileUrl;
     }
 
-    public void setMatUrl(String matUrl) {
-        this.matUrl = matUrl;
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 
-    public long getMatSize() {
-        return matSize;
+    public long getFileSize() {
+        return fileSize;
     }
 
-    public void setMatSize(long matSize) {
-        this.matSize = matSize;
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
     }
 
-    public String getMatMd5() {
-        return matMd5;
+    public String getFileMd5() {
+        return fileMd5;
     }
 
-    public void setMatMd5(String matMd5) {
-        this.matMd5 = matMd5;
+    public void setFileMd5(String fileMd5) {
+        this.fileMd5 = fileMd5;
     }
 
     public long getReadSize() {
@@ -83,43 +99,45 @@ public class DownInfo {
         this.type = type;
     }
 
-    public String getConetntType() {
-        return conetntType;
+    public String getContentType() {
+        return contentType;
     }
 
-    public void setConetntType(String conetntType) {
-        this.conetntType = conetntType;
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
-    public void setDownLoadCompletedListener(DownLoadCompletedListener downLoadCompletedListener) {
-        this.downLoadCompletedListener = downLoadCompletedListener;
+    public void setDownLoadingListener(DownLoadingListener downLoadingListener) {
+        this.downLoadingListener = downLoadingListener;
     }
 
     public void downLoadCompleted() {
-        if (downLoadCompletedListener != null) {
-            downLoadCompletedListener.onCompleted();
+        if (downLoadingListener != null) {
+            downLoadingListener.onCompleted();
         }
     }
 
-    public void downLoadProgress() {
-        if (downLoadCompletedListener != null) {
-            downLoadCompletedListener.onProgress(this);
+    public void onDownLoadProgress() {
+        if (downLoadingListener != null) {
+            downLoadingListener.onProgress(this);
         }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         DownInfo downInfo = (DownInfo) o;
 
-        return matUrl.equals(downInfo.matUrl);
+        return fileUrl.equals(downInfo.fileUrl);
     }
 
     @Override
     public int hashCode() {
-        return matUrl.hashCode();
+        return fileUrl.hashCode();
     }
 
     public long getDownloadSize() {
@@ -130,8 +148,8 @@ public class DownInfo {
         this.downloadSize = downloadSize;
     }
 
-    public DownLoadCompletedListener getDownLoadCompletedListener() {
-        return downLoadCompletedListener;
+    public DownLoadingListener getDownLoadingListener() {
+        return downLoadingListener;
     }
 
     public enum FileType {
@@ -151,8 +169,9 @@ public class DownInfo {
         REVERSE_MATERIAL
     }
 
-    public interface DownLoadCompletedListener {
+    public interface DownLoadingListener {
         void onCompleted();
+
         void onProgress(DownInfo downInfo);
     }
 }
