@@ -17,13 +17,7 @@ import java.util.List;
  */
 public class RequestPermissionActivity extends AppCompatActivity {
 
-    private static final String[] PERMISSIONS = new String[]{Manifest.permission.READ_PHONE_STATE,
-                                                             Manifest.permission.ACCESS_NETWORK_STATE,
-                                                             Manifest.permission.INTERNET,
-                                                             Manifest.permission.RECEIVE_BOOT_COMPLETED,
-                                                             Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-    private static final int PERMISSION_CODES = 1;
 
 
     @Override
@@ -33,16 +27,29 @@ public class RequestPermissionActivity extends AppCompatActivity {
     }
 
 
+    private static final String[] PERMISSIONS = new String[]{Manifest.permission.READ_PHONE_STATE,
+                                                             Manifest.permission.ACCESS_NETWORK_STATE,
+                                                             Manifest.permission.INTERNET,
+                                                             Manifest.permission.RECEIVE_BOOT_COMPLETED,
+                                                             Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+    private static final int PERMISSION_CODES = 1;
+    /**
+     * 点击触发
+     *
+     * @param view
+     */
     public void requestPermission(View view) {
-        List<String> p = new ArrayList<>();
+        List<String> notGrantedPermissions = new ArrayList<>();
         for (String permission : PERMISSIONS) {
             if (ContextCompat.checkSelfPermission(this,
                                                   permission) != PackageManager.PERMISSION_GRANTED) {
-                p.add(permission);
+                notGrantedPermissions.add(permission);
             }
         }
-        if (p.size() > 0) {
-            requestPermissions(p.toArray(new String[p.size()]), PERMISSION_CODES);
+        if (notGrantedPermissions.size() > 0) {
+            requestPermissions(notGrantedPermissions.toArray(new String[notGrantedPermissions.size()]),
+                               PERMISSION_CODES);
         }
     }
 
@@ -63,11 +70,13 @@ public class RequestPermissionActivity extends AppCompatActivity {
         if (requestCode == PERMISSION_CODES) {
             if (hasAllPermissionsGranted(grantResults)) {
                 //有权限
-                Toast.makeText(this, "get", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "get", Toast.LENGTH_SHORT)
+                     .show();
 
             } else {
                 // 没有获取权限
-                Toast.makeText(this, "no get permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "no get permission", Toast.LENGTH_SHORT)
+                     .show();
             }
         }
     }

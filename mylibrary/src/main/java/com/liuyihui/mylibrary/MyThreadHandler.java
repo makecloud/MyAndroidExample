@@ -3,6 +3,8 @@ package com.liuyihui.mylibrary;
 import android.os.Handler;
 import android.os.Message;
 
+import java.lang.ref.WeakReference;
+
 /**
  * 线程handler.
  * 可指定持有的instance，handlerMessage中处理哪个对象的逻辑。
@@ -18,7 +20,7 @@ public class MyThreadHandler<T> extends Handler {
     /**
      * 使用handler的类。绑定instance，即可执行此类的逻辑
      */
-    private T targetInstance;
+    private WeakReference<T> targetInstance;
 
     public interface IMessageProcessor<T> {
         /**
@@ -51,6 +53,6 @@ public class MyThreadHandler<T> extends Handler {
      * @param t
      */
     public void setTargetInstance(T t) {
-        this.targetInstance = t;
+        this.targetInstance = new WeakReference<>(t);
     }
 }

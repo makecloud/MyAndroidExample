@@ -24,7 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestSwitchVideoViewActivity">
+        <activity android:name=".useAndroidVideoView.TestSwitchVideoViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -42,22 +42,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DoubleSurfaceViewPlayActivity">
+        <activity android:name=".useSurfaceView.DoubleSurfaceViewPlayActivity">
             <intent-filter>
                 <action android:name="view" />
             </intent-filter>
         </activity>
-        <activity android:name=".TextureViewPlayActivity">
+        <activity android:name=".useTextureView.TextureViewPlayActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".VideoViewActivity">
+        <activity android:name=".useAndroidVideoView.VideoViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".IjkPLayerActivity">
+        <activity android:name=".useAndroidVideoView.CustomZoomedVideoViewActivity"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UseIjkPlayer.IjkPlayerDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -72,7 +78,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestSwitchIjkViewActivity">
+        <activity android:name=".useSurfaceView.TestSwitchIjkViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -90,7 +96,12 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".SurfaceViewPlayActivity">
+        <activity android:name=".useSurfaceView.SurfaceViewPlayActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".useTextureView.CustomTextureViewPlayActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>

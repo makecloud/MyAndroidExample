@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,85 +7,107 @@
     android:orientation="vertical"
     tools:context="com.liuyihui.playvideodemo.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/playVideoDemo4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="playVideoDemo4CLick"
-        android:text="调用系统自带videoView 播放视频"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/playVideoDemo2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="playVideoDemo2CLick"
-        android:text="MediaPlayer+SurfaceView播放视频"
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/playVideoDemo3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="playVideoDemo3CLick"
-        android:text="MediaPlayer+TextureView播放视频"
-        android:textAllCaps="false"/>
-
-
-    <Button
-        android:id="@+id/playVideoDemo5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="playVideoDemo5Lick"
-        android:text="JCVideoPlayer使用"
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/playVideoDemo6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="playVideoDemo6Lick"
-        android:text="IjkPlayer使用"
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/playVideoDemo7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="playVideoDemo7Lick"
-        android:text="PLDroidPlayer使用"
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/playVideoDemo8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="playVideoDemo8Lick"
-        android:text="universalVideoView使用"
-        android:textAllCaps="false"/>
+        android:onClick="androidVideoViewDemoButtonClick"
+        android:text="系统videoView播放视频"
+        android:textAllCaps="false" />
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="exoPlayerDemoClick"
-        android:text="exoplayerDemo"
-        android:textAllCaps="false"/>
+        android:onClick="videoViewZoomDemoButtonClick"
+        android:text="测试缩放的videoView"
+        android:textAllCaps="false" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="switchVideoViewDemoClick"
         android:text="切换videoview"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/playVideoDemo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="surfaceMediaPlayerDemoButtonClick"
+        android:text="SurfaceView+MediaPlayer播放视频"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="doubleSurfaceDemoButtonClick"
+        android:text="双SurfaceView无缝切换播放"
+        android:textAllCaps="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="textureViewMediaPlayerDemoButtonClick"
+        android:text="TextureView+MediaPlayer播放视频"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="customTextureVideoDemoButtonClick"
+        android:text="自定义textureView播放视频demo"
+        android:textAllCaps="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+    <Button
+        android:id="@+id/playVideoDemo6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="ijkPlayerDemoButtonClick"
+        android:text="IjkPlayer使用"
+        android:textAllCaps="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="PLDroidPlayerDemoButtonCLick"
+        android:text="PLDroidPlayer使用"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="universalVideoViewDemoButtonClick"
+        android:text="universalVideoView使用"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="exoPlayerDemoButtonClick"
+        android:text="exoplayerDemo"
+        android:textAllCaps="false" />
 
 
 </LinearLayout>

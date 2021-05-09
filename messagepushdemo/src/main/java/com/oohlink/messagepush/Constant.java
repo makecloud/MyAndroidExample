@@ -7,4 +7,7 @@ public class Constant {
     public static final String UMENG_PUSH_KEY = "5e69b290570df31da7000438";
     public static String deviceToken = "";
     public static List<String> receivedMessageList = new ArrayList<>();
+
+    public static final String CHANNEL_ID = "messsage";
+    public static final String CHANNEL_NAME = "消息";
 }

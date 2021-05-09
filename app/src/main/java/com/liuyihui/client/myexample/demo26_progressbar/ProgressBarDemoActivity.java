@@ -4,11 +4,16 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.Window;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.liuyihui.client.myexample.R;
 
+/**
+ * 进度条 progressBar demo
+ */
 public class ProgressBarDemoActivity extends AppCompatActivity {
 
     @Override
@@ -18,12 +23,27 @@ public class ProgressBarDemoActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_progress_bar_demo);
 
+        //？
         setProgressBarIndeterminateVisibility(true);
-
         setProgress(2000);
 
+    }
 
-        //
+    //标题栏进度条
+    public void showTitleBarProgressBar(View view) {
+        setProgressBarIndeterminateVisibility(true);
+    }
+
+    //水平进度条
+    public void horizontalProgressBar(View view) {
+        ProgressBar progressBar = findViewById(R.id.progressbar01);
+        progressBar.incrementProgressBy(1);
+    }
+
+    /**
+     * 进度条对话框 用例
+     */
+    public void progressDialogUsage(View view) {
         //实例化
         ProgressDialog mypDialog = new ProgressDialog(this);
         //设置进度条风格，风格为圆形，旋转的
@@ -47,6 +67,5 @@ public class ProgressBarDemoActivity extends AppCompatActivity {
         mypDialog.setCancelable(true);
         //让ProgressDialog显示
         mypDialog.show();
-
     }
 }

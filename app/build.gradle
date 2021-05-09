@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
+    ndkVersion "21.1.6352462"
     defaultConfig {
         applicationId "com.liuyihui.client.myexample"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -24,44 +25,55 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     //liji.library.dev:citypickerview:5.1.0这个依赖包中也有pinyin4j，只能在这排除下本地的
     //com.liuyihui.mylibrary依赖包中也有sunjce，只能在这排除下本地的
-    implementation fileTree(include: ['*.jar'], dir: 'libs', exclude: ['pinyin4j-2.5.0.jar', 'sunjce_provider.jar'])
+    api fileTree(include: ['*.jar'], dir: 'libs', exclude: ['pinyin4j-2.5.0.jar', 'sunjce_provider.jar'])
+
+    //test
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation project(':PullToRefreshLibrary')
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    testImplementation 'junit:junit:4.12'
 
+    //官方support包
     implementation "com.android.support:appcompat-v7:${supportLibraryVer}"
     implementation "com.android.support:design:${supportLibraryVer}"
     implementation "com.android.support:cardview-v7:${supportLibraryVer}"
-//    implementation 'com.android.support.constraint:constraint-layout:1.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+//    implementation 'com.android.support.constraint:constraint-layout:1.0.0'
+
 
     implementation "com.bigkoo:convenientbanner:2.0.5"
     implementation "com.squareup.picasso:picasso:2.5.2"
-
     implementation 'com.lovedise:permissiongen:0.0.6'
-
-    testImplementation 'junit:junit:4.12'
-
     implementation "com.zhihu.android:matisse:0.5.2-beta3"
-
     implementation "liji.library.dev:citypickerview:5.1.0"
 
-    //implementation 'com.github.chrisbanes:PhotoView:2.1.4'
+    implementation "com.amap.api:location:3.3.0"
 
-    implementation project(':photoview')
-    implementation('com.liuyihui:mylibrary:1.0') {
-        exclude group: 'com.amap.api', module: 'location'
-    }
+    //butterknife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //implementation 'com.github.chrisbanes:PhotoView:2.1.4'
 
     //pdfview
     //implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
+    implementation project(':PullToRefreshLibrary')
+    implementation project(':mylibrary')
+
+
+    //依赖本地maven仓库的jar
+    /*implementation('com.liuyihui:mylibrary:1.0') {
+        exclude group: 'com.amap.api', module: 'location'
+    }*/
+
 }

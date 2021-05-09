@@ -55,4 +55,16 @@
         android:onClick="testConcat"
         android:text="测试双源" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getTGT"
+        android:text="测试getTGT" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="testConcat"
+        android:text="测试getST" />
+
 </LinearLayout>

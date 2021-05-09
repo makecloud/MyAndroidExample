@@ -26,21 +26,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".demo1_activity.LifeCycleDemoOfActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".demo32_handlerThread.HandlerThreadDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".demo31_workmanager.WorkManagerDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".demo30_pdfviwe.PdfViewDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".demo29_sharedpreferrence.SpDemoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".demo28_focus.FocusDemoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
+
         <activity android:name=".demo27_tabhost.TabDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -59,28 +65,12 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".demo1_activity.Demo1Activity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".demo24_datetimepicker.DateTimePickerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".demo25_picture_demo.ImagePreviewDemoActivity"
-            android:theme="@style/transparenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".demo25_picture_demo.ImageViewScaleActivity" />
-        <activity android:name=".demo25_picture_demo.DrawableTypeDemoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".demo19_serviceUI.WindowModeActivity"
-            android:theme="@style/AppTheme.NoActionBar.DialogType">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -153,16 +143,8 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".demo5_use_amap.Example5Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".demo5_use_amap.BaseMapFragmentActivity" />
 
-        <service android:name="com.amap.api.location.APSService" />
-
-        <activity android:name=".demo6_use_popupwindow.Example6Activity">
+        <activity android:name=".demo6_windowShow_demos.Example6Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -177,26 +159,13 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".demo9_qrcode_scan.ScanResultActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
+
         <activity android:name=".demo10_photo_album.InvokeSysGalleryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".demo9_qrcode_scan.zxing.activity.CaptureActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
+
         <activity android:name=".demo11_slideshow_banner.ShuffleImagesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -207,44 +176,19 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".demo15_viewpager.UseViewPagerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
+
         <activity android:name=".demo14_gridview.UseGridViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".demo15_viewpager.ViewPagerFragmentActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
+
         <activity android:name=".demo16_recyclerview.Example16Activity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity android:name=".demo17_DESencrypt.TestDesActivity" />
-
-        <service android:name=".demo18_service.MyService" />
-
-        <activity android:name=".demo18_service.Example18Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-
-        <service android:name=".demo19_serviceUI.ServiceUI" />
-        <service android:name=".demo18_service.PollService" />
-
-        <activity android:name=".demo19_serviceUI.example19Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
         <activity android:name=".demo20_activityGroup.ContainerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -265,26 +209,6 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".demo22_awakenSelf.Example22Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".demo23_CrashHandler.Example23Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".demo5_1_use_amaplocate.GetLocationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".demo25_picture_demo.BitmapOperationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
         <activity android:name=".demo1_activity.IntentFlagDemoActivity1">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -292,6 +216,38 @@
         </activity>
         <activity android:name=".demo1_activity.IntentFlagDemoActivity2" />
         <activity android:name=".demo1_activity.IntentFlagDemoActivity3" />
+
+        <activity
+            android:name="com.liuyihui.client.myexample.demo3_everyBar.SystemUIDemoActivity"
+            android:theme="@style/systemuidemo">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.liuyihui.client.myexample.demo3_everyBar.BarHideDemoActivity" />
+        <activity android:name="com.liuyihui.client.myexample.demo3_everyBar.MovingToolBarActivity3" />
+        <activity
+            android:name="com.liuyihui.client.myexample.demo3_everyBar.ToolbarDemoActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.liuyihui.client.myexample.demo3_everyBar.ActionBarBaseDemoActivity" />
+        <activity android:name="com.liuyihui.client.myexample.demo3_everyBar.ToolBarMenuDemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.liuyihui.client.myexample.demo3_everyBar.ParallaxBarDemoActivity" />
+        <activity android:name="com.liuyihui.client.myexample.demo3_everyBar.MovingToolBarActivity" />
+        <activity android:name="com.liuyihui.client.myexample.demo3_everyBar.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.liuyihui.client.myexample.demo3_everyBar.MovingToolBarActivity2" />
+        <activity android:name="com.liuyihui.client.myexample.demo3_everyBar.OptionMenuDemoActivity" />
     </application>
 
 </manifest>

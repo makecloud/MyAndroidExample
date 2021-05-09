@@ -8,103 +8,115 @@
     android:orientation="vertical"
     tools:context="com.liuyihui.testroot.MainActivity">
 
-    <TextView
-        android:id="@+id/is_root"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="root权限:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/android_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/is_root"
-        android:text="安卓id：" />
-
-    <TextView
-        android:id="@+id/mac_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/android_id"
-        android:text="mac地址：" />
-
-    <TextView
-        android:id="@+id/android_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/mac_address"
-        android:text="安卓版本：" />
-
-    <TextView
-        android:id="@+id/android_imei"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/android_version"
-        android:text="安卓IMEI：" />
-
-    <TextView
-        android:id="@+id/android_iccid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/android_imei"
-        android:text="安卓Iccid：" />
-
-    <TextView
-        android:id="@+id/android_factory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/android_iccid"
-        android:text="制造商：" />
-
-    <TextView
-        android:id="@+id/android_build_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/android_factory"
-        android:text="版本号：" />
-
-    <TextView
-        android:id="@+id/netinfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/displayInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="evaluateMd5"
-        android:text="计算md5" />
+            <TextView
+                android:id="@+id/is_root"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="root权限:"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/md5value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/android_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/is_root"
+                android:text="安卓id：" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="downloadAFile"
-        android:text="下载一个文件" />
+            <TextView
+                android:id="@+id/mac_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/android_id"
+                android:text="mac地址：" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startSettings"
-        android:text="打开设置" />
+            <TextView
+                android:id="@+id/android_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mac_address"
+                android:text="安卓版本：" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startDevelopSetting"
-        android:text="打开开发者选项" />
+            <TextView
+                android:id="@+id/android_imei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/android_version"
+                android:text="安卓IMEI：" />
 
+            <TextView
+                android:id="@+id/android_iccid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/android_imei"
+                android:text="安卓Iccid：" />
+
+            <TextView
+                android:id="@+id/android_factory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/android_iccid"
+                android:text="制造商：" />
+
+            <TextView
+                android:id="@+id/android_build_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/android_factory"
+                android:text="版本号：" />
+
+            <TextView
+                android:id="@+id/netinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/displayInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="evaluateMd5"
+                android:text="计算md5" />
+
+            <TextView
+                android:id="@+id/md5value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="downloadAFile"
+                android:text="下载一个文件" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="startSettings"
+                android:text="打开设置" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="startDevelopSetting"
+                android:text="打开开发者选项" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

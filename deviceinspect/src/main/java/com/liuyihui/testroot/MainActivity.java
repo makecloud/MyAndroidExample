@@ -76,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
             isRootTextView.append("app无法获得root权限 --");
         }
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         //show android id
         try {
             String androidId = AndroidUtil.getAndroidID(this);
@@ -149,10 +155,9 @@ public class MainActivity extends AppCompatActivity {
         int physicalHeight = ScreenUtil.getPhysicalHeight(this);
         int physicalWidth = ScreenUtil.getPhysicalWidth(this);
         int onedpPx = ScreenUtil.dip2px(this, 1);
-        String dpInfo = String.format("density=%s,1dp=%spx,densityDpi=%s,xdpi=%s,ydpi=%s," +
-                                              "scaleDensity=%s,heightPx=%s,widthPx=%s," +
-                                              "UIWidth=%s,UIHeight=%s,physicalWidthPx=%s," +
-                                              "physicalHeightPx=%s",
+        String dpInfo = String.format("density=%s,1dp=%spx,densityDpi=%s,xdpi=%s,ydpi=%s," + "scaleDensity=%s," +
+                                              "heightPx=%s,widthPx=%s," + "UIWidth=%s,UIHeight=%s,physicalWidthPx=%s,"
+                                              + "physicalHeightPx=%s",
                                       density,
                                       onedpPx,
                                       densityDpi,
@@ -182,13 +187,11 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                netInfoTextView.append(String.format("interfaceName:%s ipv4:%s " +
-                                                                             "enable:%s",
+                                netInfoTextView.append(String.format("interfaceName:%s ipv4:%s " + "enable:%s",
                                                                      netWork.getType(),
                                                                      netWork.getIpv4(),
                                                                      netWork.getIsEnable()));
-                                netInfoTextView.append(String.format(" broadcastIp:%s",
-                                                                     netWork.getBroadCastIp()));
+                                netInfoTextView.append(String.format(" broadcastIp:%s", netWork.getBroadCastIp()));
                                 netInfoTextView.append("\n");
                             }
                         });
@@ -200,8 +203,7 @@ public class MainActivity extends AppCompatActivity {
     public void evaluateMd5(View view) {
         TextView md5tv = findViewById(R.id.md5value);
         File file = new File("/sdcard/oohlink/player/.screen/E94DEFEE0A1820286F051B54413FF42B");
-        File file2 = new File("/sdcard/com.liuyihui" + ".networkcontrol" +
-                                      "/E94DEFEE0A1820286F051B54413FF42B");
+        File file2 = new File("/sdcard/com.liuyihui" + ".networkcontrol" + "/E94DEFEE0A1820286F051B54413FF42B");
         md5tv.setText(MD5Util.getFileMD5String(file2));
     }
 
@@ -209,10 +211,8 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String url = "http://res.oohlink" + ".com/material/645" +
-                        "/4F4709B19FB71DD85A406B2D0A0720C8.mp4";
-                String storePath = "/sdcard/oohlink/player/" + ".screen" +
-                        "/E94DEFEE0A1820286F051B54413FF42B";
+                String url = "http://res.oohlink" + ".com/material/645" + "/4F4709B19FB71DD85A406B2D0A0720C8.mp4";
+                String storePath = "/sdcard/oohlink/player/" + ".screen" + "/E94DEFEE0A1820286F051B54413FF42B";
                 HttpApi.getInstance().downFile(url, storePath);
             }
         }).start();
@@ -244,10 +244,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        PermissionGen.onRequestPermissionsResult(MainActivity.this,
-                                                 requestCode,
-                                                 permissions,
-                                                 grantResults);
+        PermissionGen.onRequestPermissionsResult(MainActivity.this, requestCode, permissions, grantResults);
     }
 
     @PermissionSuccess(requestCode = 100)

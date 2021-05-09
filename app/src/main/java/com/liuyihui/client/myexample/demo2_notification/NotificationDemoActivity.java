@@ -16,7 +16,7 @@ import com.liuyihui.client.myexample.MainActivity;
 import com.liuyihui.client.myexample.R;
 
 /**
- * 通知使用demo
+ * 通知 用例
  */
 public class NotificationDemoActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();

@@ -1,10 +1,16 @@
 package com.liuyihui.exeshell;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import util.ReallyShellUtil;
@@ -13,6 +19,9 @@ import util.TopActivityUtil;
 
 public class MainActivity extends BaseActivity {
     private final String TAG = "MainActivity";
+    private static final String[] PERMISSIONS = new String[]{Manifest.permission.READ_PHONE_STATE,
+                                                             Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private static final int PERMISSION_CODES = 1;
 
 
     @Override
@@ -21,6 +30,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         resultTextView = findViewById(R.id.checkRootResultText);
         //seeTopActivity(null);
+        requestPermission();
     }
 
     /**
@@ -116,20 +126,6 @@ public class MainActivity extends BaseActivity {
     public void checkRoot_byXbinSu(View view) {
         boolean isroot = ReallyShellUtil.canRunRootCommands_inXbin();
         showString("" + isroot);
-    }
-
-    /**
-     * 执行:screencap -p 按钮
-     */
-    public void invokeScreencap(View view) {
-        try {
-            ShellUtils.CommandResult commandResult = ShellUtils.execCommand(
-                    "screencap -p /sdcard/lyh.png",
-                    true);
-            showCommandResult(commandResult);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -254,12 +250,77 @@ public class MainActivity extends BaseActivity {
             commandResult = ShellUtils.execCommand("/system/bin/screencap -p /sdcard/oohlink/aaa.png", false);
             showCommandResult(commandResult);
 
+            //test
+            Process process = Runtime.getRuntime().exec("/system/bin/screencap -p /sdcard/oohlink/ccc.png");
+            int result = process.waitFor();
+            Log.d(TAG, "runScreencap: " + result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void runScreencapWithRoot(View view) {
+        ShellUtils.CommandResult commandResult = null;
+        try {
+            commandResult = ShellUtils.execCommand("/system/bin/screencap -p /sdcard/oohlink/aaa.png", true);
+            showCommandResult(commandResult);
+
+            //test
             Process process = Runtime.getRuntime().exec("/system/bin/screencap -p /sdcard/oohlink/ccc.png");
             int result = process.waitFor();
             Log.d(TAG, "runScreencap: " + result);
 
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+    /**
+     * 触发
+     */
+    public void requestPermission() {
+        List<String> notGrantedPermissions = new ArrayList<>();
+        for (String permission : PERMISSIONS) {
+            if (ContextCompat.checkSelfPermission(this,
+                                                  permission) != PackageManager.PERMISSION_GRANTED) {
+                notGrantedPermissions.add(permission);
+            }
+        }
+        if (notGrantedPermissions.size() > 0) {
+            requestPermissions(notGrantedPermissions.toArray(new String[notGrantedPermissions.size()]),
+                               PERMISSION_CODES);
+        }
+    }
+
+    private boolean hasAllPermissionsGranted(@NonNull int[] grantResults) {
+        for (int grantResult : grantResults) {
+            //PERMISSION_GRANTED 授予
+            if (grantResult == PackageManager.PERMISSION_DENIED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == PERMISSION_CODES) {
+            if (hasAllPermissionsGranted(grantResults)) {
+                //有权限
+                Toast.makeText(this, "get", Toast.LENGTH_SHORT)
+                     .show();
+
+            } else {
+                // 没有获取权限
+                Toast.makeText(this, "no get permission", Toast.LENGTH_SHORT)
+                     .show();
+            }
         }
     }
 

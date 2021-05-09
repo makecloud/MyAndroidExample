@@ -41,7 +41,7 @@ public class KeepLiveService extends Service {
         }
     }
 
-    public class InnerService extends Service {
+    public static class InnerService extends Service {
         public InnerService() {
         }
 

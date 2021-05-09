@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
+    <color name="black_overlay">#660ef000</color>
     <!--云歌设计颜色-->
     <color name="yunge_A_black">#000000</color><!--黑色-->
     <color name="yunge_B_black">#666666</color>

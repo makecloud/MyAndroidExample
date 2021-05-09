@@ -1,12 +1,14 @@
 package com.liuyihui.playvideodemo.customerView;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.VideoView;
 
 /**
  * 自定义拉伸的视频view
  */
 public class CustomZoomVideoView extends VideoView {
+    private final String TAG = "CustomZoomVideoView";
     private int width;
     private int height;
 
@@ -22,11 +24,15 @@ public class CustomZoomVideoView extends VideoView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(width, height);
+        //设置固定的宽高
+        //setMeasuredDimension(width, height);
 
         //以下好像也管用
-        /*int w = MeasureSpec.getSize(widthMeasureSpec);
+        int w = MeasureSpec.getSize(widthMeasureSpec);
         int h = MeasureSpec.getSize(heightMeasureSpec);
-        setMeasuredDimension(w, h);*/
+        Log.d(TAG, "onMeasure: " + w + "," + h);
+        setMeasuredDimension(w, h);
+
+        //setMeasuredDimension(800, 800);
     }
 }

@@ -2,8 +2,12 @@ package com.liuyihui.networkcontrol.http.retrofitCommon;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -24,4 +28,16 @@ public interface RetrofitHttpInterface {
 
     @GET
     Observable<ApiResponse> getMyInfo(@Url String url);
+
+    @POST
+    @FormUrlEncoded
+    Call<ResponseBody> getTGT(@Url String url,
+                              @Field("username") String userName,
+                              @Field("password") String password);
+
+    @POST
+    @FormUrlEncoded
+    Observable<String> getST(@Url String url, @Field("service") String service);
+
+
 }

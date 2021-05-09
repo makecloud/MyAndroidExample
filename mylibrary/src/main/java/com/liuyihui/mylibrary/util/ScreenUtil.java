@@ -10,6 +10,7 @@ import android.graphics.Point;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -63,8 +64,7 @@ public class ScreenUtil {
      * @return 屏幕宽px
      */
     public static int getUIWidth(Context context) {
-        WindowManager windowManager =
-                (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         if (Build.VERSION.SDK_INT >= 17) {
             int screenWidth = 0;
@@ -88,8 +88,7 @@ public class ScreenUtil {
      * @return 屏幕高px
      */
     public static int getUIHeight(Context context) {
-        WindowManager windowManager =
-                (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         if (Build.VERSION.SDK_INT >= 17) {
             int screenHeight = 0;
@@ -108,28 +107,32 @@ public class ScreenUtil {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static int getPhysicalWidth(Context context) {
-        WindowManager windowManager =
-                (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         int screenwidth = 0;
         try {
             screenwidth = display.getMode().getPhysicalWidth();
+        } catch (NoSuchMethodError e) {
+            e.printStackTrace();
         } catch (Exception e) {
-            Log.e(TAG, "getPhysicalWidth: ", e);
+            e.printStackTrace();
         }
         return screenwidth;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static int getPhysicalHeight(Context context) {
-        WindowManager windowManager =
-                (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         int screenHeight = 0;
         try {
             screenHeight = display.getMode().getPhysicalHeight();
+        } catch (NoSuchMethodError e) {
+            e.printStackTrace();
         } catch (Exception e) {
-            Log.e(TAG, "getPhysicalHeight: ", e);
+            e.printStackTrace();
         }
         return screenHeight;
     }
@@ -163,8 +166,7 @@ public class ScreenUtil {
      * @return {@code true}: 是<br>{@code false}: 否
      */
     public static boolean isLandscape(Context context) {
-        return context.getResources()
-                      .getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
     /**
@@ -173,8 +175,7 @@ public class ScreenUtil {
      * @return {@code true}: 是<br>{@code false}: 否
      */
     public static boolean isPortrait(Context context) {
-        return context.getResources()
-                      .getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+        return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 
     /**
@@ -220,11 +221,7 @@ public class ScreenUtil {
         decorView.setDrawingCacheEnabled(true);
         decorView.buildDrawingCache();
         Bitmap bitmap = decorView.getDrawingCache();
-        Bitmap ret = Bitmap.createBitmap(bitmap,
-                                         0,
-                                         0,
-                                         decorView.getMeasuredWidth(),
-                                         decorView.getMeasuredHeight());
+        Bitmap ret = Bitmap.createBitmap(bitmap, 0, 0, decorView.getMeasuredWidth(), decorView.getMeasuredHeight());
         decorView.destroyDrawingCache();
         decorView.setDrawingCacheEnabled(false);
         return ret;
@@ -247,9 +244,7 @@ public class ScreenUtil {
      * @param duration 时长
      */
     public static void setSleepDuration(final int duration, Context context) {
-        Settings.System.putInt(context.getContentResolver(),
-                               Settings.System.SCREEN_OFF_TIMEOUT,
-                               duration);
+        Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, duration);
     }
 
     /**
@@ -259,8 +254,7 @@ public class ScreenUtil {
      */
     public static int getSleepDuration(Context context) {
         try {
-            return Settings.System.getInt(context.getContentResolver(),
-                                          Settings.System.SCREEN_OFF_TIMEOUT);
+            return Settings.System.getInt(context.getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT);
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
             return -123;

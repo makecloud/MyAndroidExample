@@ -9,9 +9,9 @@ import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "MainActivity";
-    FrameLayout aframeLayout;
-    FrameLayout bframeLayout;
-    FrameLayout cFrameLayout;
+    private FrameLayout aframeLayout;
+    private FrameLayout bframeLayout;
+    private FrameLayout cFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     /*
     首先弄清，android里的view怎么分层的，谁是最上层最先收到touch event，谁是最下层最后收到touch event ！
     结果：按布局包含原理来，外层布局包含内层布局view，外层先收到event

@@ -25,7 +25,7 @@ public class Demo1Activity extends AppCompatActivity {
 
         getSupportParentActivityIntent();
 
-        TextView tv=findViewById(R.id.log);
+        TextView tv = findViewById(R.id.log);
         tv.append("fjkdsjaf\n");
         tv.append("fd\n");
         tv.append("sdfv\n");
@@ -43,7 +43,18 @@ public class Demo1Activity extends AppCompatActivity {
         //intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
+
     public void close(View view) {
         finish();
+    }
+
+    /**
+     * 之前播控里的退出activity的方式,大概是启动launcher activity
+     */
+    public void disappearCurrentActivity(View view) {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        startActivity(intent);
     }
 }

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ViewAnimator;
 
 /**
- * 布局中的ViewAnimator demo
+ * 视图组件ViewAnimator demo
  */
 public class ViewAnimatorActivity extends AppCompatActivity {
 

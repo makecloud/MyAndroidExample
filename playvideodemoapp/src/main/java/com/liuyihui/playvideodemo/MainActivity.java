@@ -2,33 +2,30 @@ package com.liuyihui.playvideodemo;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-import android.widget.VideoView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.liuyihui.playvideodemo.UseIjkPlayer.IjkPlayerDemoActivity;
+import com.liuyihui.playvideodemo.useAndroidVideoView.CustomZoomedVideoViewActivity;
+import com.liuyihui.playvideodemo.useAndroidVideoView.TestSwitchVideoViewActivity;
+import com.liuyihui.playvideodemo.useAndroidVideoView.VideoViewActivity;
+import com.liuyihui.playvideodemo.useSurfaceView.DoubleSurfaceViewPlayActivity;
+import com.liuyihui.playvideodemo.useSurfaceView.SurfaceViewPlayActivity;
+import com.liuyihui.playvideodemo.useTextureView.CustomTextureViewPlayActivity;
+import com.liuyihui.playvideodemo.useTextureView.TextureViewPlayActivity;
 
 /**
- * 播放视频
+ * dispatch to other activitys
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends RequestPermissionActivity {
     private final String TAG = "MainActivity";
     private static final String[] PERMISSIONS = new String[]{Manifest.permission.READ_PHONE_STATE,
                                                              Manifest.permission.ACCESS_NETWORK_STATE,
                                                              Manifest.permission.INTERNET,
                                                              Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    private VideoView myVideoView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,81 +46,67 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onResume: " + bitmap);
     }
 
-    /** 调用系统自带播放器 播放视频 */
-    public void playVideoDemo4CLick(View v) {
+    /** 系统自带VideoView demo */
+    public void androidVideoViewDemoButtonClick(View v) {
         startActivity(new Intent(MainActivity.this, VideoViewActivity.class));
     }
 
-    /** mediaPlayer + surfaceView播放视频 */
-    public void playVideoDemo2CLick(View v) {
-        startActivity(new Intent(MainActivity.this, DoubleSurfaceViewPlayActivity.class));
+    /** 自定义 实现videoView缩放 demo */
+    public void videoViewZoomDemoButtonClick(View v) {
+        startActivity(new Intent(MainActivity.this, CustomZoomedVideoViewActivity.class));
     }
 
-    /** mediaplayer + textureView播放视频 */
-    public void playVideoDemo3CLick(View v) {
-        startActivity(new Intent(MainActivity.this, TextureViewPlayActivity.class));
-    }
-
-    /** IjkPlayer使用 */
-    public void playVideoDemo6Lick(View v) {
-        startActivity(new Intent(MainActivity.this, IjkPLayerActivity.class));
-    }
-
-    /** PLDroidPlayer使用 */
-    public void playVideoDemo7Lick(View v) {
-        startActivity(new Intent(MainActivity.this, PLDroidPlayerActivity.class));
-    }
-
-    /** PLDroidPlayer使用 */
-    public void playVideoDemo8Lick(View v) {
-        startActivity(new Intent(MainActivity.this, UniversalVideoViewActivity.class));
-    }
-
-    public void exoPlayerDemoClick(View view) {
-        startActivity(new Intent(this, ExoPlayerActivity.class));
-    }
-
+    /**
+     * videoView 切换demo
+     *
+     * @param view
+     */
     public void switchVideoViewDemoClick(View view) {
         startActivity(new Intent(this, TestSwitchVideoViewActivity.class));
     }
 
-
-    public void requestPermission(View view) {
-        List<String> p = new ArrayList<>();
-        for (String permission : PERMISSIONS) {
-            if (ContextCompat.checkSelfPermission(this,
-                                                  permission) != PackageManager.PERMISSION_GRANTED) {
-                p.add(permission);
-            }
-        }
-        if (p.size() > 0) {
-            requestPermissions(p.toArray(new String[p.size()]), 0);
-        }
+    /** mediaPlayer + surfaceView播放视频 demo */
+    public void surfaceMediaPlayerDemoButtonClick(View v) {
+        startActivity(new Intent(MainActivity.this, SurfaceViewPlayActivity.class));
     }
 
-    private boolean hasAllPermissionsGranted(@NonNull int[] grantResults) {
-        for (int grantResult : grantResults) {
-            //PERMISSION_GRANTED 授予
-            if (grantResult == PackageManager.PERMISSION_DENIED) {
-                return false;
-            }
-        }
-        return true;
+    /** 双surfaceView实现无缝切换播放视频 */
+    public void doubleSurfaceDemoButtonClick(View v) {
+        startActivity(new Intent(MainActivity.this, DoubleSurfaceViewPlayActivity.class));
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == 0) {
-            if (hasAllPermissionsGranted(grantResults)) {
-                //有权限
-                Toast.makeText(this, "get", Toast.LENGTH_SHORT).show();
-
-            } else {
-                // 没有获取权限
-                Toast.makeText(this, "no get permission", Toast.LENGTH_SHORT).show();
-            }
-        }
+    /** textureView+mediaPlayer 播放视频 */
+    public void textureViewMediaPlayerDemoButtonClick(View v) {
+        startActivity(new Intent(MainActivity.this, TextureViewPlayActivity.class));
     }
+
+    /** 使用自定义的TextureView播放视频demo */
+    public void customTextureVideoDemoButtonClick(View v) {
+        startActivity(new Intent(MainActivity.this, CustomTextureViewPlayActivity.class));
+    }
+
+    /** IjkPlayer使用 */
+    public void ijkPlayerDemoButtonClick(View v) {
+        startActivity(new Intent(MainActivity.this, IjkPlayerDemoActivity.class));
+    }
+
+    /** PLDroidPlayer使用 */
+    public void PLDroidPlayerDemoButtonCLick(View v) {
+        startActivity(new Intent(MainActivity.this, PLDroidPlayerActivity.class));
+    }
+
+    /** universalVideoView demo */
+    public void universalVideoViewDemoButtonClick(View v) {
+        startActivity(new Intent(MainActivity.this, UniversalVideoViewActivity.class));
+    }
+
+    /**
+     * exoPlayer使用demo
+     *
+     * @param view
+     */
+    public void exoPlayerDemoButtonClick(View view) {
+        startActivity(new Intent(this, ExoPlayerActivity.class));
+    }
+
 }

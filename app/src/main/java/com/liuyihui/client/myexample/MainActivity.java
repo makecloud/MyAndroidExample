@@ -14,33 +14,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.liuyihui.client.myexample.demo1_activity.Demo1Activity;
-import com.liuyihui.client.myexample.demo1_activity.Example1_1Activity;
 import com.liuyihui.client.myexample.demo10_photo_album.InvokeSysGalleryActivity;
 import com.liuyihui.client.myexample.demo11_slideshow_banner.ShuffleImagesActivity;
 import com.liuyihui.client.myexample.demo13_viewflipper.UseViewFlipperActivity;
 import com.liuyihui.client.myexample.demo14_2_GridLayout.GridLayoutActivity;
 import com.liuyihui.client.myexample.demo14_gridview.UseGridViewActivity;
-import com.liuyihui.client.myexample.demo15_viewpager.UseViewPagerActivity;
-import com.liuyihui.client.myexample.demo15_viewpager.ViewPagerFragmentActivity;
 import com.liuyihui.client.myexample.demo16_recyclerview.Example16Activity;
 import com.liuyihui.client.myexample.demo17_DESencrypt.TestDesActivity;
-import com.liuyihui.client.myexample.demo18_service.Example18Activity;
-import com.liuyihui.client.myexample.demo19_serviceUI.example19Activity;
+import com.liuyihui.client.myexample.demo1_activity.Demo1Activity;
+import com.liuyihui.client.myexample.demo1_activity.Example1_1Activity;
 import com.liuyihui.client.myexample.demo20_activityGroup.ContainerActivity;
 import com.liuyihui.client.myexample.demo21_framelayout_hierarchy.Example21Activity;
-import com.liuyihui.client.myexample.demo22_awakenSelf.Example22Activity;
-import com.liuyihui.client.myexample.demo23_CrashHandler.Example23Activity;
-import com.liuyihui.client.myexample.demo25_picture_demo.ImagePreviewDemoActivity;
 import com.liuyihui.client.myexample.demo2_notification.NotificationDemoActivity;
 import com.liuyihui.client.myexample.demo4_use_camera.Example4Activity;
-import com.liuyihui.client.myexample.demo5_1_use_amaplocate.GetLocationActivity;
-import com.liuyihui.client.myexample.demo5_use_amap.BaseMapFragmentActivity;
-import com.liuyihui.client.myexample.demo5_use_amap.Example5Activity;
-import com.liuyihui.client.myexample.demo6_use_popupwindow.Example6Activity;
+import com.liuyihui.client.myexample.demo6_windowShow_demos.Example6Activity;
 import com.liuyihui.client.myexample.demo7_custom_view.Example7Activity;
 import com.liuyihui.client.myexample.demo8_choose_city_demo.ChoseCityActivity;
-import com.liuyihui.client.myexample.demo9_qrcode_scan.ScanResultActivity;
 
 import butterknife.ButterKnife;
 import kr.co.namee.permissiongen.PermissionFail;
@@ -103,16 +92,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void btn_eg5Click(View view) {
         //高德地图显示，使用activity显示地图
-        startActivity(Example5Activity.class);
     }
 
     public void btn_eg5_1Click(View view) {
         //fragment显示高德地图
-        startActivity(BaseMapFragmentActivity.class);
     }
 
     public void btn_eg5_2Click(View view) {
-        startActivity(GetLocationActivity.class);
     }
 
     public void btn_eg6Click(View view) {
@@ -128,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btn_eg9Click(View view) {
-        startActivity(ScanResultActivity.class);
     }
 
     public void btn_eg10Click(View view) {
@@ -144,11 +129,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btn_eg13Click(View view) {
-        startActivity(UseViewPagerActivity.class);
     }
 
     public void btn_eg13_2Click(View view) {
-        startActivity(ViewPagerFragmentActivity.class);
     }
 
     public void btn_eg14_2Click(View view) {
@@ -168,11 +151,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btn_eg18Click(View view) {
-        startActivity(Example18Activity.class);
     }
 
     public void btn_eg19Click(View view) {
-        startActivity(example19Activity.class);
     }
 
     public void btn_eg20Click(View view) {
@@ -184,11 +165,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btn_eg22Click(View view) {
-        startActivity(Example22Activity.class);
     }
 
     public void btn_eg23Click(View view) {
-        startActivity(Example23Activity.class);
     }
 
     public void open_adb_tcp(View view) {
@@ -196,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btn_eg25_1Click(View view) {
-        startActivity(ImagePreviewDemoActivity.class);
     }
 
 

@@ -1,5 +1,6 @@
 package com.liuyihui.androidevent;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ public class BFramelayout extends FrameLayout {
 
     public BFramelayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        Log.d(TAG, "BFramelayout: " + (context instanceof Activity));
     }
 
     /**
@@ -34,12 +36,13 @@ public class BFramelayout extends FrameLayout {
         Log.d(TAG, sb.toString());
         return super.dispatchTouchEvent(ev);
 
-//        Log.d(TAG, "dispatchTouchEvent: return true");
-//        return true;
+        //        Log.d(TAG, "dispatchTouchEvent: return true");
+        //        return true;
 
-//        Log.d(TAG, "dispatchTouchEvent: return false;");
-//        return false;
+        //        Log.d(TAG, "dispatchTouchEvent: return false;");
+        //        return false;
     }
+
     /**
      * @param ev
      * @return
@@ -47,7 +50,7 @@ public class BFramelayout extends FrameLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         StringBuilder sb = new StringBuilder();
-        sb.append("onInterceptTouchEvent called。EventAction："+ev.getAction());
+        sb.append("onInterceptTouchEvent called。EventAction：" + ev.getAction());
         sb.append(" onInterceptTouchEvent: return super");
         Log.d(TAG, sb.toString());
         return super.onInterceptTouchEvent(ev);
@@ -61,6 +64,6 @@ public class BFramelayout extends FrameLayout {
         Log.d(TAG, sb.toString());
 
         return super.onTouchEvent(event);
-//        return true;
+        //        return true;
     }
 }

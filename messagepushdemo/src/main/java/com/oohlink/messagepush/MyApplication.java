@@ -2,7 +2,10 @@ package com.oohlink.messagepush;
 
 import android.app.Application;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 import com.umeng.commonsdk.UMConfigure;
@@ -14,13 +17,41 @@ import com.umeng.message.entity.UMessage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 友盟推送集成demo
+ */
 public class MyApplication extends Application {
 
-    private final String TAG = getClass().getSimpleName();
+    private final String TAG = "MyApplication";
 
     @Override
     public void onCreate() {
         super.onCreate();
+        //创建通知渠道
+        createNotificationChannel();
+
+        //初始化友盟推送
+        initUmengPush();
+
+    }
+
+    public void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_MAX;
+            NotificationChannel channel = new NotificationChannel(Constant.CHANNEL_ID,
+                                                                  Constant.CHANNEL_NAME,
+                                                                  importance);
+            channel.setDescription("这是消息渠道");
+            channel.enableLights(true);
+            channel.enableVibration(true);
+
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public void initUmengPush() {
         // 在此处调用基础组件包提供的初始化函数 相应信息可在应用管理 -> 应用信息 中找到 http://message.umeng.com/list/apps
         // 参数一：当前上下文context；
         // 参数二：应用申请的Appkey（需替换）；
@@ -71,24 +102,10 @@ public class MyApplication extends Application {
                 Constant.receivedMessageList.add(String.format("message： %s \n%s",
                                                                msg.custom,
                                                                simpleDateFormat.format(new Date())));
-                //Toast.makeText(context, "receive a message", Toast.LENGTH_SHORT).show();
 
-                /*new Handler(getMainLooper()).post(new Runnable() {
+                NotificationShower.getInstance()
+                                  .showNotificationBar(getApplicationContext(), msg.custom);
 
-                    @Override
-                    public void run() {
-                        // 对于自定义消息，PushSDK默认只统计送达。若开发者需要统计点击和忽略，则需手动调用统计方法。
-                        boolean isClickOrDismissed = true;
-                        if (isClickOrDismissed) {
-                            //自定义消息的点击统计
-                            UTrack.getInstance(getApplicationContext()).trackMsgClick(msg);
-                        } else {
-                            //自定义消息的忽略统计
-                            UTrack.getInstance(getApplicationContext()).trackMsgDismissed(msg);
-                        }
-                        Toast.makeText(context, msg.custom, Toast.LENGTH_LONG).show();
-                    }
-                });*/
             }
 
 

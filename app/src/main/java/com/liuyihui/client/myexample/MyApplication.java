@@ -19,8 +19,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-//        CrashHandler crashHandler = CrashHandler.getInstance();
-//        crashHandler.init(context);
+        //        CrashHandler crashHandler = CrashHandler.getInstance();
+        //        crashHandler.init(context);
     }
 
     public static Context getContextObject() {
@@ -35,7 +35,8 @@ public class MyApplication extends Application {
     public static String getAppPathOnSDCard() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             PackageManager pm;
-            return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + context.getPackageName();
+            return Environment.getExternalStorageDirectory()
+                              .getAbsolutePath() + File.separator + context.getPackageName();
         } else {
             return null;
         }
@@ -43,12 +44,8 @@ public class MyApplication extends Application {
     }
 
     @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-    }
-
-    @Override
-    public Context getBaseContext() {
-        return super.getBaseContext();
+    public void onTerminate() {
+        super.onTerminate();
+        context = null;
     }
 }

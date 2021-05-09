@@ -31,7 +31,7 @@ import kr.co.namee.permissiongen.PermissionSuccess;
 /**
  * wifi、热点、网络demo
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends RequestPermissionActivity {
     private final String TAG = "MainActivity";
     private Button openHotspotButton;
     private Button connectWifiButton;
@@ -46,13 +46,7 @@ public class MainActivity extends AppCompatActivity {
         openHotspotButton = findViewById(R.id.open_hotspot);
         connectWifiButton = findViewById(R.id.connect_wifi);
 
-
-        //permission
-        if (Build.VERSION.SDK_INT >= 23) {//sdk23以上申请权限
-            getPermission(this,
-                          Manifest.permission.READ_EXTERNAL_STORAGE,
-                          Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
+        requestPermission(null);
 
         //创建目录
         appDir =
@@ -155,35 +149,14 @@ public class MainActivity extends AppCompatActivity {
     public void callHttpUrl(View view) {
         TestHttpApi.getInstance().getPlayerInfo();
     }
-    /**
-     * 以下4个方法，使用PermissionGen 框架，针对android 6.x sdk 获取系统某些权限
-     * by liuyihui
-     *
-     * @param activity    活动实例
-     * @param permissions 不定长权限数组
-     */
-    public void getPermission(Activity activity, String... permissions) {
-        PermissionGen.with(activity).addRequestCode(100).permissions(permissions).request();
+
+
+    public void getTGT(View view) {
+        TestHttpApi.getInstance().getTgt();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        PermissionGen.onRequestPermissionsResult(MainActivity.this,
-                                                 requestCode,
-                                                 permissions,
-                                                 grantResults);
-    }
-
-    @PermissionSuccess(requestCode = 100)
-    public void onSuccess() {
-        //ToastUtil.toast("已获取权限");
-    }
-
-    @PermissionFail(requestCode = 100)
-    public void onFail() {
-        ToastUtil.toast("获取设备读写权限失败");
+    public void getST(View view) {
+        TestHttpApi.getInstance().getST();
     }
 
 }
